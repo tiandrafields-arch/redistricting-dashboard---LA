@@ -1,10 +1,10 @@
 # Louisiana Redistricting Dashboard
-Spatial equity dashboard tracking Louisiana's SB 121 redistricting — 5R/1D cracking of Black voting power. Post-Callais VRA analysis. #Built by Tia Fields.#
+Spatial equity dashboard tracking Louisiana's SB 121- ACT 2 redistricting — 5R/1D cracking of Black voting power. Post-Callais VRA analysis. #Built by Tia Fields.#
 
 www.tiafields.com 
 
 Louisiana Redistricting Equity Dashboard
-Tracking Black Voting Power Under SB 121 + the McMakin Amendment
+Tracking Black Voting Power Under SB 121 Now Act 2
 
 
 # What This Is
