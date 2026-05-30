@@ -2,291 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-View
-
-
-Code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Louisiana Redistricting Equity Dashboard | Tia Fields</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-/* ═══════════════════════════════════════
-   BRAND TOKENS — TiaFields.com palette
-   Extracted pixel-perfect from screenshot
-═══════════════════════════════════════ */
-:root {
-  /* backgrounds */
-  --linen:      #f6f0e8;
-  --linen-lt:   #fbf4ec;
-  --linen-dk:   #ede5d8;
-  --linen-deep: #e2d9cb;
-
-  /* charcoal dark section */
-  --charcoal:   #35302a;
-  --charcoal-lt:#4a4339;
-  --charcoal-ui:#2d2820;
-
-  /* burnt sienna / terracotta CTA */
-  --orange:     #b76b3a;
-  --orange-lt:  #c98050;
-  --orange-dk:  #8f5228;
-
-  /* type */
-  --text:       #38332d;
-  --text2:      #5e5346;
-  --text3:      #8a7b6c;
-  --text-inv:   #f6f0e8;
-
-  /* borders */
-  --border:     #ddd4c3;
-  --border2:    #cec3b0;
-
-  /* data accent colors */
-  --packed:     #8f2d1e;   /* deep crimson — packed D2 */
-  --cracked:    #1e4f7f;   /* dark steel blue — cracked districts */
-  --neutral:    #2d5e3a;   /* deep forest green */
-
-  /* district palette — rich, distinct, works on linen */
-  --d1: #1e4f7f;
-  --d2: #8f2d1e;
-  --d3: #1e5c3a;
-  --d4: #5e2d7f;
-  --d5: #7a5c1a;
-  --d6: #1a5c6e;
-
-  --ff-serif: 'Playfair Display', Georgia, serif;
-  --ff-sans:  'DM Sans', system-ui, sans-serif;
-  --ff-mono:  'DM Mono', 'Courier New', monospace;
-
-  --shadow:    0 1px 4px rgba(56,51,45,0.08), 0 4px 16px rgba(56,51,45,0.05);
-  --shadow-lg: 0 4px 24px rgba(56,51,45,0.13);
-  --radius:    0;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 15px; }
-body {
-  background: var(--linen);
-  color: var(--text);
-  font-family: var(--ff-sans);
-  font-weight: 400;
-  line-height: 1.56;
-  overflow-x: hidden;
-}
-
-/* ── TOPBAR ── */
-#topbar {
-  position: sticky; top: 0; z-index: 1000;
-  background: var(--charcoal);
-  border-bottom: 3px solid var(--orange);
-  display: flex; align-items: stretch; justify-content: space-between;
-}
-.tb-brand {
-  display: flex; align-items: center; gap: 14px;
-  padding: 10px 22px;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  flex-shrink: 0;
-}
-.tb-brand img { height: 42px; width: auto; }
-.tb-title {
-  font-family: var(--ff-sans); font-size: 13px; font-weight: 600;
-  color: var(--linen); letter-spacing: 0.01em; line-height: 1.2;
-}
-.tb-sub {
-  font-family: var(--ff-mono); font-size: 9px;
-  color: var(--orange-lt); letter-spacing: 0.16em;
-  text-transform: uppercase; margin-top: 2px;
-}
-.tb-nav { display: flex; align-items: stretch; }
-.tb-nav button {
-  padding: 0 16px; border: none; background: transparent;
-  font-family: var(--ff-sans); font-size: 11.5px; font-weight: 500;
-  letter-spacing: 0.07em; text-transform: uppercase;
-  color: rgba(246,240,232,0.55);
-  border-left: 1px solid rgba(255,255,255,0.06);
-  cursor: pointer; transition: all 0.18s;
-}
-.tb-nav button:hover { color: var(--linen); background: rgba(255,255,255,0.04); }
-.tb-nav button.active { color: var(--orange-lt); border-bottom: 2px solid var(--orange); }
-.tb-badge {
-  display: flex; align-items: center; gap: 8px;
-  padding: 0 20px;
-  font-family: var(--ff-mono); font-size: 9.5px;
-  color: rgba(246,240,232,0.4); letter-spacing: 0.07em;
-  border-left: 1px solid rgba(255,255,255,0.06);
-  white-space: nowrap;
-}
-.tb-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--orange); flex-shrink: 0;
-  animation: dot 1.8s ease infinite;
-}
-@keyframes dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-/* ── CRISIS BANNER ── */
-#crisis {
-  background: var(--charcoal-lt);
-  border-bottom: 1px solid rgba(183,107,58,0.25);
-  padding: 10px 24px;
-  display: flex; align-items: flex-start; gap: 14px;
-}
-#crisis .ci { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
-#crisis .label {
-  font-family: var(--ff-mono); font-size: 9px;
-  color: var(--orange-lt); letter-spacing: 0.18em;
-  text-transform: uppercase; margin-bottom: 3px;
-}
-#crisis .body { font-size: 12px; color: var(--linen-dk); line-height: 1.6; }
-#crisis .body strong { color: var(--linen); }
-
-/* ── LAYOUT ── */
-#app { display: grid; grid-template-columns: 320px 1fr; }
-
-/* ── SIDEBAR ── */
-#sidebar {
-  background: var(--linen-lt);
-  border-right: 1px solid var(--border2);
-  overflow-y: auto;
-  height: calc(100vh - 66px);
-  position: sticky; top: 66px;
-}
-.sb-sec { padding: 18px; border-bottom: 1px solid var(--border); }
-.sb-sec:last-child { border-bottom: none; }
-.sb-eyebrow {
-  font-family: var(--ff-mono); font-size: 9px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 12px;
-  display: flex; align-items: center; gap: 10px;
-}
-.sb-eyebrow::after { content:''; flex:1; height:1px; background:var(--border2); }
-
-/* stat grid */
-.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.stat-tile {
-  background: var(--linen-lt);
-  border: 1px solid var(--border);
-  padding: 11px 13px;
-  box-shadow: var(--shadow);
-}
-.stat-tile .num {
-  font-family: var(--ff-serif); font-size: 24px; font-weight: 700;
-  line-height: 1; margin-bottom: 3px; color: var(--charcoal);
-}
-.stat-tile .num.red { color: var(--packed); }
-.stat-tile .num.ora { color: var(--orange); }
-.stat-tile .num.blu { color: var(--cracked); }
-.stat-tile .lbl {
-  font-family: var(--ff-mono); font-size: 9px; color: var(--text3);
-  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.35;
-}
-
-/* seat hero */
-.seat-hero {
-  display: flex; align-items: center; gap: 14px;
-  background: var(--linen-lt); border: 1px solid var(--border);
-  padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow);
-}
-.seat-num {
-  font-family: var(--ff-serif); font-size: 56px; font-weight: 900;
-  color: var(--packed); line-height: 1; flex-shrink: 0;
-}
-.seat-detail .sd-main {
-  font-size: 12.5px; font-weight: 600; color: var(--charcoal);
-  margin-bottom: 4px; line-height: 1.3;
-}
-.seat-detail .sd-sub { font-size: 11px; color: var(--text2); }
-.seat-detail .sd-note {
-  font-family: var(--ff-mono); font-size: 9.5px; color: var(--packed);
-  margin-top: 5px; font-weight: 500;
-}
-
-/* district cards */
-.dc {
-  background: var(--linen-lt);
-  border: 1px solid var(--border); border-left: 3px solid var(--border2);
-  padding: 10px 13px; margin-bottom: 6px;
-  cursor: pointer; transition: all 0.17s; box-shadow: var(--shadow);
-}
-.dc:hover { border-left-color: var(--orange); transform: translateX(2px); }
-.dc.active { border-left-color: var(--orange); background: #fdf9f4; }
-.dc.pk { border-left-color: var(--packed); }
-.dc.cr { border-left-color: var(--cracked); }
-.dc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-.dc-name { font-size: 12px; font-weight: 600; color: var(--charcoal); line-height: 1.2; }
-.dc-badge {
-  font-family: var(--ff-mono); font-size: 8.5px; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 2px 7px; border: 1px solid; flex-shrink: 0; margin-left: 6px;
-}
-.badge-r { color: var(--packed); border-color: rgba(143,45,30,0.4); background: rgba(143,45,30,0.06); }
-.badge-d { color: var(--cracked); border-color: rgba(30,79,127,0.35); background: rgba(30,79,127,0.06); }
-.badge-pk { color: var(--packed); border-color: rgba(143,45,30,0.4); }
-.badge-cr { color: var(--cracked); border-color: rgba(30,79,127,0.35); }
-.dc-bar { height: 3px; background: var(--border); margin: 6px 0 5px; }
-.dc-fill { height: 100%; transition: width 0.5s; }
-.dc-stats { display: flex; gap: 12px; }
-.dc-stat { font-size: 10px; color: var(--text3); }
-.dc-stat strong { color: var(--text); font-weight: 600; }
-
-/* timeline */
-.tl { list-style: none; padding-left: 18px; border-left: 2px solid var(--border2); }
-.tl li { position: relative; padding: 0 0 15px 16px; }
-.tl li::before {
-  content: ''; position: absolute; left: -9px; top: 5px;
-  width: 10px; height: 10px; border-radius: 50%;
-  border: 2px solid var(--border2); background: var(--linen-lt);
-}
-.tl li.done::before { background: var(--orange); border-color: var(--orange); }
-.tl li.alert::before { background: var(--packed); border-color: var(--packed); }
-.tl li.pending::before { background: var(--linen-dk); border-color: var(--border2); }
-.tl-date {
-  font-family: var(--ff-mono); font-size: 9px; font-weight: 500;
-  color: var(--orange); letter-spacing: 0.08em; margin-bottom: 2px;
-}
-.tl-event { font-size: 11.5px; color: var(--text2); line-height: 1.45; }
-.tl-event strong { color: var(--charcoal); }
-
-/* callouts */
-.callout {
-  border-left: 3px solid var(--orange);
-  background: rgba(183,107,58,0.06);
-  padding: 11px 14px; margin-bottom: 10px;
-  box-shadow: var(--shadow);
-}
-.callout.danger { border-left-color: var(--packed); background: rgba(143,45,30,0.05); }
-.callout.info   { border-left-color: var(--cracked); background: rgba(30,79,127,0.05); }
-.callout .cl-head {
-  font-family: var(--ff-mono); font-size: 9.5px; font-weight: 500;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 5px;
-}
-.callout.danger .cl-head { color: var(--packed); }
-.callout.info .cl-head   { color: var(--cracked); }
-.callout p { font-size: 12px; color: var(--text2); line-height: 1.65; }
-.callout p strong { color: var(--charcoal); }
-
-/* error box */
-.ebox {
-  background: rgba(143,45,30,0.05); border: 1px solid rgba(143,45,30,0.22);
-  padding: 11px 13px; margin-top: 8px;
-}
-.ebox-head {
-  font-family: var(--ff-mono); font-size: 9.5px; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--packed); margin-bottom: 4px;
-}
-.ebox p { font-size: 11px; color: var(--text2); line-height: 1.6; }
-.ebox p strong { color: var(--charcoal); }
-
-/* scri
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Louisiana Redistricting Equity Dashboard | Tia Fields</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -756,6 +471,52 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
 .src-sos  { color: #1e5c3a; border-color: rgba(30,92,58,0.35); background: rgba(30,92,58,0.05); }
 .src-sb   { color: #5e2d7f; border-color: rgba(94,45,127,0.35); background: rgba(94,45,127,0.05); }
 .src-both { color: #7a5c1a; border-color: rgba(122,92,26,0.35); background: rgba(122,92,26,0.05); }
+
+/* ── MOBILE RESPONSIVENESS ── */
+@media (max-width: 768px) {
+  /* Layout: stack sidebar above main */
+  #app { grid-template-columns: 1fr; }
+  #sidebar {
+    height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--border2);
+    overflow-y: visible;
+  }
+  /* Topbar */
+  #topbar { flex-wrap: wrap; }
+  .tb-brand { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .tb-nav { flex-wrap: wrap; width: 100%; }
+  .tb-nav button { padding: 8px 10px; font-size: 10px; }
+  .tb-badge { display: none; }
+  /* Crisis banner */
+  #crisis { flex-direction: column; gap: 8px; padding: 10px 16px; }
+  /* Tab bar */
+  #tabbar { flex-wrap: wrap; }
+  .tab { padding: 10px 12px; font-size: 10px; }
+  /* Map */
+  #map { height: 340px; }
+  /* Charts grid */
+  .charts-grid { grid-template-columns: 1fr; }
+  .chart-card.full { grid-column: 1; }
+  .chart-wrap.tall { height: 320px; }
+  /* Panels */
+  .panel { padding: 18px 16px 32px; }
+  .panel-title { font-size: 22px; }
+  /* Sidebar stat grid */
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* About grid */
+  .about-grid { grid-template-columns: 1fr; }
+  /* Earth embed */
+  .earth-wrap iframe { height: 280px; }
+}
+
+@media (max-width: 480px) {
+  .tb-nav button { padding: 7px 8px; font-size: 9.5px; letter-spacing: 0.04em; }
+  .panel-title { font-size: 19px; }
+  .seat-num { font-size: 42px; }
+  .stat-tile .num { font-size: 20px; }
+}
 </style>
 </head>
 <body>
@@ -776,18 +537,18 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
     <button onclick="goTab('t-data',this)">Data Integrity</button>
     <button onclick="goTab('t-about',this)">About</button>
   </nav>
-  <div class="tb-badge"><span class="tb-dot"></span>SOS Active Voter File · 5/1/2026 &nbsp;|&nbsp; SB 121 McMakin Boundaries</div>
+  <div class="tb-badge"><span class="tb-dot"></span>SOS Active Voter File · 5/1/2026 &nbsp;|&nbsp; SB 121 Act 2 Boundaries</div>
 </div>
 
 <!-- CRISIS BANNER -->
 <div id="crisis">
-  <div class="ci">⚠</div>
+  <div class="ci">&#9878;</div>
   <div>
-    <div class="label">Active Legislative Emergency — House Floor Vote: Thursday, May 28, 2026 · 9:00 AM</div>
+    <div class="label">Enacted Map Analysis -- SB 121 signed by Governor Landry and enrolled as Act 2</div>
     <div class="body">
-      <strong>Louisiana v. Callais (Apr. 29, 2026)</strong> gutted Section 2 VRA. SB 121 + McMakin Amendment eliminates the majority-Black 6th District.
-      <strong>731,722 Black registered voters</strong><span class="src src-sos">SOS 5/1/2026</span> — 79% of Louisiana's Black electorate — are cracked across 5 Republican-controlled districts under <span class="src src-sb">SB 121</span>.
-      Primary suspended Apr. 30. November 3, 2026 rescheduled jungle primary. Prior ballots voided. Voided ballot totals legally sealed from public disclosure.
+      <strong>Louisiana v. Callais (Apr. 29, 2026)</strong> narrowed the Voting Rights Act Section 2 framework. Act 2 (SB 121, Morris) redraws Louisiana into six congressional districts under R.S. 18:1276, effective for the 2026 congressional election upon the Governor&#8217;s signature.
+      <strong>731,722 Black registered voters</strong><span class="src src-sos">SOS 5/1/2026</span> — 79% of Louisiana's Black registered electorate per SOS data — are distributed across five districts under the enacted map.
+      <span style="font-style:italic;color:var(--text3)">Note: SOS registration figures are reported by prior or unspecified district geography and have not been officially reconciled to Act 2 boundaries. District-level registration statistics are provisional. See the Data Integrity tab.</span>
     </div>
   </div>
 </div>
@@ -809,7 +570,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
     </div>
 
     <div class="sb-sec">
-      <div class="sb-eyebrow">Representational Outcome <span class="src src-sb" style="font-size:8px;margin-left:4px">SB 121</span></div>
+      <div class="sb-eyebrow">Representational Outcome <span class="src src-sb" style="font-size:8px;margin-left:4px">Act 2 (SB 121)</span></div>
       <div class="seat-hero">
         <div class="seat-num">1</div>
         <div class="seat-detail">
@@ -828,15 +589,16 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
         <li class="alert"><div class="tl-date">Apr 30, 2026</div><div class="tl-event"><strong>Gov. Landry suspends primary.</strong> Thousands of absentee ballots voided. Voided totals sealed by law.</div></li>
         <li class="alert"><div class="tl-date">May 13, 2026</div><div class="tl-event"><strong>Senate committee</strong> drops 2nd majority-Black district. SB 121 passes 27-10.</div></li>
         <li class="alert"><div class="tl-date">May 21, 2026</div><div class="tl-event"><strong>McMakin Amendment adopted</strong> 10-7 after 10-hour hearing with overwhelming public opposition. Parish reshuffling executed behind closed doors.</div></li>
-        <li class="alert"><div class="tl-date">Thu, May 28 · 9:00 AM</div><div class="tl-event"><strong>House Floor Vote — SB 121 (Morris) + McMakin Amendment.</strong> Final vote on 5R/1D map. If passed, forwarded to Gov. Landry for signature.</div></li>
-        <li class="pending"><div class="tl-date">Nov 3, 2026</div><div class="tl-event"><strong>Rescheduled jungle primary</strong> under new 5R/1D map.</div></li>
+        <li class="done"><div class="tl-date">May 28, 2026</div><div class="tl-event"><strong>House passes SB 121 (Morris) with McMakin Amendment.</strong> Bill forwarded to Governor Landry for signature.</div></li>
+        <li class="done"><div class="tl-date">May 2026</div><div class="tl-event"><strong>Governor Landry signs SB 121.</strong> Enrolled as Act 2, enacting R.S. 18:1276. Effective for 2026 congressional elections upon signature; full statutory effectiveness at noon, January 3, 2027.</div></li>
+        <li class="pending"><div class="tl-date">Nov 3, 2026</div><div class="tl-event"><strong>Scheduled jungle primary</strong> under the Act 2 (SB 121) enacted congressional map.</div></li>
       </ul>
     </div>
 
     <div class="sb-sec">
       <div class="sb-eyebrow">Data Integrity Alert</div>
       <div class="ebox">
-        <div class="ebox-head">⚠ Impossible VAP Metrics in Bill Text <span class="src src-sb" style="font-size:8px">SB 121 · Page 12</span></div>
+        <div class="ebox-head">VAP Discrepancies Identified in Pre-Enrollment Bill Text <span class="src src-sb" style="font-size:8px">SB 121 · Page 12</span></div>
         <p>Jefferson Parish (D1): <strong>196,528 registered voters</strong> vs. stated VAP of <strong>133,984</strong> — a 146.7% registration rate. Six parishes show this pattern. D1 parish VAPs sum to 477,567 but the bill declares D1 VAP = 601,847. Gap: <strong>124,280 phantom residents.</strong></p>
       </div>
       <div class="callout danger" style="margin-top:10px">
@@ -858,21 +620,21 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
   <main id="main">
 
     <div id="tabbar">
-      <button class="tab active" onclick="goTab('t-map',this)">🗺 Spatial Map</button>
-      <button class="tab" onclick="goTab('t-charts',this)">📊 Equity Analysis</button>
-      <button class="tab" onclick="goTab('t-parishes',this)">📋 Parish Data</button>
-      <button class="tab" onclick="goTab('t-data',this)">🔴 Data Integrity</button>
+      <button class="tab active" onclick="goTab('t-map',this)">?? Spatial Map</button>
+      <button class="tab" onclick="goTab('t-charts',this)">?? Equity Analysis</button>
+      <button class="tab" onclick="goTab('t-parishes',this)">?? Parish Data</button>
+      <button class="tab" onclick="goTab('t-data',this)">?? Data Integrity</button>
       <button class="tab" onclick="goTab('t-about',this)">ℹ About</button>
     </div>
 
     <!-- MAP PANEL -->
     <div class="panel active" id="t-map">
-      <div class="panel-title">SB 121 McMakin Amendment — Congressional Map</div>
-      <div class="panel-meta">Open-Source Spatial Analysis &nbsp;·&nbsp; <span class="src src-sos" style="font-size:9px">SOS Voter Data · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">SB 121 McMakin Shapefile</span></div>
+      <div class="panel-title">SB 121 Act 2 -- Enacted Congressional Map</div>
+      <div class="panel-meta">Open-Source Spatial Analysis &nbsp;·&nbsp; <span class="src src-sos" style="font-size:9px">SOS Voter Data · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">SB 121 Act 2 Enacted Shapefile</span></div>
 
       <div class="callout danger">
-        <div class="cl-head">The Cracking Pattern — 79% of Black Voters Locked Out</div>
-        <p>Black Louisianans represent <strong>31.2% of all registered voters</strong><span class="src src-sos">SOS 5/1/2026</span> — 925,657 people. Under <span class="src src-sb">SB 121</span>, <strong>731,722 of those voters</strong> are distributed across 5 Republican-controlled districts where they cannot elect candidates of their choice. Only 193,935 are in District 2 — the single Democratic seat. This is pack-and-crack by design, not partisan coincidence.</p>
+        <div class="cl-head">Registration Equity Analysis -- SOS Data Under Act 2 Boundaries (Provisional)</div>
+        <p>Black Louisianans represent <strong>31.2% of all registered voters</strong><span class="src src-sos">SOS 5/1/2026</span> -- 925,657 people. Under the enacted <span class="src src-sb">Act 2 (SB 121)</span> map, SOS data as coded shows <strong>731,722 of those registered voters</strong> distributed across five districts outside District 2. Only 193,935 are coded to District 2. <em>These figures are based on SOS registration data that has not been officially reconciled to Act 2 geographic boundaries. They are provisional and must not be treated as certified Act 2 district totals.</em></p>
       </div>
 
       <div class="map-ctrls" style="margin-top:16px">
@@ -885,20 +647,20 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       <div id="map"></div>
 
       <p style="font-family:var(--ff-mono);font-size:9px;color:var(--text3);margin-top:8px;letter-spacing:0.05em">
-        <span class="src src-sb">SB 121 HCA-5662 McMakin Amendment Shapefile</span> &nbsp;·&nbsp; <span class="src src-sos">Louisiana SOS Active Voter File · 5/1/2026</span> &nbsp;·&nbsp; District aggregates from parish assignments per McMakin Amendment text.
+        <span class="src src-sb">SB 121 Act 2 Enacted Boundary Shapefile (HCA-5662)</span> &nbsp;·&nbsp; <span class="src src-sos">Louisiana SOS Active Voter File · 5/1/2026</span> &nbsp;·&nbsp; District aggregates reflect parish assignments under Act 2. SOS registration data not yet officially reported by Act 2 district geography; figures are provisional.
       </p>
 
       <div class="sec-head" style="margin-top:24px">Representational Equity Index (REI) by District</div>
       <div class="callout info" style="margin-bottom:16px">
         <div class="cl-head">Reading the REI</div>
-        <p>REI = District Black % minus statewide Black % (31.2%). <strong>Positive = packed</strong> — Black voters over-concentrated, votes above the majority threshold are structurally wasted. <strong>Negative = cracked</strong> — Black voters dispersed, cannot reach decisive electoral share. Zero would be proportional. Under SB 121, District 2 is the <em>only</em> district with meaningful Black electoral influence.</p>
+        <p>REI = District Black % minus statewide Black % (31.2%). <strong>Positive = packed</strong> — Black voters over-concentrated, votes above the majority threshold are structurally wasted. <strong>Negative = cracked</strong> — Black voters dispersed, cannot reach decisive electoral share. Zero would be proportional. Under Act 2 (SB 121), District 2 is the <em>only</em> district where the SOS registration data shows Black voters at or above a level that could support electoral influence. The REI is computed from SOS registration data (31.2% statewide Black registration share as baseline), not from Census PL 94-171 VAP.</p>
       </div>
       <div id="rei-wrap"></div>
 
       <div class="sec-head" style="margin-top:28px">Google Earth — District Boundaries (3D Satellite View)</div>
       <div class="earth-wrap">
         <div class="earth-top">
-          McMakin Amendment · SB 121 · Proposed Congressional Districts · 2026
+          SB 121 Act 2 · Enacted Congressional Districts · 2026
           <span>Google Earth · Interactive 3D</span>
         </div>
         <iframe
@@ -906,7 +668,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
           width="100%" height="500"
           style="border:none;display:block"
           allowfullscreen loading="lazy"
-          title="SB 121 McMakin Amendment Districts — Google Earth">
+          title="SB 121 Act 2 Enacted Districts -- Google Earth">
         </iframe>
       </div>
     </div>
@@ -914,11 +676,11 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
     <!-- CHARTS PANEL -->
     <div class="panel" id="t-charts">
       <div class="panel-title">Demographic &amp; Registration Equity Analysis</div>
-      <div class="panel-meta"><span class="src src-sos" style="font-size:9px">SOS Active Voter File · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">SB 121 McMakin Boundaries</span> &nbsp;·&nbsp; All 64 Parishes</div>
+      <div class="panel-meta"><span class="src src-sos" style="font-size:9px">SOS Active Voter File · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">Act 2 (SB 121) Boundaries</span> &nbsp;·&nbsp; All 64 Parishes</div>
 
       <div class="callout danger">
-        <div class="cl-head">The Mathematical Proof of Racial Dilution</div>
-        <p>Black voters are <strong>64.1% of the Democratic party base</strong><span class="src src-sos">SOS 5/1/2026</span> in Louisiana. <span class="src src-sb">SB 121</span> places <strong>79% of all Black registered voters</strong> in districts where the Republican candidate wins. In Louisiana's hyper-polarized electorate — where Black voters vote Democratic at 90%+ — maximizing Republican advantage is <em>mathematically indistinguishable</em> from targeting Black voters. This is the crux of the post-<em>Callais</em> litigation path.</p>
+        <div class="cl-head">Registration-Based Equity Analysis Under Act 2 (SB 121) Boundaries (Provisional)</div>
+        <p>Black voters represent <strong>64.1% of the Democratic party base</strong><span class="src src-sos">SOS 5/1/2026</span> statewide per SOS registration data. Under the enacted <span class="src src-sb">Act 2 (SB 121)</span> map, SOS data as coded shows approximately 79% of Black registered voters assigned to districts outside District 2. <em>SOS registration data has not been officially reconciled to Act 2 geographic boundaries; district-level registration figures are provisional. This analysis uses registration data only, not Census PL 94-171 VAP. These two datasets are conceptually distinct and are not compared in this dashboard.</em></p>
       </div>
 
       <div class="charts-grid">
@@ -944,7 +706,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
         </div>
         <div class="chart-card full">
           <h3>Racial Composition of Each District — Stacked</h3>
-          <div class="chart-sub">White · Black · Other registered voters · McMakin Amendment boundaries · Shows concentration of Black voters in D2</div>
+          <div class="chart-sub">White · Black · Other registered voters · Act 2 (SB 121) boundaries (provisional SOS assignment) · Shows concentration of Black registered voters in D2</div>
           <div class="chart-wrap tall"><canvas id="c-stacked"></canvas></div>
         </div>
       </div>
@@ -953,7 +715,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
     <!-- PARISHES PANEL -->
     <div class="panel" id="t-parishes">
       <div class="panel-title">Parish-Level Voter Registration</div>
-      <div class="panel-meta"><span class="src src-sos" style="font-size:9px">SOS Active Voter File · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">SB 121 McMakin District Boundaries</span> &nbsp;·&nbsp; All 64 Parishes · Click headers to sort</div>
+      <div class="panel-meta"><span class="src src-sos" style="font-size:9px">SOS Active Voter File · 5/1/2026</span> &nbsp;+&nbsp; <span class="src src-sb" style="font-size:9px">Act 2 (SB 121) District Boundaries</span> &nbsp;·&nbsp; All 64 Parishes · Click headers to sort</div>
 
       <div class="callout">
         <div class="cl-head">Tool Note for Legal Teams</div>
@@ -981,16 +743,23 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
 
     <!-- DATA INTEGRITY PANEL -->
     <div class="panel" id="t-data">
-      <div class="panel-title">SB 121 Data Integrity Failures</div>
-      <div class="panel-meta">Source: <span class="src src-sb">SB 121 Reengrossed (Morris) — Page 12</span> · Entered into Legislative Record by Rep. C. Denise Marcelle (D-Baton Rouge) · May 21, 2026</div>
+      <div class="panel-title">Act 2 (SB 121) -- Data Integrity Review</div>
+      <div class="panel-meta">Source: <span class="src src-sb">SB 121 Reengrossed (Morris) -- Page 12 (pre-enrollment text)</span> · Entered into Legislative Record by Rep. C. Denise Marcelle (D-Baton Rouge) · May 21, 2026 · Note: anomalies identified in reengrossed text; verify persistence in enrolled Act 2</div>
 
-      <div class="callout danger">
-        <div class="cl-head">⚠ Constitutional Time Bomb — 14th Amendment, One-Person-One-Vote</div>
-        <p>Plaintiffs do <strong>not</strong> need a VRA claim to challenge SB 121. The Equal Protection Clause requires absolute mathematical population equality among congressional districts. These anomalies — drawn from the legislature's <em>own official tables</em> — demonstrate the districts are malapportioned on their face. No expert witnesses required. The bill refutes itself.</p>
+      <div class="callout danger" style="margin-bottom:18px;margin-top:12px">
+        <div class="cl-head">SOS Registration Data -- Boundary Reconciliation Required</div>
+        <p>The Louisiana Secretary of State voter registration file (5/1/2026) used in this dashboard was <strong>not reported by the SOS using Act 2 congressional district boundaries</strong>. District-level registration figures in this dashboard are derived by assigning whole-parish SOS data to districts based on the Act 2 parish assignment scheme. This is an analytical approximation only.</p>
+        <p style="margin-top:8px"><strong>Unless and until the SOS explicitly reports registration data by Act 2 district geography, or registration data is spatially reassigned to Act 2 census blocks, all district-level registration comparisons in this dashboard are provisional and must not be treated as final Act 2 district statistics.</strong> This applies to all charts, district cards, REI deviations, and registration percentages shown under any district label.</p>
+        <p style="margin-top:8px">Census PL 94-171 VAP data (a separate, independent source) confirms District 2 as the only majority Black VAP district (58.24% Black VAP per the district demographics file). District 6 Black VAP is 24.58% -- not majority Black. SOS registration figures and PL 94-171 VAP figures are not equivalent and are not compared against each other in this dashboard.</p>
       </div>
 
-      <div class="sec-head">Impossible Registration Rates — District 1 Parish Segments</div>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">VAP (all residents 18+) is the absolute ceiling for voter registration. Rates above 100% are physically impossible — they indicate systemic database column misalignment during map generation from the "2026 Precinct Shapefiles (1-27-2026)." <span class="src src-sb">SB 121 Reengrossed · Page 12</span></p>
+      <div class="callout danger">
+        <div class="cl-head">14th Amendment Review -- One-Person-One-Vote</div>
+        <p>Plaintiffs do <strong>not</strong> need a VRA claim to challenge Act 2. The Equal Protection Clause requires mathematical population equality among congressional districts. The anomalies documented below were identified in the SB 121 Reengrossed text (pre-enrollment) using the legislature's own official tables. Whether they persist in the enrolled Act 2 text requires verification against the enrolled document. If confirmed, they represent potential malapportionment on the face of the legislation.</p>
+      </div>
+
+      <div class="sec-head">Anomalous Registration Rates -- District 1 Parish Segments (Pre-Enrollment Text)</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">VAP (all residents 18+) is the theoretical ceiling for voter registration. Rates above 100% are anomalous and may indicate database column misalignment during map generation from the "2026 Precinct Shapefiles (1-27-2026)." These figures were identified in the SB 121 Reengrossed text. <span class="src src-sb">SB 121 Reengrossed · Page 12</span> Verification against the enrolled Act 2 is needed to confirm whether these values persist.</p>
 
       <div class="tbl-wrap anom-wrap">
         <table>
@@ -1018,18 +787,18 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       </div>
 
       <div class="callout danger" style="margin-top:20px">
-        <div class="cl-head">The 124,280 Phantom Residents</div>
-        <p>Per <span class="src src-sb">SB 121 Reengrossed · Page 11</span>: Sum of individual parish VAP figures for District 1 = <strong>477,567</strong>. The bill's district-level summary declares D1 VAP = <strong>601,847</strong>. The gap — <strong>124,280 people</strong> — does not exist in any Louisiana database. This is not rounding error. It is systemic database column misalignment confirmed by the impossible registration rates above.</p>
+        <div class="cl-head">District 1 VAP Discrepancy -- 124,280 Unaccounted Residents (Pre-Enrollment Text)</div>
+        <p>Per <span class="src src-sb">SB 121 Reengrossed · Page 11</span>: Sum of individual parish VAP figures for District 1 equals <strong>477,567</strong>. The reengrossed bill's district-level summary declares D1 VAP = <strong>601,847</strong>. The gap of <strong>124,280 people</strong> does not appear in any Louisiana database and suggests systemic database column misalignment. This observation is based on the pre-enrollment reengrossed text. Verification against the enrolled Act 2 is required before treating this as a confirmed defect in the enacted law.</p>
       </div>
 
       <div class="callout" style="margin-top:14px">
-        <div class="cl-head">McMakin Amendment Compounded the Error</div>
-        <p>The McMakin amendments transferred precincts across 8 parishes (Morehouse, Lincoln, Jackson, Grant, Calcasieu, St. Landry, Tangipahoa, Pointe Coupee) in a <strong>closed-door session with no demographic review</strong>. Each transfer introduced new split-line mismatches between the static "2026 Precinct Shapefiles" and the live SOS voter registry. Per Rep. Rodney Lyons (D-Marrero): the committee was "performing surgery on maps with no input."</p>
+        <div class="cl-head">McMakin Amendment Process -- Committee Record</div>
+        <p>The McMakin amendment transferred precincts across eight parishes (Morehouse, Lincoln, Jackson, Grant, Calcasieu, St. Landry, Tangipahoa, Pointe Coupee) during the amendment process. Each transfer may have introduced split-line mismatches between the static "2026 Precinct Shapefiles" and the live SOS voter registry. Per Rep. Rodney Lyons (D-Marrero), per the May 21, 2026 committee record: the committee was "performing surgery on maps with no input."</p>
       </div>
 
       <div class="callout info" style="margin-top:14px">
-        <div class="cl-head">Assumption &amp; Iberville (District 2) — Same Pattern</div>
-        <p>Assumption Parish segment: <strong>127.9%</strong> of VAP. Iberville Parish segment: <strong>143.2%</strong> of VAP. The data corruption is not district-specific — it is a systemic flaw across the entire cartographic dataset, confirming technical failure in the legislative mapping infrastructure, not isolated clerical error.</p>
+        <div class="cl-head">Assumption and Iberville Parishes -- Additional Anomalies (Pre-Enrollment Text)</div>
+        <p>Assumption Parish segment: <strong>127.9%</strong> of VAP. Iberville Parish segment: <strong>143.2%</strong> of VAP. These anomalies appear across multiple districts in the pre-enrollment reengrossed text, suggesting a systemic pattern rather than isolated clerical error. Verification against the enrolled Act 2 is required to determine whether these figures were corrected prior to enrollment.</p>
       </div>
     </div>
 
@@ -1040,7 +809,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
 
       <div class="callout" style="margin-bottom:20px">
         <div class="cl-head">Purpose &amp; Intended Audience</div>
-        <p>This is an open-source interactive spatial analysis tool tracking regional demographic shifts and representational equity following <em>Louisiana v. Callais</em> (Apr. 29, 2026) and the 2026 Regular Session amendments to SB 121. Built for <strong>Democratic Caucus members, NAACP, LDF, Power Coalition for Equity and Justice, and legal teams</strong> challenging SB 121. Every data point is sourced from official public records and is fully reproducible via the Python pipeline included in this repository.</p>
+        <p>This is an open-source interactive spatial analysis tool for demographic and representational equity review under the enacted Act 2 congressional map (SB 121, Morris), signed by Governor Landry and enrolled as Act 2 enacting R.S. 18:1276. Effective for 2026 congressional elections upon signature; full statutory effectiveness at noon, January 3, 2027. Built for Democratic Caucus members, NAACP, LDF, Power Coalition for Equity and Justice, and legal teams engaged in post-Callais equity analysis. Every data point is sourced from official public records and is reproducible via the Python pipeline in this repository.</p>
       </div>
 
       <div class="about-grid">
@@ -1048,9 +817,9 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
           <h3>Data Sources</h3>
           <ul>
             <li><strong>Louisiana SOS</strong> — Statewide Report of Registered Voters by Party and Race, 5/1/2026 (Active voters only)</li>
-            <li><strong>HCA SB121-5662</strong> — McMakin Amendment district boundary shapefile, 2026 Regular Session</li>
-            <li><strong>SB 121 Reengrossed (Morris)</strong> — Parish summary tables, VAP anomalies (Page 12)</li>
-            <li><strong>U.S. Census 2020 P.L. 94-171</strong> — Block-level population (BVAP integration pending)</li>
+            <li><strong>Act 2 (SB 121, HCA-5662)</strong> -- McMakin Amendment district boundary shapefile, enrolled 2026 Regular Session. This is the legal boundary definition for Act 2.</li>
+            <li><strong>SB 121 Reengrossed (Morris)</strong> -- Parish summary tables, VAP anomalies (Page 12). Pre-enrollment text; superseded by enrolled Act 2.</li>
+            <li><strong>U.S. Census 2020 P.L. 94-171</strong> -- Block-level population and Voting Age Population (VAP). Legally and conceptually distinct from SOS registration data. VAP measures all residents aged 18 and older regardless of registration status. District 2 is the only majority Black VAP district (58.24% Black VAP per SB121_district_demographics.csv). District 6 Black VAP is 24.58% -- not majority Black. VAP and registration data are not compared in this dashboard.</li>
             <li><strong>House Committee Testimony</strong> — May 21, 2026 hearing record</li>
           </ul>
         </div>
@@ -1069,17 +838,21 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
           <h3>REI Methodology</h3>
           <p>The Representational Equity Index measures deviation from proportional Black representation:</p>
           <div class="mono-block">
-REI = District Black % − 31.2% (statewide)
+REI = District Black Registration % minus 31.2%
+      (statewide Black registration share, SOS 5/1/2026)
 
-Positive → PACKED
+IMPORTANT: Both values are SOS registration-based.
+This is NOT a comparison to Census PL 94-171 VAP.
+
+Positive  = PACKED
  (over-concentrated; votes above majority
- threshold are structurally wasted)
+  threshold are structurally wasted)
 
-Negative → CRACKED
+Negative  = CRACKED
  (dispersed below decisive threshold)
 
-|REI| > 8pp = severe dilution
-|REI| > 5pp = significant dilution</div>
+|REI| &gt; 8pp = severe dilution (registration-based)
+|REI| &gt; 5pp = significant dilution (registration-based)</div>
         </div>
         <div class="about-card">
           <h3>Analyst</h3>
@@ -1096,6 +869,23 @@ tiandrafields@gmail.com
           </div>
           <p style="margin-top:12px;font-size:11px;color:var(--text3)">Open source. Data from Louisiana SOS and Louisiana Legislature (public record). Analysis and visualization by Tia Fields. Attribution required for redistribution.</p>
         </div>
+
+      <!-- DATA SOURCE HIERARCHY in About panel -->
+      <div class="sec-head" style="margin-top:32px">Data Source Hierarchy</div>
+      <div class="callout info" style="margin-bottom:10px">
+        <div class="cl-head">Sources Listed in Order of Legal Authority</div>
+        <p>The following hierarchy governs how conflicting data should be resolved. Sources higher on the list carry greater legal weight.</p>
+      </div>
+      <ol style="font-size:12px;color:var(--text2);line-height:1.9;padding-left:20px;margin-bottom:16px">
+        <li><strong>Act 2 Block Equivalency and Geometry (Enrolled SB 121)</strong> -- The official legal definition of the six congressional districts enacted under R.S. 18:1276. This is the authoritative source for district boundaries. All geographic analysis in this dashboard uses the Act 2 shapefile derived from the enrolled boundary definition.</li>
+        <li><strong>U.S. Census Bureau 2020 P.L. 94-171 Population and VAP Data</strong> -- Block-level population counts and Voting Age Population figures derived from the decennial Census. This is an official population source and is legally and conceptually distinct from voter registration data. VAP measures all residents aged 18 and older regardless of citizenship or registration status. The district demographics file confirms District 2 as the only majority Black VAP district (58.24% Black VAP). District 6 Black VAP is 24.58% -- not majority Black.</li>
+        <li><strong>VTD Assignment Outputs</strong> -- Precinct-to-district assignment tables produced during the mapping process. These link Census blocks and precincts to Act 2 districts and are used to roll up block-level population data to district geography.</li>
+        <li><strong>Louisiana Secretary of State Active Voter Registration File (5/1/2026)</strong> -- Statewide registration counts by party and race as of May 1, 2026. This file reflects voter registration at the time of data extraction. It was not reported by the SOS using Act 2 district geography. District-level registration figures in this dashboard are derived by applying the Act 2 parish assignment to whole-parish SOS data. This is an analytical approximation, not an official SOS Act 2 district report. All district-level registration statistics in this dashboard are provisional.</li>
+        <li><strong>Derived Analysis</strong> -- All computed ratios, REI deviations, PACKED/CRACKED classifications, partisan lean indicators, and narrative interpretations are analytical constructs produced by this dashboard. They are not official government determinations. The REI baseline (31.2%) is the Black share of SOS registered voters statewide -- it is a registration figure, not a Census VAP figure.</li>
+      </ol>
+      <div class="callout danger" style="margin-bottom:10px">
+        <div class="cl-head">VAP vs. Registration -- Critical Distinction</div>
+        <p>Census PL 94-171 VAP and SOS voter registration data measure different things. VAP counts all residents 18 and older. Registration counts only those who have completed the voter registration process. These datasets produce different racial composition percentages for the same district. <strong>This dashboard does not equate registered voters with VAP</strong> and does not claim that registration counts match PL 94-171 VAP counts. Charts and narrative labeled "SOS" reflect registration data only.</p>
       </div>
     </div>
 
@@ -1105,7 +895,7 @@ tiandrafields@gmail.com
 <!-- FOOTER -->
 <div id="footer">
   <strong>Policy Analysis &amp; Research: Tia Fields</strong> &nbsp;·&nbsp; TiaFields.com<br/>
-  Voter data: Louisiana Secretary of State — Active Voter File 5/1/2026 &nbsp;·&nbsp; Boundaries: SB 121 HCA-5662 McMakin Amendment &nbsp;·&nbsp; <em>Louisiana v. Callais</em>, 608 U.S. ___ (Apr. 29, 2026)
+  Voter data: Louisiana Secretary of State — Active Voter File 5/1/2026 &nbsp;·&nbsp; Boundaries: SB 121 Act 2 (enrolled, enacted) &nbsp;·&nbsp; <em>Louisiana v. Callais</em>, 608 U.S. ___ (Apr. 29, 2026)
 </div>
 
 <script>
@@ -1196,7 +986,7 @@ function buildRei(){
           <div class="rei-mid"></div>
           <div class="rei-fill ${pos?'rei-pos':'rei-neg'}" style="width:${pct}%"></div>
         </div>
-        <div class="rei-cap">${d.total_reg.toLocaleString()} registered · ${d.black_pct.toFixed(1)}% Black · baseline 31.2%</div>
+        <div class="rei-cap">${d.total_reg.toLocaleString()} registered (SOS) · ${d.black_pct.toFixed(1)}% Black registered · 31.2% SOS baseline (registration, not VAP)</div>
       </div>`;
   });
 }
@@ -1249,7 +1039,7 @@ function drawLayer(view){
             <div><b style="color:#35302a">Democrat:</b> ${(d.dem_pct||0).toFixed(1)}% &nbsp;·&nbsp; <b style="color:#35302a">Republican:</b> ${(d.rep_pct||0).toFixed(1)}%</div>
             <div><b style="color:#35302a">REI Deviation:</b> <span style="color:${(d.rei_deviation||0)>0?'#8f2d1e':'#1e4f7f'};font-weight:700">${ds}</span></div>
             <div style="margin-top:8px;padding-top:8px;border-top:1px solid #e2d9cb;font-weight:700;font-size:11.5px;color:${isPk?'#8f2d1e':'#1e4f7f'}">
-              ${isPk?'⚠ PACKED — only Black-electable district under SB 121':'⚠ CRACKED — Black voters below decisive threshold'}
+              ${isPk?'District 2 -- only district where SOS registration data supports meaningful Black electoral influence under Act 2 (SB 121) [provisional: registration not reconciled to Act 2 geography]':'Black registered voter share below decisive threshold under Act 2 (SB 121) [provisional registration analysis]'}
             </div>
           </div>
         </div>`);
