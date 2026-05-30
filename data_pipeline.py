@@ -172,6 +172,13 @@ ACT2_STATUS = {
     "effective_full":       "Noon, January 3, 2027",
     "callais_decided":      "April 29, 2026",
     "legal_context":        "Post-Louisiana v. Callais, 608 U.S. ___ (Apr. 29, 2026)",
+    "floor_amendment":      "HFASB121 3645 5695 (Beaullieu) -- House Floor Amendment adopted May 21, 2026",
+    "floor_amendment_note": (
+        "House Floor Amendment HFASB121 3645 5695, authored by Rep. Beaullieu, "
+        "replaced prior House Committee amendments (#5999) with a complete precinct-level "
+        "rewrite of all six districts. Adopted 10-7 on the House floor. "
+        "Fully incorporated into enrolled Act 2 -- not a separate source."
+    ),
 }
 
 # ─── PARISH TO DISTRICT MAP ───────────────────────────────────────────────────
@@ -181,37 +188,103 @@ ACT2_STATUS = {
 # district assignments for sub-parish precision.
 
 PARISH_DISTRICT = {
-    # District 1 -- SE Gulf Coast
-    "JEFFERSON": 1, "ST. TAMMANY": 1, "PLAQUEMINES": 1, "ST. BERNARD": 1,
-    "TANGIPAHOA": 1, "WASHINGTON": 1,
+    # ── District 1 -- SE Gulf Coast ───────────────────────────────────────────
+    # Whole-parish: Plaquemines, St. Tammany
+    # Split (majority-D1 assignment): Jefferson
+    # NOTE: St. Bernard, Tangipahoa, Orleans also split D1/D2 or D1/D5 --
+    #       see split_parish note below; majority segment assigned here.
+    "PLAQUEMINES": 1, "ST. TAMMANY": 1,
+    "JEFFERSON": 1,       # split D1+D2 -- majority precincts D1
+    "TANGIPAHOA": 5,      # split D1+D5 -- majority precincts D5; reassigned from D1
 
-    # District 2 -- New Orleans Metro (only majority Black VAP district)
-    # Census PL 94-171 Black VAP: 58.24% (VTD file confirms)
-    "ORLEANS": 2, "ST. CHARLES": 2, "ST. JOHN THE BAPTIST": 2, "ST. JAMES": 2,
-    "LAFOURCHE": 2, "TERREBONNE": 2,
+    # ── District 2 -- New Orleans Metro (ONLY majority Black VAP district) ────
+    # Census PL 94-171 Black VAP: 58.24% (VTD assignment confirms)
+    # Whole-parish: St. James
+    # Split (majority-D2): Orleans, St. Bernard
+    "ST. JAMES": 2,
+    "ORLEANS": 2,         # split D1+D2 -- majority precincts D2
+    "ST. BERNARD": 2,     # split D1+D2 -- majority precincts D2 (precincts 10-40)
 
-    # District 3 -- SW Acadiana
-    "LAFAYETTE": 3, "ST. LANDRY": 3, "ST. MARTIN": 3, "IBERIA": 3, "ST. MARY": 3,
-    "VERMILION": 3, "CALCASIEU": 3, "JEFFERSON DAVIS": 3, "CAMERON": 3,
-    "BEAUREGARD": 3, "ALLEN": 3, "ACADIA": 3, "EVANGELINE": 3,
+    # ── District 3 -- SW Acadiana ─────────────────────────────────────────────
+    # Whole-parish: Acadia, Cameron, Iberia, Jefferson Davis, Lafayette,
+    #               St. Mary, Vermilion
+    # Split (majority-D3): Calcasieu, St. Landry, St. Martin, Terrebonne
+    "ACADIA": 3, "CAMERON": 3, "IBERIA": 3, "JEFFERSON DAVIS": 3,
+    "LAFAYETTE": 3, "ST. MARY": 3, "VERMILION": 3,
+    "CALCASIEU": 3,       # split D3+D4 -- majority precincts D3
+    "ST. LANDRY": 3,      # split D3+D5 -- majority precincts D3 (precincts 7-52)
+    "ST. MARTIN": 3,      # split D3+D6 -- majority precincts D3 (precincts 3-43)
+    "TERREBONNE": 3,      # split D1+D3 -- majority precincts D3; reassigned from D2
 
-    # District 4 -- Northwest
-    "CADDO": 4, "BOSSIER": 4, "WEBSTER": 4, "DE SOTO": 4, "SABINE": 4,
-    "RED RIVER": 4, "BIENVILLE": 4, "CLAIBORNE": 4, "UNION": 4,
-    "MOREHOUSE": 4, "LINCOLN": 4, "JACKSON": 4,
+    # ── District 4 -- Northwest ───────────────────────────────────────────────
+    # Whole-parish: Allen, Beauregard, Bienville, Bossier, Caddo, Claiborne,
+    #               De Soto, Evangeline, Natchitoches, Red River, Sabine,
+    #               Union, Vernon, Webster
+    # CORRECTIONS from prior version: Allen, Beauregard, Evangeline moved D3→D4;
+    #   Natchitoches moved D5→D4; Vernon moved D6→D4;
+    #   Morehouse, Lincoln, Jackson moved D4→D5 (see D5 below)
+    "ALLEN": 4, "BEAUREGARD": 4, "BIENVILLE": 4, "BOSSIER": 4, "CADDO": 4,
+    "CLAIBORNE": 4, "DE SOTO": 4, "EVANGELINE": 4, "NATCHITOCHES": 4,
+    "RED RIVER": 4, "SABINE": 4, "UNION": 4, "VERNON": 4, "WEBSTER": 4,
 
-    # District 5 -- North-Central
-    "EAST BATON ROUGE": 5, "ASCENSION": 5, "LIVINGSTON": 5, "OUACHITA": 5,
-    "RAPIDES": 5, "GRANT": 5, "NATCHITOCHES": 5, "WINN": 5, "CALDWELL": 5,
-    "LASALLE": 5, "CATAHOULA": 5, "CONCORDIA": 5, "FRANKLIN": 5,
-    "RICHLAND": 5, "AVOYELLES": 5, "TENSAS": 5, "MADISON": 5,
+    # ── District 5 -- North-Central ───────────────────────────────────────────
+    # Whole-parish: Avoyelles, Caldwell, Catahoula, Concordia, East Carroll,
+    #   East Feliciana, Franklin, Grant, Jackson, La Salle, Lincoln, Madison,
+    #   Morehouse, Ouachita, Rapides, Richland, St. Helena, Tensas, Washington,
+    #   West Carroll, West Feliciana, Winn
+    # Split (majority-D5): Tangipahoa (see D1 note above)
+    # CORRECTIONS: East Carroll, East Feliciana, St. Helena, Washington,
+    #   West Carroll, West Feliciana moved D6→D5;
+    #   Jackson, Lincoln, Morehouse moved D4→D5;
+    #   Livingston moved D5→D6; Natchitoches moved D5→D4;
+    #   East Baton Rouge, Ascension moved D5→D6
+    "AVOYELLES": 5, "CALDWELL": 5, "CATAHOULA": 5, "CONCORDIA": 5,
+    "EAST CARROLL": 5, "EAST FELICIANA": 5, "FRANKLIN": 5, "GRANT": 5,
+    "JACKSON": 5, "LASALLE": 5, "LINCOLN": 5, "MADISON": 5, "MOREHOUSE": 5,
+    "OUACHITA": 5, "RAPIDES": 5, "RICHLAND": 5, "ST. HELENA": 5,
+    "TENSAS": 5, "WASHINGTON": 5, "WEST CARROLL": 5, "WEST FELICIANA": 5,
+    "WINN": 5,
 
-    # District 6 -- River Corridor
+    # ── District 6 -- River Corridor ──────────────────────────────────────────
     # Black VAP 24.58% (Census PL 94-171) -- NOT a majority Black district
-    "WEST BATON ROUGE": 6, "POINTE COUPEE": 6, "EAST FELICIANA": 6,
-    "WEST FELICIANA": 6, "ST. HELENA": 6, "ASSUMPTION": 6, "IBERVILLE": 6,
-    "EAST CARROLL": 6, "WEST CARROLL": 6, "VERNON": 6,
+    # Whole-parish: Assumption, Livingston, Pointe Coupee
+    # Split (majority-D6): Ascension, East Baton Rouge, Iberville, Lafourche,
+    #   St. Charles, St. John the Baptist, West Baton Rouge
+    # CORRECTIONS: Livingston moved D5→D6;
+    #   Ascension, EBR moved D5→D6; Lafourche moved D2→D6;
+    #   Terrebonne moved D2→D3 (see above)
+    "ASSUMPTION": 6, "LIVINGSTON": 6, "POINTE COUPEE": 6,
+    "ASCENSION": 6,              # split D2+D6 -- majority precincts D6
+    "EAST BATON ROUGE": 6,       # split D2+D6 -- majority precincts D6 (3-series)
+    "IBERVILLE": 6,              # split D2+D6 -- majority precincts D6
+    "LAFOURCHE": 6,              # split D1+D6 -- majority precincts D6; reassigned from D2
+    "ST. CHARLES": 6,            # split D2+D6 -- majority precincts D6
+    "ST. JOHN THE BAPTIST": 6,   # split D2+D6 -- majority precincts D6
+    "WEST BATON ROUGE": 6,       # split D2+D6 -- majority precincts D6
 }
+
+# SPLIT-PARISH NOTE: The following 13 parishes are divided between two districts
+# in Act 2 (SB 121). PARISH_DISTRICT assigns each to its majority-precinct district
+# as a whole-parish approximation. For precise sub-parish analysis, use
+# SB121_VTD_assignment.csv (3,539 VTDs assigned by spatial join to Act 2 geometry).
+#
+# Parish          | Act 2 Districts | Majority assignment
+# ----------------+-----------------+--------------------
+# Jefferson       | D1 + D2         | D1
+# Lafourche       | D1 + D6         | D6
+# Orleans         | D1 + D2         | D2
+# St. Bernard     | D1 + D2         | D2
+# Tangipahoa      | D1 + D5         | D5
+# Terrebonne      | D1 + D3         | D3
+# Ascension       | D2 + D6         | D6
+# East Baton Rouge| D2 + D6         | D6
+# Iberville       | D2 + D6         | D6
+# St. Charles     | D2 + D6         | D6
+# St. John Baptist| D2 + D6         | D6
+# West Baton Rouge| D2 + D6         | D6
+# Calcasieu       | D3 + D4         | D3
+# St. Landry      | D3 + D5         | D3
+# St. Martin      | D3 + D6         | D3
 
 
 # ─── STEP 1: LOAD VTD-LEVEL CENSUS AND REGISTRATION DATA ─────────────────────
