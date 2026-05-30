@@ -582,8 +582,8 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
         <li class="done"><div class="tl-date">Apr 29, 2026</div><div class="tl-event"><strong>Callais decided.</strong> SCOTUS 6-3 (Alito). Section 2 VRA gutted. Intent standard reinstated. Gingles framework narrowed to near-impossibility.</div></li>
         <li class="alert"><div class="tl-date">Apr 30, 2026</div><div class="tl-event"><strong>Gov. Landry suspends primary.</strong> Thousands of absentee ballots voided. Voided totals sealed by law.</div></li>
         <li class="alert"><div class="tl-date">May 13, 2026</div><div class="tl-event"><strong>Senate committee</strong> drops 2nd majority-Black district. SB 121 passes 27-10.</div></li>
-        <li class="alert"><div class="tl-date">May 21, 2026</div><div class="tl-event"><strong>McMakin Amendment adopted</strong> 10-7 after 10-hour hearing with overwhelming public opposition. Parish reshuffling executed behind closed doors.</div></li>
-        <li class="done"><div class="tl-date">May 28, 2026</div><div class="tl-event"><strong>House passes SB 121 (Morris) with McMakin Amendment.</strong> Bill forwarded to Governor Landry for signature.</div></li>
+        <li class="alert"><div class="tl-date">May 21, 2026</div><div class="tl-event"><strong>Beaullieu House Floor Amendment adopted</strong> (HFASB121 3645 5695) 10-7 after 10-hour hearing with overwhelming public opposition. Complete precinct-level rewrite of all six districts — deleting prior House Committee amendments (#5999) and substituting new district composition. Amendment authored by Rep. Beaullieu; incorporated into enrolled Act 2.</div></li>
+        <li class="done"><div class="tl-date">May 28, 2026</div><div class="tl-event"><strong>House passes SB 121 (Morris) with Beaullieu Floor Amendment (HFASB121 3645 5695) incorporated.</strong> Bill forwarded to Governor Landry for signature.</div></li>
         <li class="done"><div class="tl-date">May 2026</div><div class="tl-event"><strong>Governor Landry signs SB 121.</strong> Enrolled as Act 2, enacting R.S. 18:1276. Effective for 2026 congressional elections upon signature; full statutory effectiveness at noon, January 3, 2027.</div></li>
         <li class="pending"><div class="tl-date">Nov 3, 2026</div><div class="tl-event"><strong>Scheduled jungle primary</strong> under the Act 2 (SB 121) enacted congressional map.</div></li>
       </ul>
@@ -641,7 +641,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       <div id="map"></div>
 
       <p style="font-family:var(--ff-mono);font-size:9px;color:var(--text3);margin-top:8px;letter-spacing:0.05em">
-        <span class="src src-sb">SB 121 Act 2 Enacted Boundary Shapefile (HCA-5662)</span> &nbsp;·&nbsp; <span class="src src-sos">Louisiana SOS Active Voter File · 5/1/2026</span> &nbsp;·&nbsp; District aggregates reflect parish assignments under Act 2. SOS registration data not yet officially reported by Act 2 district geography; figures are provisional.
+        <span class="src src-sb">Act 2 (SB 121, Morris) Enrolled Boundary Shapefile — SB_121_Enrolled.shp</span> &nbsp;·&nbsp; <span class="src src-sos">Louisiana SOS Active Voter File · 5/1/2026</span> &nbsp;·&nbsp; District aggregates reflect parish assignments under Act 2. SOS registration data not yet officially reported by Act 2 district geography; figures are provisional.
       </p>
 
       <div class="sec-head" style="margin-top:24px">Representational Equity Index (REI) by District</div>
@@ -787,8 +787,8 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       </div>
 
       <div class="callout" style="margin-top:14px">
-        <div class="cl-head">McMakin Amendment Process -- Committee Record</div>
-        <p>The McMakin amendment transferred precincts across eight parishes (Morehouse, Lincoln, Jackson, Grant, Calcasieu, St. Landry, Tangipahoa, Pointe Coupee) during the amendment process. Each transfer may have introduced split-line mismatches between the static "2026 Precinct Shapefiles" and the live SOS voter registry. Per Rep. Rodney Lyons (D-Marrero), per the May 21, 2026 committee record: the committee was "performing surgery on maps with no input."</p>
+        <div class="cl-head">Beaullieu House Floor Amendment — Legislative Process Record</div>
+        <p>House Floor Amendment HFASB121 3645 5695, authored by Rep. Beaullieu, replaced the prior House Committee amendments (#5999) in their entirety with a complete precinct-level rewrite of all six congressional districts. The amendment was adopted 10-7 on May 21, 2026 during the floor session — not in committee. Parishes affected by the precinct reassignments include Morehouse, Lincoln, Jackson, Grant, Calcasieu, St. Landry, Tangipahoa, Pointe Coupee, and others across all six districts. Each precinct transfer may have introduced split-line mismatches between the static "2026 Precinct Shapefiles (1-27-2026)" and the live SOS voter registry. Per Rep. Rodney Lyons (D-Marrero), per the May 21, 2026 floor record: the body was "performing surgery on maps with no input." The Beaullieu amendment text is fully incorporated into enrolled Act 2.</p>
       </div>
 
       <div class="callout info" style="margin-top:14px">
@@ -812,7 +812,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
           <h3>Data Sources</h3>
           <ul>
             <li><strong>Louisiana SOS</strong> — Statewide Report of Registered Voters by Party and Race, 5/1/2026 (Active voters only)</li>
-            <li><strong>Act 2 (SB 121, HCA-5662)</strong> -- McMakin Amendment district boundary shapefile, enrolled 2026 Regular Session. This is the legal boundary definition for Act 2.</li>
+            <li><strong>Act 2 (SB 121, Morris) — Enrolled District Boundary Shapefile</strong> — Legal boundary definition for R.S. 18:1276, enacted 2026 Regular Session. Shapefile: <code>SB_121_Enrolled.shp</code>. The enrolled map reflects the district composition as written in House Floor Amendment HFASB121 3645 5695 (authored by Rep. Beaullieu), which deleted prior House Committee amendments (#5999) and substituted a complete precinct-level rewrite of all six districts. That amendment was adopted on the House floor May 21, 2026 and is fully incorporated into enrolled Act 2 — it is not a separate source. All boundary analysis in this dashboard uses the enrolled Act 2 shapefile only.</li>
             <li><strong>SB 121 Reengrossed (Morris)</strong> -- Parish summary tables, VAP anomalies (Page 12). Pre-enrollment text; superseded by enrolled Act 2.</li>
             <li><strong>U.S. Census 2020 P.L. 94-171</strong> -- Block-level population and Voting Age Population (VAP). Legally and conceptually distinct from SOS registration data. VAP measures all residents aged 18 and older regardless of registration status. District 2 is the only majority Black VAP district (58.24% Black VAP per SB121_district_demographics.csv). District 6 Black VAP is 24.58% -- not majority Black. VAP and registration data are not compared in this dashboard.</li>
             <li><strong>House Committee Testimony</strong> — May 21, 2026 hearing record</li>
