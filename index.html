@@ -2,6 +2,291 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+View
+
+
+Code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Louisiana Redistricting Equity Dashboard | Tia Fields</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ═══════════════════════════════════════
+   BRAND TOKENS — TiaFields.com palette
+   Extracted pixel-perfect from screenshot
+═══════════════════════════════════════ */
+:root {
+  /* backgrounds */
+  --linen:      #f6f0e8;
+  --linen-lt:   #fbf4ec;
+  --linen-dk:   #ede5d8;
+  --linen-deep: #e2d9cb;
+
+  /* charcoal dark section */
+  --charcoal:   #35302a;
+  --charcoal-lt:#4a4339;
+  --charcoal-ui:#2d2820;
+
+  /* burnt sienna / terracotta CTA */
+  --orange:     #b76b3a;
+  --orange-lt:  #c98050;
+  --orange-dk:  #8f5228;
+
+  /* type */
+  --text:       #38332d;
+  --text2:      #5e5346;
+  --text3:      #8a7b6c;
+  --text-inv:   #f6f0e8;
+
+  /* borders */
+  --border:     #ddd4c3;
+  --border2:    #cec3b0;
+
+  /* data accent colors */
+  --packed:     #8f2d1e;   /* deep crimson — packed D2 */
+  --cracked:    #1e4f7f;   /* dark steel blue — cracked districts */
+  --neutral:    #2d5e3a;   /* deep forest green */
+
+  /* district palette — rich, distinct, works on linen */
+  --d1: #1e4f7f;
+  --d2: #8f2d1e;
+  --d3: #1e5c3a;
+  --d4: #5e2d7f;
+  --d5: #7a5c1a;
+  --d6: #1a5c6e;
+
+  --ff-serif: 'Playfair Display', Georgia, serif;
+  --ff-sans:  'DM Sans', system-ui, sans-serif;
+  --ff-mono:  'DM Mono', 'Courier New', monospace;
+
+  --shadow:    0 1px 4px rgba(56,51,45,0.08), 0 4px 16px rgba(56,51,45,0.05);
+  --shadow-lg: 0 4px 24px rgba(56,51,45,0.13);
+  --radius:    0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; }
+body {
+  background: var(--linen);
+  color: var(--text);
+  font-family: var(--ff-sans);
+  font-weight: 400;
+  line-height: 1.56;
+  overflow-x: hidden;
+}
+
+/* ── TOPBAR ── */
+#topbar {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--charcoal);
+  border-bottom: 3px solid var(--orange);
+  display: flex; align-items: stretch; justify-content: space-between;
+}
+.tb-brand {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 22px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.tb-brand img { height: 42px; width: auto; }
+.tb-title {
+  font-family: var(--ff-sans); font-size: 13px; font-weight: 600;
+  color: var(--linen); letter-spacing: 0.01em; line-height: 1.2;
+}
+.tb-sub {
+  font-family: var(--ff-mono); font-size: 9px;
+  color: var(--orange-lt); letter-spacing: 0.16em;
+  text-transform: uppercase; margin-top: 2px;
+}
+.tb-nav { display: flex; align-items: stretch; }
+.tb-nav button {
+  padding: 0 16px; border: none; background: transparent;
+  font-family: var(--ff-sans); font-size: 11.5px; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: rgba(246,240,232,0.55);
+  border-left: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer; transition: all 0.18s;
+}
+.tb-nav button:hover { color: var(--linen); background: rgba(255,255,255,0.04); }
+.tb-nav button.active { color: var(--orange-lt); border-bottom: 2px solid var(--orange); }
+.tb-badge {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px;
+  font-family: var(--ff-mono); font-size: 9.5px;
+  color: rgba(246,240,232,0.4); letter-spacing: 0.07em;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap;
+}
+.tb-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--orange); flex-shrink: 0;
+  animation: dot 1.8s ease infinite;
+}
+@keyframes dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ── CRISIS BANNER ── */
+#crisis {
+  background: var(--charcoal-lt);
+  border-bottom: 1px solid rgba(183,107,58,0.25);
+  padding: 10px 24px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+#crisis .ci { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+#crisis .label {
+  font-family: var(--ff-mono); font-size: 9px;
+  color: var(--orange-lt); letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 3px;
+}
+#crisis .body { font-size: 12px; color: var(--linen-dk); line-height: 1.6; }
+#crisis .body strong { color: var(--linen); }
+
+/* ── LAYOUT ── */
+#app { display: grid; grid-template-columns: 320px 1fr; }
+
+/* ── SIDEBAR ── */
+#sidebar {
+  background: var(--linen-lt);
+  border-right: 1px solid var(--border2);
+  overflow-y: auto;
+  height: calc(100vh - 66px);
+  position: sticky; top: 66px;
+}
+.sb-sec { padding: 18px; border-bottom: 1px solid var(--border); }
+.sb-sec:last-child { border-bottom: none; }
+.sb-eyebrow {
+  font-family: var(--ff-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sb-eyebrow::after { content:''; flex:1; height:1px; background:var(--border2); }
+
+/* stat grid */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat-tile {
+  background: var(--linen-lt);
+  border: 1px solid var(--border);
+  padding: 11px 13px;
+  box-shadow: var(--shadow);
+}
+.stat-tile .num {
+  font-family: var(--ff-serif); font-size: 24px; font-weight: 700;
+  line-height: 1; margin-bottom: 3px; color: var(--charcoal);
+}
+.stat-tile .num.red { color: var(--packed); }
+.stat-tile .num.ora { color: var(--orange); }
+.stat-tile .num.blu { color: var(--cracked); }
+.stat-tile .lbl {
+  font-family: var(--ff-mono); font-size: 9px; color: var(--text3);
+  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.35;
+}
+
+/* seat hero */
+.seat-hero {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--linen-lt); border: 1px solid var(--border);
+  padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow);
+}
+.seat-num {
+  font-family: var(--ff-serif); font-size: 56px; font-weight: 900;
+  color: var(--packed); line-height: 1; flex-shrink: 0;
+}
+.seat-detail .sd-main {
+  font-size: 12.5px; font-weight: 600; color: var(--charcoal);
+  margin-bottom: 4px; line-height: 1.3;
+}
+.seat-detail .sd-sub { font-size: 11px; color: var(--text2); }
+.seat-detail .sd-note {
+  font-family: var(--ff-mono); font-size: 9.5px; color: var(--packed);
+  margin-top: 5px; font-weight: 500;
+}
+
+/* district cards */
+.dc {
+  background: var(--linen-lt);
+  border: 1px solid var(--border); border-left: 3px solid var(--border2);
+  padding: 10px 13px; margin-bottom: 6px;
+  cursor: pointer; transition: all 0.17s; box-shadow: var(--shadow);
+}
+.dc:hover { border-left-color: var(--orange); transform: translateX(2px); }
+.dc.active { border-left-color: var(--orange); background: #fdf9f4; }
+.dc.pk { border-left-color: var(--packed); }
+.dc.cr { border-left-color: var(--cracked); }
+.dc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.dc-name { font-size: 12px; font-weight: 600; color: var(--charcoal); line-height: 1.2; }
+.dc-badge {
+  font-family: var(--ff-mono); font-size: 8.5px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 7px; border: 1px solid; flex-shrink: 0; margin-left: 6px;
+}
+.badge-r { color: var(--packed); border-color: rgba(143,45,30,0.4); background: rgba(143,45,30,0.06); }
+.badge-d { color: var(--cracked); border-color: rgba(30,79,127,0.35); background: rgba(30,79,127,0.06); }
+.badge-pk { color: var(--packed); border-color: rgba(143,45,30,0.4); }
+.badge-cr { color: var(--cracked); border-color: rgba(30,79,127,0.35); }
+.dc-bar { height: 3px; background: var(--border); margin: 6px 0 5px; }
+.dc-fill { height: 100%; transition: width 0.5s; }
+.dc-stats { display: flex; gap: 12px; }
+.dc-stat { font-size: 10px; color: var(--text3); }
+.dc-stat strong { color: var(--text); font-weight: 600; }
+
+/* timeline */
+.tl { list-style: none; padding-left: 18px; border-left: 2px solid var(--border2); }
+.tl li { position: relative; padding: 0 0 15px 16px; }
+.tl li::before {
+  content: ''; position: absolute; left: -9px; top: 5px;
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--border2); background: var(--linen-lt);
+}
+.tl li.done::before { background: var(--orange); border-color: var(--orange); }
+.tl li.alert::before { background: var(--packed); border-color: var(--packed); }
+.tl li.pending::before { background: var(--linen-dk); border-color: var(--border2); }
+.tl-date {
+  font-family: var(--ff-mono); font-size: 9px; font-weight: 500;
+  color: var(--orange); letter-spacing: 0.08em; margin-bottom: 2px;
+}
+.tl-event { font-size: 11.5px; color: var(--text2); line-height: 1.45; }
+.tl-event strong { color: var(--charcoal); }
+
+/* callouts */
+.callout {
+  border-left: 3px solid var(--orange);
+  background: rgba(183,107,58,0.06);
+  padding: 11px 14px; margin-bottom: 10px;
+  box-shadow: var(--shadow);
+}
+.callout.danger { border-left-color: var(--packed); background: rgba(143,45,30,0.05); }
+.callout.info   { border-left-color: var(--cracked); background: rgba(30,79,127,0.05); }
+.callout .cl-head {
+  font-family: var(--ff-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 5px;
+}
+.callout.danger .cl-head { color: var(--packed); }
+.callout.info .cl-head   { color: var(--cracked); }
+.callout p { font-size: 12px; color: var(--text2); line-height: 1.65; }
+.callout p strong { color: var(--charcoal); }
+
+/* error box */
+.ebox {
+  background: rgba(143,45,30,0.05); border: 1px solid rgba(143,45,30,0.22);
+  padding: 11px 13px; margin-top: 8px;
+}
+.ebox-head {
+  font-family: var(--ff-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--packed); margin-bottom: 4px;
+}
+.ebox p { font-size: 11px; color: var(--text2); line-height: 1.6; }
+.ebox p strong { color: var(--charcoal); }
+
+/* scri
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Louisiana Redistricting Equity Dashboard | Tia Fields</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
