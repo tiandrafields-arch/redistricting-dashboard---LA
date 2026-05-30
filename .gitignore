@@ -1,3 +1,27 @@
 US-LA-72a6228e-20260524-en-geojson/
 US-LA-72a6228e-20260524-en-geojson.zip
 Data Files/la2020/
+# Mac system files
+.DS_Store
+.DS_Store?
+._*
+
+# Environment and credentials
+*.env
+.env
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Editor files
+.vscode/
+.idea/
+
+# Local data files
+*.csv.bak
+*.tmp
