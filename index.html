@@ -511,6 +511,51 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
   .seat-num { font-size: 42px; }
   .stat-tile .num { font-size: 20px; }
 }
+
+/* ── EXPORT BUTTONS ── */
+.export-btn {
+  font-family: var(--ff-mono); font-size: 9px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--border2);
+  background: var(--linen-lt); color: var(--text2);
+  cursor: pointer; transition: all 0.15s; margin-top: 6px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.export-btn:hover { background: var(--charcoal); color: var(--linen); border-color: var(--charcoal); }
+.export-btn.csv-btn { border-color: rgba(30,79,127,0.4); color: var(--cracked); }
+.export-btn.csv-btn:hover { background: var(--cracked); color: var(--linen); }
+.chart-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+/* ── 1P1V PANEL ── */
+.vap-summary-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 16px 0;
+}
+.vap-sum-tile {
+  background: var(--linen-lt); border: 1px solid var(--border);
+  border-left: 3px solid var(--packed); padding: 13px 15px; box-shadow: var(--shadow);
+}
+.vap-sum-tile .vs-num {
+  font-family: var(--ff-serif); font-size: 28px; font-weight: 700;
+  color: var(--packed); line-height: 1; margin-bottom: 4px;
+}
+.vap-sum-tile .vs-lbl {
+  font-family: var(--ff-mono); font-size: 9px; color: var(--text3);
+  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.4;
+}
+.cite-block {
+  background: rgba(143,45,30,0.04); border: 1px solid rgba(143,45,30,0.18);
+  padding: 14px 18px; margin: 16px 0; font-size: 12px; color: var(--text2); line-height: 1.7;
+}
+.cite-block .cite-title {
+  font-family: var(--ff-mono); font-size: 9.5px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--packed); margin-bottom: 8px; font-weight: 600;
+}
+.cite-case { font-style: italic; color: var(--charcoal); font-weight: 600; }
+.aval { color: var(--packed); font-weight: 700; font-family: var(--ff-mono); }
+.gval { color: var(--neutral); font-family: var(--ff-mono); }
+table tr.bad td { background: rgba(143,45,30,0.04); }
+@media(max-width:700px){ .vap-summary-grid { grid-template-columns: 1fr 1fr; } }
+
 </style>
 </head>
 <body>
@@ -529,6 +574,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
     <button onclick="goTab('t-charts',this)">Analysis</button>
     <button onclick="goTab('t-parishes',this)">Parishes</button>
     <button onclick="goTab('t-data',this)">Data Integrity</button>
+    <button onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
     <button onclick="goTab('t-about',this)">About</button>
   </nav>
   <div class="tb-badge"><span class="tb-dot"></span>SOS Active Voter File · 5/1/2026 &nbsp;|&nbsp; SB 121 Act 2 Boundaries</div>
@@ -618,6 +664,7 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       <button class="tab" onclick="goTab('t-charts',this)">Equity Analysis</button>
       <button class="tab" onclick="goTab('t-parishes',this)">Parish Data</button>
       <button class="tab" onclick="goTab('t-data',this)">Data Integrity</button>
+      <button class="tab" onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
       <button class="tab" onclick="goTab('t-about',this)">About</button>
     </div>
 
@@ -670,26 +717,41 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
           <h3>Black Voter Registration by District</h3>
           <div class="chart-sub">Raw count · 193,935 packed into D2 · 731,722 cracked across D1,3,4,5,6</div>
           <div class="chart-wrap"><canvas id="c-black-count"></canvas></div>
+          <div class="chart-actions">
+            <button class="export-btn" onclick="exportChart('c-black-count','Black Registration Count')">&#8659; PNG</button>
+          </div>
         </div>
         <div class="chart-card">
           <h3>Black % vs. 31.2% State Baseline</h3>
           <div class="chart-sub">SOS 5/1/2026 · Terracotta line = proportional threshold</div>
           <div class="chart-wrap"><canvas id="c-black-pct"></canvas></div>
+          <div class="chart-actions">
+            <button class="export-btn" onclick="exportChart('c-black-pct','Black % vs Baseline')">&#8659; PNG</button>
+          </div>
         </div>
         <div class="chart-card">
           <h3>Party Registration — All 6 Districts</h3>
           <div class="chart-sub">Democrat / Republican / No Party · Grouped by district · SOS 5/1/2026</div>
           <div class="chart-wrap"><canvas id="c-party"></canvas></div>
+          <div class="chart-actions">
+            <button class="export-btn" onclick="exportChart('c-party','Party Registration')">&#8659; PNG</button>
+          </div>
         </div>
         <div class="chart-card">
           <h3>Total Registered Voters by District</h3>
           <div class="chart-sub">D5 carries 772k vs. D6 with 140k — severe population malapportionment</div>
           <div class="chart-wrap"><canvas id="c-total"></canvas></div>
+          <div class="chart-actions">
+            <button class="export-btn" onclick="exportChart('c-total','Total Registered')">&#8659; PNG</button>
+          </div>
         </div>
         <div class="chart-card full">
           <h3>Racial Composition of Each District — Stacked</h3>
           <div class="chart-sub">White · Black · Other registered voters · Act 2 (SB 121) boundaries (provisional SOS assignment) · Shows concentration of Black registered voters in D2</div>
           <div class="chart-wrap tall"><canvas id="c-stacked"></canvas></div>
+          <div class="chart-actions">
+            <button class="export-btn" onclick="exportChart('c-stacked','Racial Composition')">&#8659; PNG</button>
+          </div>
         </div>
       </div>
     </div>
@@ -704,6 +766,9 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
         <p>Sort by Black % to identify parishes where cracking most acutely disperses Black voting blocs. Sort by District to see which communities of interest were fragmented. Cross-reference with the Data Integrity tab for parishes where the bill's stated VAP cannot be reconciled with active voter registration — these are your 14th Amendment exhibits. Each data point sourced directly from Louisiana SOS active voter file, 5/1/2026.</p>
       </div>
 
+      <div class="chart-actions" style="margin-bottom:10px">
+        <button class="export-btn csv-btn" onclick="exportParishCSV()">&#8659; Download Parish Data CSV</button>
+      </div>
       <div class="tbl-wrap">
         <table id="ptable">
           <thead>
@@ -781,6 +846,93 @@ tbody td:first-child { color: var(--charcoal); font-weight: 500; }
       <div class="callout info" style="margin-top:14px">
         <div class="cl-head">Assumption and Iberville Parishes -- Additional Anomalies (Pre-Enrollment Text)</div>
         <p>Assumption Parish segment: <strong>127.9%</strong> of VAP. Iberville Parish segment: <strong>143.2%</strong> of VAP. These anomalies appear across multiple districts in the pre-enrollment reengrossed text, suggesting a systemic pattern rather than isolated clerical error. Verification against the enrolled Act 2 is required to determine whether these figures were corrected prior to enrollment.</p>
+      </div>
+    </div>
+
+
+    <!-- 1P1V CHALLENGE PANEL -->
+    <div class="panel" id="t-1p1v">
+      <div class="panel-title">14th Amendment — One Person, One Vote Challenge</div>
+      <div class="panel-meta">Source: <span class="src src-sb">SB 121 Reengrossed (Morris) · Page 11–12</span> &nbsp;·&nbsp; Anomalies entered into legislative record by Rep. C. Denise Marcelle (D-Baton Rouge) · May 21, 2026 · Verify persistence in enrolled Act 2</div>
+
+      <div class="callout danger" style="margin-top:14px">
+        <div class="cl-head">Why This Matters — No VRA Claim Required</div>
+        <p>The Equal Protection Clause requires mathematical population equality among congressional districts regardless of any Voting Rights Act claim. Post-<em>Callais</em>, this is the primary remaining federal challenge pathway. The legislature's own tables — entered into the official record — show facially impossible registration rates in multiple District 1 parishes. If confirmed in the enrolled Act 2 text, these anomalies constitute a one-person, one-vote challenge on the face of the legislation.</p>
+      </div>
+
+      <div class="vap-summary-grid">
+        <div class="vap-sum-tile">
+          <div class="vs-num">6</div>
+          <div class="vs-lbl">Parishes with impossible registration rates (&gt;100% of VAP)</div>
+        </div>
+        <div class="vap-sum-tile">
+          <div class="vs-num">124K</div>
+          <div class="vs-lbl">Phantom residents — D1 parish VAP sum vs. bill's declared D1 VAP</div>
+        </div>
+        <div class="vap-sum-tile">
+          <div class="vs-num">172%</div>
+          <div class="vs-lbl">Peak anomaly — Terrebonne Parish (Part): 49,085 registered vs. 28,421 VAP</div>
+        </div>
+      </div>
+
+      <div class="cite-block">
+        <div class="cite-title">Controlling Legal Authority</div>
+        <p><span class="cite-case">Reynolds v. Sims</span>, 377 U.S. 533 (1964): Equal Protection requires that legislative districts be substantially equal in population. The one-person, one-vote doctrine applies with full force to congressional districting.</p>
+        <p style="margin-top:8px"><span class="cite-case">Wesberry v. Sanders</span>, 376 U.S. 1 (1964): Article I, § 2 requires that congressional districts be as equal in population as practicable.</p>
+        <p style="margin-top:8px"><span class="cite-case">Evenwel v. Abbott</span>, 578 U.S. 54 (2016): States may use total population as the apportionment base. The anomalies documented here are internal contradictions within the legislature's <em>own declared VAP figures</em> — the bill's stated parish-level VAP totals do not sum to the bill's stated district VAP, and six parishes show registered voter counts exceeding their stated VAP ceiling.</p>
+      </div>
+
+      <div class="sec-head">VAP Anomalies — District 1 Parish Segments (Pre-Enrollment Reengrossed Text)</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:14px">VAP is the theoretical ceiling for voter registration — you cannot have more registered voters than people over age 18. Registration rates above 100% indicate a database error, column misalignment, or data integrity failure in the map generation process. These figures were identified in the SB 121 Reengrossed text from the "2026 Precinct Shapefiles (1-27-2026)" source. Verification against enrolled Act 2 required.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Parish Subdivision</th>
+              <th>Total Population</th>
+              <th>Registered Voters</th>
+              <th>Stated VAP</th>
+              <th>Implied Reg. Rate</th>
+              <th>Gap (Reg. − VAP)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bad"><td>Jefferson Parish (Part)</td><td>245,682</td><td>196,528</td><td>133,984</td><td class="aval">146.68%</td><td class="aval">+62,544</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr class="bad"><td>Terrebonne Parish (Part)</td><td>65,144</td><td>49,085</td><td>28,421</td><td class="aval">172.70%</td><td class="aval">+20,664</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr class="bad"><td>Lafourche Parish (Part)</td><td>44,458</td><td>33,799</td><td>22,315</td><td class="aval">151.46%</td><td class="aval">+11,484</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr class="bad"><td>St. Bernard Parish</td><td>43,764</td><td>31,775</td><td>22,206</td><td class="aval">143.09%</td><td class="aval">+9,569</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr class="bad"><td>Tangipahoa Parish (Part)</td><td>39,081</td><td>29,691</td><td>21,750</td><td class="aval">136.51%</td><td class="aval">+7,941</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr class="bad"><td>Orleans Parish (Part)</td><td>50,038</td><td>41,407</td><td>29,329</td><td class="aval">141.18%</td><td class="aval">+12,078</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
+            <tr><td colspan="5" style="font-weight:700;color:var(--packed);font-family:var(--ff-mono);font-size:11px">TOTAL EXCESS REGISTRATIONS (sum of impossible gaps)</td><td class="aval" style="font-size:13px">+124,280</td><td></td></tr>
+            <tr><td>St. Tammany Parish</td><td>264,570</td><td>168,850</td><td>202,228</td><td class="gval">83.49%</td><td class="gval">−33,378</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
+            <tr><td>Plaquemines Parish</td><td>23,515</td><td>12,130</td><td>17,334</td><td class="gval">69.98%</td><td class="gval">−5,204</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger" style="margin-top:20px">
+        <div class="cl-head">District 1 Internal VAP Contradiction — 124,280 Phantom Residents</div>
+        <p>Per <span class="src src-sb">SB 121 Reengrossed · Page 11</span>: The sum of individual parish VAP figures for District 1 equals <strong>477,567</strong>. The bill's district-level summary declares D1 VAP = <strong>601,847</strong>. The gap of <strong>124,280 people</strong> does not appear in any Louisiana population database and suggests a systemic column misalignment in the shapefile-to-bill conversion process. This is an internal mathematical contradiction within the legislature's own document.</p>
+        <p style="margin-top:8px">Under <span class="cite-case">Reynolds v. Sims</span> and its progeny, a district map whose population figures contain a 124,280-person internal discrepancy cannot satisfy the one-person, one-vote requirement. This is not an external challenge to the legislature's methodology — it is a challenge to the legislature's own arithmetic.</p>
+      </div>
+
+      <div class="callout info" style="margin-top:14px">
+        <div class="cl-head">Additional Anomalies Identified (Pre-Enrollment Text)</div>
+        <p>Assumption Parish segment: <strong>127.9%</strong> registration rate. Iberville Parish segment: <strong>143.2%</strong> registration rate. These anomalies appear across multiple districts, suggesting a systemic data failure rather than isolated clerical error. <strong>Verification against the enrolled Act 2 text is required before any of these figures are cited in litigation.</strong> If the enrolled text corrected these errors, the 1P1V challenge on this basis does not apply to the enacted law.</p>
+      </div>
+
+      <div class="callout" style="margin-top:14px">
+        <div class="cl-head">Legislative Record — Rep. Marcelle's Challenge</div>
+        <p>These anomalies were identified and entered into the official legislative record by <strong>Rep. C. Denise Marcelle (D-Baton Rouge)</strong> during the May 21, 2026 House floor session. The body proceeded to adopt the Beaullieu Floor Amendment — a complete precinct-level rewrite of all six districts — without independent analysis of the anomalies she identified. Per Rep. Rodney Lyons (D-Marrero), the body was "performing surgery on maps with no input." This legislative record is itself evidentiary.</p>
+      </div>
+
+      <div class="callout danger" style="margin-top:14px">
+        <div class="cl-head">Next Steps for Litigation Teams</div>
+        <p style="margin-bottom:8px">1. <strong>Verify enrollment:</strong> Pull the enrolled Act 2 statutory text from LRS 18:1276 and confirm whether the VAP figures on Pages 11–12 of the reengrossed text persist. If they do, you have a facially invalid map.</p>
+        <p style="margin-bottom:8px">2. <strong>Commission independent population analysis:</strong> Use U.S. Census PL 94-171 block-level data (available in this repo as <code>la_pl2020_official/</code>) joined to Act 2 district boundaries (<code>SB_121_Enrolled.shp</code>) to produce certified district population totals independent of the legislature's tables.</p>
+        <p>3. <strong>Calculate deviation:</strong> Compute the maximum population deviation across the six districts using Census VAP. Any deviation exceeding 1% in a congressional map, or any deviation traceable to intentional racial sorting, triggers strict scrutiny under <span class="cite-case">Karcher v. Daggett</span>, 462 U.S. 725 (1983).</p>
       </div>
     </div>
 
@@ -1156,6 +1308,32 @@ window.sortT=function(col){
     return asc?av.localeCompare(bv):bv.localeCompare(av);
   });
   rows.forEach(r=>tb.appendChild(r));
+};
+
+
+/* ── EXPORT FUNCTIONS ── */
+window.exportChart = function(canvasId, label) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const link = document.createElement('a');
+  link.download = 'redistricting_' + canvasId + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+};
+
+window.exportParishCSV = function() {
+  const headers = ['Parish','District','Total_Reg','Black_Reg','Black_Pct','Dem_Pct','Rep_Pct','REI_Effect'];
+  const rows = PARISHES.map(p => [
+    p.parish, 'D'+p.district, p.total_reg, p.black_reg,
+    p.black_pct.toFixed(1)+'%', p.dem_pct.toFixed(1)+'%', p.rep_pct.toFixed(1)+'%',
+    p.district===2?'PACKED':'CRACKED'
+  ]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const link = document.createElement('a');
+  link.download = 'LA_Redistricting_Parish_Data_SB121_Act2.csv';
+  link.href = URL.createObjectURL(blob);
+  link.click();
 };
 
 /* ── INIT ── */
