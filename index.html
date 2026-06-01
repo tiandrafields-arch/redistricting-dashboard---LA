@@ -587,8 +587,8 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
     <button class="active" onclick="goTab('t-map',this)">Map</button>
     <button onclick="goTab('t-charts',this)">Analysis</button>
     <button onclick="goTab('t-parishes',this)">Parishes</button>
-    <button onclick="goTab('t-data',this)">Data Integrity</button>
-    <button onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
+    <button onclick="goTab('t-data',this)" style="display:none">Data Integrity</button>
+    <button onclick="goTab('t-1p1v',this)" style="display:none">1P1V Challenge</button>
     <button onclick="goTab('t-about',this)">About</button>
   </nav>
   <div class="tb-badge"><span class="tb-dot"></span>SOS Active Voter File · 5/1/2026 &nbsp;|&nbsp; SB 121 Act 2 Boundaries</div>
@@ -650,14 +650,10 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
     </div>
 
     <div class="sb-sec">
-      <div class="sb-eyebrow">Data Integrity Alert</div>
-      <div class="ebox">
-        <div class="ebox-head">VAP Discrepancies Identified in Pre-Enrollment Bill Text <span class="src src-sb" style="font-size:8px">SB 121 · Page 12</span></div>
-        <p>Jefferson Parish (D1): <strong>196,528 registered voters</strong> vs. stated VAP of <strong>133,984</strong> — a 146.7% registration rate. Six parishes show this pattern. D1 parish VAPs sum to 477,567 but the bill declares D1 VAP = 601,847. Gap: <strong>124,280 phantom residents.</strong></p>
-      </div>
-      <div class="callout danger" style="margin-top:10px">
-        <div class="cl-head">14th Amendment Path</div>
-        <p>One-person, one-vote challenge requires <em>no VRA claim</em>. The legislature's own tables are facially invalid. Identified by <strong>Rep. C. Denise Marcelle (D-Baton Rouge)</strong> during committee, May 21.</p>
+      <div class="sb-eyebrow">Data Integrity</div>
+      <div class="callout info">
+        <div class="cl-head">Section Under Revision</div>
+        <p>The anomaly analysis previously shown here contained a column misread of the SB 121 legislative table and has been retracted. Updated analysis is in progress. The registration equity analysis on all other tabs is unaffected.</p>
       </div>
     </div>
 
@@ -677,8 +673,8 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
       <button class="tab active" onclick="goTab('t-map',this)">Spatial Map</button>
       <button class="tab" onclick="goTab('t-charts',this)">Equity Analysis</button>
       <button class="tab" onclick="goTab('t-parishes',this)">Parish Data</button>
-      <button class="tab" onclick="goTab('t-data',this)">Data Integrity</button>
-      <button class="tab" onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
+      <button class="tab" onclick="goTab('t-data',this)" style="display:none">Data Integrity</button>
+      <button class="tab" onclick="goTab('t-1p1v',this)" style="display:none">1P1V Challenge</button>
       <button class="tab" onclick="goTab('t-about',this)">About</button>
     </div>
 
@@ -802,156 +798,39 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
       </div>
     </div>
 
-    <!-- DATA INTEGRITY PANEL -->
     <div class="panel" id="t-data">
-      <div class="panel-title">Act 2 (SB 121) -- Data Integrity Review</div>
-      <div class="panel-meta">Source: <span class="src src-sb">SB 121 Reengrossed (Morris) -- Page 12 (pre-enrollment text)</span> · Entered into Legislative Record by Rep. C. Denise Marcelle (D-Baton Rouge) · May 21, 2026 · Note: anomalies identified in reengrossed text; verify persistence in enrolled Act 2</div>
+      <div class="panel-title">Data Integrity Review — Under Revision</div>
+      <div class="panel-meta">Last updated: June 1, 2026</div>
 
-      <div class="callout info" style="margin-bottom:12px;margin-top:12px">
-        <div class="cl-head">2020 Census VAP Baseline -- Temporal Limitation</div>
-        <p>VAP figures used in the Data Anomalies analysis come from U.S. Census Bureau 2020 PL 94-171 redistricting data -- the same legally mandated dataset the legislature is required to use for apportionment. A 6-year gap exists between 2020 Census VAP and 2026 SOS active voter registration data. In parishes with significant population growth, registered voters could theoretically approach or modestly exceed 2020 VAP for legitimate demographic reasons. <strong>However, the anomalies documented in SB 121 Reengrossed (Pages 11-12) show registration rates of 136-172% of stated VAP. These magnitudes cannot be explained by six years of population growth.</strong> Louisiana did not experience net in-migration at a scale that would add 40-100% to any parish's voting-age population between 2020 and 2026. The anomaly is real. This caveat is noted for methodological completeness.</p>
+      <div class="callout danger" style="margin-top:16px;margin-bottom:20px">
+        <div class="cl-head">Correction In Progress — This Section Has Been Temporarily Removed</div>
+        <p>The anomaly analysis previously displayed in this tab contained a column misread of the SB 121 Reengrossed legislative table (Page 12). The bill's column order is <strong>Total Population, VAP Total, Reg Total</strong>. This dashboard had columns two and three reversed, causing registration figures to be labeled as VAP and vice versa. The implied registration rates flagged as impossible (136–172%) were a product of that error.</p>
+        <p style="margin-top:8px">When read correctly, Terrebonne Parish (Part) shows a 57.9% registration rate. Jefferson Parish (Part) shows 68.2%. These are normal figures. The rates flagged as impossible were wrong and have been retracted.</p>
+        <p style="margin-top:8px">This section will be updated with a corrected analysis once the source table has been fully re-verified against the enrolled Act 2 text. The correction was identified by Elijah Appelson, Data Scientist, ACLU of Louisiana, on June 1, 2026.</p>
       </div>
 
-      <div class="callout danger" style="margin-bottom:18px;margin-top:12px">
-        <div class="cl-head">SOS Registration Data -- Boundary Reconciliation Required</div>
-        <p>The Louisiana Secretary of State voter registration file (5/1/2026) used in this dashboard was <strong>not reported by the SOS using Act 2 congressional district boundaries</strong>. District-level registration figures in this dashboard are derived by assigning whole-parish SOS data to districts based on the Act 2 parish assignment scheme. This is an analytical approximation only.</p>
-        <p style="margin-top:8px"><strong>Unless and until the SOS explicitly reports registration data by Act 2 district geography, or registration data is spatially reassigned to Act 2 census blocks, all district-level registration comparisons in this dashboard are provisional and must not be treated as final Act 2 district statistics.</strong> This applies to all charts, district cards, REI deviations, and registration percentages shown under any district label.</p>
-        <p style="margin-top:8px">Census PL 94-171 VAP data (a separate, independent source) confirms District 2 as the only majority Black VAP district (58.24% Black VAP per the district demographics file). District 6 Black VAP is 24.58% -- not majority Black. SOS registration figures and PL 94-171 VAP figures are not equivalent and are not compared against each other in this dashboard.</p>
-      </div>
-
-      <div class="callout danger">
-        <div class="cl-head">14th Amendment Review -- One-Person-One-Vote</div>
-        <p>Plaintiffs do <strong>not</strong> need a VRA claim to challenge Act 2. The Equal Protection Clause requires mathematical population equality among congressional districts. The anomalies documented below were identified in the SB 121 Reengrossed text (pre-enrollment) using the legislature's own official tables. Whether they persist in the enrolled Act 2 text requires verification against the enrolled document. If confirmed, they represent potential malapportionment on the face of the legislation.</p>
-      </div>
-
-      <div class="sec-head">Anomalous Registration Rates -- District 1 Parish Segments (Pre-Enrollment Text)</div>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">VAP (all residents 18+) is the theoretical ceiling for voter registration. Rates above 100% are anomalous and may indicate database column misalignment during map generation from the "2026 Precinct Shapefiles (1-27-2026)." These figures were identified in the SB 121 Reengrossed text. <span class="src src-sb">SB 121 Reengrossed · Page 12</span> Verification against the enrolled Act 2 is needed to confirm whether these values persist.</p>
-
-      <div class="tbl-wrap anom-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Parish Subdivision</th>
-              <th>Stated Total Pop</th>
-              <th>Registered Voters</th>
-              <th>Stated VAP</th>
-              <th>Implied Reg. Rate</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bad"><td>Jefferson Parish (Part)</td><td>245,682</td><td>196,528</td><td>133,984</td><td class="aval">146.68%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Lafourche Parish (Part)</td><td>44,458</td><td>33,799</td><td>22,315</td><td class="aval">151.46%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Orleans Parish (Part)</td><td>50,038</td><td>41,407</td><td>29,329</td><td class="aval">141.18%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>St. Bernard Parish</td><td>43,764</td><td>31,775</td><td>22,206</td><td class="aval">143.09%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Tangipahoa Parish (Part)</td><td>39,081</td><td>29,691</td><td>21,750</td><td class="aval">136.51%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Terrebonne Parish (Part)</td><td>65,144</td><td>49,085</td><td>28,421</td><td class="aval">172.70%</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr><td>St. Tammany Parish</td><td>264,570</td><td>168,850</td><td>202,228</td><td class="gval">83.49%</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
-            <tr><td>Plaquemines Parish</td><td>23,515</td><td>12,130</td><td>17,334</td><td class="gval">69.98%</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout danger" style="margin-top:20px">
-        <div class="cl-head">District 1 VAP Discrepancy -- 124,280 Unaccounted Residents (Pre-Enrollment Text)</div>
-        <p>Per <span class="src src-sb">SB 121 Reengrossed · Page 11</span>: Sum of individual parish VAP figures for District 1 equals <strong>477,567</strong>. The reengrossed bill's district-level summary declares D1 VAP = <strong>601,847</strong>. The gap of <strong>124,280 people</strong> does not appear in any Louisiana database and suggests systemic database column misalignment. This observation is based on the pre-enrollment reengrossed text. Verification against the enrolled Act 2 is required before treating this as a confirmed defect in the enacted law.</p>
+      <div class="callout info">
+        <div class="cl-head">What Is Not Affected</div>
+        <p>The registration equity analysis on the Map, Equity Analysis, and Parish Data tabs is sourced entirely from Louisiana Secretary of State active voter data (5/1/2026) and is unaffected by this correction. District 2 remains the only majority Black registration district (51.4%) under Act 2. The cracking pattern across the other five districts, REI deviations, and party registration breakdowns are all based on SOS data and stand as reported.</p>
       </div>
 
       <div class="callout" style="margin-top:14px">
-        <div class="cl-head">Beaullieu House Floor Amendment — Legislative Process Record</div>
-        <p>House Floor Amendment HFASB121 3645 5695, authored by Rep. Beaullieu, replaced the prior House Committee amendments (#5999) in their entirety with a complete precinct-level rewrite of all six congressional districts. The amendment was adopted 10-7 on May 21, 2026 during the floor session — not in committee. Parishes affected by the precinct reassignments include Morehouse, Lincoln, Jackson, Grant, Calcasieu, St. Landry, Tangipahoa, Pointe Coupee, and others across all six districts. Each precinct transfer may have introduced split-line mismatches between the static "2026 Precinct Shapefiles (1-27-2026)" and the live SOS voter registry. Per Rep. Rodney Lyons (D-Marrero), per the May 21, 2026 floor record: the body was "performing surgery on maps with no input." The Beaullieu amendment text is fully incorporated into enrolled Act 2.</p>
-      </div>
-
-      <div class="callout info" style="margin-top:14px">
-        <div class="cl-head">Assumption and Iberville Parishes -- Additional Anomalies (Pre-Enrollment Text)</div>
-        <p>Assumption Parish segment: <strong>127.9%</strong> of VAP. Iberville Parish segment: <strong>143.2%</strong> of VAP. These anomalies appear across multiple districts in the pre-enrollment reengrossed text, suggesting a systemic pattern rather than isolated clerical error. Verification against the enrolled Act 2 is required to determine whether these figures were corrected prior to enrollment.</p>
+        <div class="cl-head">Source Document</div>
+        <p>The legislative table referenced in the prior analysis is available at: <a href="https://www.legis.la.gov/Legis/ViewDocument.aspx?d=1472977" target="_blank" style="color:var(--orange);text-decoration:underline">legis.la.gov — SB 121 Reengrossed District Summary Table</a>. Researchers are encouraged to consult the enrolled Act 2 text directly.</p>
       </div>
     </div>
 
 
     <!-- 1P1V CHALLENGE PANEL -->
     <div class="panel" id="t-1p1v">
-      <div class="panel-title">14th Amendment — One Person, One Vote Challenge</div>
-      <div class="panel-meta">Source: <span class="src src-sb">SB 121 Reengrossed (Morris) · Page 11–12</span> &nbsp;·&nbsp; Anomalies entered into legislative record by Rep. C. Denise Marcelle (D-Baton Rouge) · May 21, 2026 · Verify persistence in enrolled Act 2</div>
+      <div class="panel-title">1P1V Challenge — Under Revision</div>
+      <div class="panel-meta">Last updated: June 1, 2026</div>
 
-      <div class="callout danger" style="margin-top:14px">
-        <div class="cl-head">Why This Matters — No VRA Claim Required</div>
-        <p>The Equal Protection Clause requires mathematical population equality among congressional districts regardless of any Voting Rights Act claim. Post-<em>Callais</em>, this is the primary remaining federal challenge pathway. The legislature's own tables — entered into the official record — show facially impossible registration rates in multiple District 1 parishes. If confirmed in the enrolled Act 2 text, these anomalies constitute a one-person, one-vote challenge on the face of the legislation.</p>
-      </div>
-
-      <div class="vap-summary-grid">
-        <div class="vap-sum-tile">
-          <div class="vs-num">6</div>
-          <div class="vs-lbl">Parishes with impossible registration rates (&gt;100% of VAP)</div>
-        </div>
-        <div class="vap-sum-tile">
-          <div class="vs-num">124K</div>
-          <div class="vs-lbl">Phantom residents — D1 parish VAP sum vs. bill's declared D1 VAP</div>
-        </div>
-        <div class="vap-sum-tile">
-          <div class="vs-num">172%</div>
-          <div class="vs-lbl">Peak anomaly — Terrebonne Parish (Part): 49,085 registered vs. 28,421 VAP</div>
-        </div>
-      </div>
-
-      <div class="cite-block">
-        <div class="cite-title">Controlling Legal Authority</div>
-        <p><span class="cite-case">Reynolds v. Sims</span>, 377 U.S. 533 (1964): Equal Protection requires that legislative districts be substantially equal in population. The one-person, one-vote doctrine applies with full force to congressional districting.</p>
-        <p style="margin-top:8px"><span class="cite-case">Wesberry v. Sanders</span>, 376 U.S. 1 (1964): Article I, § 2 requires that congressional districts be as equal in population as practicable.</p>
-        <p style="margin-top:8px"><span class="cite-case">Evenwel v. Abbott</span>, 578 U.S. 54 (2016): States may use total population as the apportionment base. The anomalies documented here are internal contradictions within the legislature's <em>own declared VAP figures</em> — the bill's stated parish-level VAP totals do not sum to the bill's stated district VAP, and six parishes show registered voter counts exceeding their stated VAP ceiling.</p>
-      </div>
-
-      <div class="sec-head">VAP Anomalies — District 1 Parish Segments (Pre-Enrollment Reengrossed Text)</div>
-      <p style="font-size:12px;color:var(--text2);margin-bottom:14px">VAP is the theoretical ceiling for voter registration — you cannot have more registered voters than people over age 18. Registration rates above 100% indicate a database error, column misalignment, or data integrity failure in the map generation process. These figures were identified in the SB 121 Reengrossed text from the "2026 Precinct Shapefiles (1-27-2026)" source. Verification against enrolled Act 2 required.</p>
-
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Parish Subdivision</th>
-              <th>Total Population</th>
-              <th>Registered Voters</th>
-              <th>Stated VAP</th>
-              <th>Implied Reg. Rate</th>
-              <th>Gap (Reg. − VAP)</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="bad"><td>Jefferson Parish (Part)</td><td>245,682</td><td>196,528</td><td>133,984</td><td class="aval">146.68%</td><td class="aval">+62,544</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Terrebonne Parish (Part)</td><td>65,144</td><td>49,085</td><td>28,421</td><td class="aval">172.70%</td><td class="aval">+20,664</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Lafourche Parish (Part)</td><td>44,458</td><td>33,799</td><td>22,315</td><td class="aval">151.46%</td><td class="aval">+11,484</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>St. Bernard Parish</td><td>43,764</td><td>31,775</td><td>22,206</td><td class="aval">143.09%</td><td class="aval">+9,569</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Tangipahoa Parish (Part)</td><td>39,081</td><td>29,691</td><td>21,750</td><td class="aval">136.51%</td><td class="aval">+7,941</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr class="bad"><td>Orleans Parish (Part)</td><td>50,038</td><td>41,407</td><td>29,329</td><td class="aval">141.18%</td><td class="aval">+12,078</td><td><span class="tag tag-pk">IMPOSSIBLE</span></td></tr>
-            <tr><td colspan="5" style="font-weight:700;color:var(--packed);font-family:var(--ff-mono);font-size:11px">TOTAL EXCESS REGISTRATIONS (sum of impossible gaps)</td><td class="aval" style="font-size:13px">+124,280</td><td></td></tr>
-            <tr><td>St. Tammany Parish</td><td>264,570</td><td>168,850</td><td>202,228</td><td class="gval">83.49%</td><td class="gval">−33,378</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
-            <tr><td>Plaquemines Parish</td><td>23,515</td><td>12,130</td><td>17,334</td><td class="gval">69.98%</td><td class="gval">−5,204</td><td><span class="tag" style="color:var(--neutral);border-color:rgba(45,94,58,0.4)">NORMAL</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout danger" style="margin-top:20px">
-        <div class="cl-head">District 1 Internal VAP Contradiction — 124,280 Phantom Residents</div>
-        <p>Per <span class="src src-sb">SB 121 Reengrossed · Page 11</span>: The sum of individual parish VAP figures for District 1 equals <strong>477,567</strong>. The bill's district-level summary declares D1 VAP = <strong>601,847</strong>. The gap of <strong>124,280 people</strong> does not appear in any Louisiana population database and suggests a systemic column misalignment in the shapefile-to-bill conversion process. This is an internal mathematical contradiction within the legislature's own document.</p>
-        <p style="margin-top:8px">Under <span class="cite-case">Reynolds v. Sims</span> and its progeny, a district map whose population figures contain a 124,280-person internal discrepancy cannot satisfy the one-person, one-vote requirement. This is not an external challenge to the legislature's methodology — it is a challenge to the legislature's own arithmetic.</p>
-      </div>
-
-      <div class="callout info" style="margin-top:14px">
-        <div class="cl-head">Additional Anomalies Identified (Pre-Enrollment Text)</div>
-        <p>Assumption Parish segment: <strong>127.9%</strong> registration rate. Iberville Parish segment: <strong>143.2%</strong> registration rate. These anomalies appear across multiple districts, suggesting a systemic data failure rather than isolated clerical error. <strong>Verification against the enrolled Act 2 text is required before any of these figures are cited in litigation.</strong> If the enrolled text corrected these errors, the 1P1V challenge on this basis does not apply to the enacted law.</p>
-      </div>
-
-      <div class="callout" style="margin-top:14px">
-        <div class="cl-head">Legislative Record — Rep. Marcelle's Challenge</div>
-        <p>These anomalies were identified and entered into the official legislative record by <strong>Rep. C. Denise Marcelle (D-Baton Rouge)</strong> during the May 21, 2026 House floor session. The body proceeded to adopt the Beaullieu Floor Amendment — a complete precinct-level rewrite of all six districts — without independent analysis of the anomalies she identified. Per Rep. Rodney Lyons (D-Marrero), the body was "performing surgery on maps with no input." This legislative record is itself evidentiary.</p>
-      </div>
-
-      <div class="callout danger" style="margin-top:14px">
-        <div class="cl-head">Next Steps for Litigation Teams</div>
-        <p style="margin-bottom:8px">1. <strong>Verify enrollment:</strong> Pull the enrolled Act 2 statutory text from LRS 18:1276 and confirm whether the VAP figures on Pages 11–12 of the reengrossed text persist. If they do, you have a facially invalid map.</p>
-        <p style="margin-bottom:8px">2. <strong>Commission independent population analysis:</strong> Use U.S. Census PL 94-171 block-level data (available in this repo as <code>la_pl2020_official/</code>) joined to Act 2 district boundaries (<code>SB_121_Enrolled.shp</code>) to produce certified district population totals independent of the legislature's tables.</p>
-        <p>3. <strong>Calculate deviation:</strong> Compute the maximum population deviation across the six districts using Census VAP. Any deviation exceeding 1% in a congressional map, or any deviation traceable to intentional racial sorting, triggers strict scrutiny under <span class="cite-case">Karcher v. Daggett</span>, 462 U.S. 725 (1983).</p>
+      <div class="callout danger" style="margin-top:16px">
+        <div class="cl-head">This Section Has Been Temporarily Removed</div>
+        <p>The one-person-one-vote challenge analysis in this tab was based on the same column misread described in the Data Integrity tab. The registration rates cited as facially impossible were computed from reversed column values in the SB 121 Reengrossed table. Those rates were not anomalous when read correctly.</p>
+        <p style="margin-top:8px">The 14th Amendment one-person-one-vote framework remains a valid and important legal pathway in the post-Callais landscape. This section will be rebuilt on verified population deviation data using Census PL 94-171 block-level figures joined to Act 2 district boundaries, which is the appropriate methodology for a 1P1V challenge and does not depend on the bill's registration table.</p>
+        <p style="margin-top:8px">Updated analysis will be published here when complete.</p>
       </div>
     </div>
 
