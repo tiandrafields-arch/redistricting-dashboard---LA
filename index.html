@@ -587,8 +587,9 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
     <button class="active" onclick="goTab('t-map',this)">Map</button>
     <button onclick="goTab('t-charts',this)">Analysis</button>
     <button onclick="goTab('t-parishes',this)">Parishes</button>
-    <button onclick="goTab('t-data',this)" style="display:none">Data Integrity</button>
-    <button onclick="goTab('t-1p1v',this)" style="display:none">1P1V Challenge</button>
+    <button onclick="goTab('t-data',this)">Data Integrity</button>
+    <button onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
+    <button onclick="goTab('t-legal',this)">Legal Framework</button>
     <button onclick="goTab('t-about',this)">About</button>
   </nav>
   <div class="tb-badge"><span class="tb-dot"></span>SOS Active Voter File · 5/1/2026 &nbsp;|&nbsp; SB 121 Act 2 Boundaries</div>
@@ -673,8 +674,9 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
       <button class="tab active" onclick="goTab('t-map',this)">Spatial Map</button>
       <button class="tab" onclick="goTab('t-charts',this)">Equity Analysis</button>
       <button class="tab" onclick="goTab('t-parishes',this)">Parish Data</button>
-      <button class="tab" onclick="goTab('t-data',this)" style="display:none">Data Integrity</button>
-      <button class="tab" onclick="goTab('t-1p1v',this)" style="display:none">1P1V Challenge</button>
+      <button class="tab" onclick="goTab('t-data',this)">Data Integrity</button>
+      <button class="tab" onclick="goTab('t-1p1v',this)">1P1V Challenge</button>
+      <button class="tab" onclick="goTab('t-legal',this)">Legal Framework</button>
       <button class="tab" onclick="goTab('t-about',this)">About</button>
     </div>
 
@@ -799,24 +801,113 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
     </div>
 
     <div class="panel" id="t-data">
-      <div class="panel-title">Data Integrity Review — Under Revision</div>
-      <div class="panel-meta">Last updated: June 1, 2026</div>
+      <div class="panel-title">Data Integrity</div>
+      <div class="panel-meta">Census 2020 PL 94-171 × Enrolled Act 2 Geometry &nbsp;·&nbsp; SOS Registration May 1, 2026 &nbsp;·&nbsp; Updated June 2, 2026</div>
 
-      <div class="callout danger" style="margin-top:16px;margin-bottom:20px">
-        <div class="cl-head">Correction In Progress — This Section Has Been Temporarily Removed</div>
-        <p>The anomaly analysis previously displayed in this tab contained a column misread of the SB 121 Reengrossed legislative table (Page 12). The bill's column order is <strong>Total Population, VAP Total, Reg Total</strong>. This dashboard had columns two and three reversed, causing registration figures to be labeled as VAP and vice versa. The implied registration rates flagged as impossible (136–172%) were a product of that error.</p>
-        <p style="margin-top:8px">When read correctly, Terrebonne Parish (Part) shows a 57.9% registration rate. Jefferson Parish (Part) shows 68.2%. These are normal figures. The rates flagged as impossible were wrong and have been retracted.</p>
-        <p style="margin-top:8px">This section will be updated with a corrected analysis once the source table has been fully re-verified against the enrolled Act 2 text. The correction was identified by Elijah Appelson, Data Scientist, ACLU of Louisiana, on June 1, 2026.</p>
+      <!-- CORRECTION NOTICE -->
+      <div class="callout" style="margin-bottom:20px;border-left-color:var(--neutral);background:rgba(45,94,58,0.05)">
+        <div class="cl-head" style="color:var(--neutral)">Correction Log — June 1, 2026</div>
+        <p>An earlier version of this tab flagged registration rates of 136–172% as anomalous. Those figures were artifacts of a <strong>reversed column read</strong> of the SB 121 Reengrossed legislative table (Page 12). The bill's column order is <strong>Total Population | VAP Total | Reg Total</strong>. When read correctly: Terrebonne 57.9% registration rate; Jefferson 68.2% — both normal. The anomaly analysis was retracted June 1, 2026. Correction identified by Elijah Appelson, ACLU-LA Data Science. This tab now presents verified data from the certified spatial join.</p>
       </div>
 
-      <div class="callout info">
-        <div class="cl-head">What Is Not Affected</div>
-        <p>The registration equity analysis on the Map, Equity Analysis, and Parish Data tabs is sourced entirely from Louisiana Secretary of State active voter data (5/1/2026) and is unaffected by this correction. District 2 remains the only majority Black registration district (51.4%) under Act 2. The cracking pattern across the other five districts, REI deviations, and party registration breakdowns are all based on SOS data and stand as reported.</p>
+      <!-- CERTIFIED DISTRICT TOTALS TABLE -->
+      <div class="sec-head">Certified District Population &amp; VAP — Census 2020 PL 94-171</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:10px">Source: U.S. Census Bureau 2020 P.L. 94-171 VTD data joined to <code>SB_121_Enrolled.shp</code> via centroid-in-polygon spatial join (EPSG:3452). 3,536 of 3,539 VTDs matched. Ideal population per district: 776,292. Total deviation range: <strong>0.9123%</strong> — within constitutional tolerance under <em>Karcher v. Daggett</em>, 462 U.S. 725 (1983).</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th>District</th><th>Total Population</th><th>Black Pop</th><th>Black %</th>
+            <th>VAP Total</th><th>Black VAP</th><th>Black VAP %</th>
+            <th>REI (vs 31.24%)</th><th>Pop Deviation</th><th>Effect</th>
+          </tr></thead>
+          <tbody>
+            <tr class="pk-row"><td>D2 <span class="tag tag-pk">PACKED</span></td><td>774,808</td><td>468,667</td><td>60.49%</td><td>597,961</td><td>348,165</td><td><strong>58.24%</strong></td><td style="color:var(--packed);font-weight:700">+27.00pp</td><td>−0.191%</td><td>Only majority-Black district</td></tr>
+            <tr class="cr-row"><td>D5</td><td>777,337</td><td>275,672</td><td>35.46%</td><td>598,076</td><td>198,818</td><td>33.25%</td><td style="color:var(--neutral)">+2.01pp</td><td>+0.135%</td><td>Marginal — no electoral control</td></tr>
+            <tr class="cr-row"><td>D4</td><td>778,983</td><td>249,165</td><td>31.99%</td><td>592,430</td><td>179,224</td><td>30.25%</td><td style="color:var(--cracked)">−0.99pp</td><td>+0.347%</td><td>Cracked</td></tr>
+            <tr class="cr-row"><td>D6</td><td>778,843</td><td>204,160</td><td>26.21%</td><td>597,718</td><td>146,541</td><td>24.58%</td><td style="color:var(--cracked)">−6.66pp</td><td>+0.329%</td><td>Cracked</td></tr>
+            <tr class="cr-row"><td>D3</td><td>771,901</td><td>230,761</td><td>29.90%</td><td>583,760</td><td>162,093</td><td>27.79%</td><td style="color:var(--cracked)">−3.45pp</td><td>−0.566%</td><td>Cracked</td></tr>
+            <tr class="cr-row"><td>D1 <span class="tag tag-cr">MOST CRACKED</span></td><td>775,036</td><td>114,077</td><td>14.72%</td><td>599,958</td><td>80,465</td><td><strong>13.36%</strong></td><td style="color:var(--packed);font-weight:700">−17.88pp</td><td>−0.162%</td><td>Extreme cracking</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family:var(--ff-mono);font-size:9px;color:var(--text3);margin-top:6px">REI = District Black VAP % minus statewide Black VAP % (31.24%, Census 2020). Positive = packed above proportional share. Negative = cracked below proportional share.</p>
+
+      <!-- REGISTRATION vs VAP COMPARISON -->
+      <div class="sec-head" style="margin-top:28px">Registration vs. VAP — Vintage Comparison</div>
+      <div class="callout danger" style="margin-bottom:12px">
+        <div class="cl-head">Critical Distinction — These Are Different Datasets</div>
+        <p>Census 2020 VAP (all residents 18+) and SOS voter registration (enrolled voters only) measure different populations. <strong>They cannot be directly compared as percentages of each other.</strong> Both are reported here for completeness. VAP is the legally mandated apportionment baseline. Registration reflects electoral participation, not population. A 6-year gap exists between the 2020 Census and the 2026 SOS file.</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th>District</th>
+            <th>Black VAP % <span style="font-weight:400;font-size:8px">(Census 2020)</span></th>
+            <th>Black Reg % <span style="font-weight:400;font-size:8px">(SOS May 2026 — Provisional)</span></th>
+            <th>Statewide Black VAP %</th><th>Statewide Black Reg %</th>
+            <th>VAP Source</th><th>Reg Source</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>D1</td><td>13.36%</td><td>22.1%</td><td rowspan="6" style="text-align:center;vertical-align:middle;font-weight:700">31.24%</td><td rowspan="6" style="text-align:center;vertical-align:middle;font-weight:700">31.2%</td><td rowspan="6" style="font-size:10px;color:var(--text3)">Census 2020<br>PL 94-171<br>(certified)</td><td rowspan="6" style="font-size:10px;color:var(--text3)">SOS May 1,<br>2026<br>(provisional)</td></tr>
+            <tr><td>D2</td><td><strong>58.24%</strong></td><td>51.4%</td></tr>
+            <tr><td>D3</td><td>27.79%</td><td>25.0%</td></tr>
+            <tr><td>D4</td><td>30.25%</td><td>33.0%</td></tr>
+            <tr><td>D5</td><td>33.25%</td><td>32.9%</td></tr>
+            <tr><td>D6</td><td>24.58%</td><td>32.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-family:var(--ff-mono);font-size:9px;color:var(--text3);margin-top:6px">Provisional = SOS May 2026 parish-level aggregates assigned whole-parish to Act 2 districts. Not officially reconciled to Act 2 precinct boundaries by the Louisiana SOS.</p>
+
+      <!-- POPULATION DEVIATION — 1P1V ANALYSIS -->
+      <div class="sec-head" style="margin-top:28px">Population Deviation — One Person, One Vote</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Congressional districts must achieve population equality as nearly as practicable. <em>Wesberry v. Sanders</em>, 376 U.S. 1 (1964); <em>Karcher v. Daggett</em>, 462 U.S. 725 (1983). The following deviations are from the certified spatial join of Census 2020 PL 94-171 data against the enrolled Act 2 geometry.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>District</th><th>Population (Census 2020)</th><th>Ideal (776,292)</th><th>Deviation (persons)</th><th>Deviation %</th><th>Constitutional?</th></tr></thead>
+          <tbody>
+            <tr><td>D1</td><td>775,036</td><td>776,292</td><td>−1,256</td><td>−0.162%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr><td>D2</td><td>774,808</td><td>776,292</td><td>−1,484</td><td>−0.191%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr><td>D3</td><td>771,901</td><td>776,292</td><td>−4,391</td><td>−0.566%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr><td>D4</td><td>778,983</td><td>776,292</td><td>+2,691</td><td>+0.347%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr><td>D5</td><td>777,337</td><td>776,292</td><td>+1,045</td><td>+0.135%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr><td>D6</td><td>778,843</td><td>776,292</td><td>+2,551</td><td>+0.329%</td><td><span style="color:var(--neutral);font-weight:700">✓</span></td></tr>
+            <tr style="background:var(--linen-dk);font-weight:600"><td colspan="3">Total Range (max − min) / ideal</td><td>7,082 persons</td><td><strong>0.9123%</strong></td><td><span style="color:var(--neutral);font-weight:700">✓ Constitutional</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout info" style="margin-top:14px">
+        <div class="cl-head">1P1V Conclusion</div>
+        <p>The population deviation range of <strong>0.9123%</strong> is well within the constitutional threshold. Congressional map challenges based solely on population equality are not viable under this map. <em>Karcher v. Daggett</em> requires that deviations be justified by legitimate state objectives; at 0.9123%, the burden on challengers is high. The more viable legal theories are racial gerrymandering under <em>Shaw v. Reno</em> and equal protection under the 14th Amendment. See the Legal Framework tab.</p>
       </div>
 
-      <div class="callout" style="margin-top:14px">
-        <div class="cl-head">Source Document</div>
-        <p>The legislative table referenced in the prior analysis is available at: <a href="https://www.legis.la.gov/Legis/ViewDocument.aspx?d=1472977" target="_blank" style="color:var(--orange);text-decoration:underline">legis.la.gov — SB 121 Reengrossed District Summary Table</a>. Researchers are encouraged to consult the enrolled Act 2 text directly.</p>
+      <!-- METHODOLOGY NOTES -->
+      <div class="sec-head" style="margin-top:28px">Methodology &amp; Reproducibility</div>
+      <div class="mono-block" style="margin-top:10px;font-size:10px;line-height:2">
+SPATIAL JOIN METHOD
+  Software    : Python 3 / GeoPandas
+  CRS         : EPSG:3452 (Louisiana State Plane South, NAD83)
+  Method      : Centroid-in-polygon
+  VTD file    : Census_2020_TigerLine_VTD_Shapefile_Layer_as_Validated_
+                by_the_LA_Legislature_as_of__08-23-2021_.shp
+  District    : SB_121_Enrolled.shp
+  VTDs total  : 3,539
+  VTDs matched: 3,536 (unmatched: Tangipahoa P7, P15; Calcasieu P3 — 849 pop)
+
+POPULATION SOURCE
+  Dataset     : U.S. Census Bureau 2020 P.L. 94-171
+  Fields used : TOT_POP, TOT_BLACK, VAP_TOTAL, VAP_BLACK
+  Vintage     : April 1, 2020
+
+REGISTRATION SOURCE
+  Dataset     : Louisiana Secretary of State Active Voter File
+  Date        : May 1, 2026
+  Level       : Parish-level aggregates assigned to districts
+  Status      : PROVISIONAL — not reconciled to Act 2 precinct boundaries
+
+PIPELINE
+  Repository  : github.com/tiandrafields-arch/redistricting-dashboard---LA
+  Analyst     : Tia Fields, Provisional Consulting LLC
       </div>
     </div>
 
@@ -832,6 +923,228 @@ table tr.bad td { background: rgba(143,45,30,0.04); }
         <p style="margin-top:8px">The 14th Amendment one-person-one-vote framework remains a valid and important legal pathway in the post-Callais landscape. This section will be rebuilt on verified population deviation data using Census PL 94-171 block-level figures joined to Act 2 district boundaries, which is the appropriate methodology for a 1P1V challenge and does not depend on the bill's registration table.</p>
         <p style="margin-top:8px">Updated analysis will be published here when complete.</p>
       </div>
+    </div>
+
+    <!-- LEGAL FRAMEWORK PANEL -->
+    <div class="panel" id="t-legal">
+      <div class="panel-title">Legal Framework</div>
+      <div class="panel-meta">Post-<em>Callais</em> Litigation Pathways &nbsp;·&nbsp; Act 2 (SB 121) Congressional Map &nbsp;·&nbsp; Louisiana 2026</div>
+
+      <div class="callout danger" style="margin-bottom:24px">
+        <div class="cl-head">Disclaimer — This Is Policy Analysis, Not Legal Advice</div>
+        <p>This tab maps dashboard data to applicable legal standards for advocacy and policy research purposes. It does not constitute legal advice and does not create an attorney-client relationship. Organizations and individuals engaged in litigation should consult qualified counsel. Citations are to publicly available opinions; all data claims are sourced as documented in the Data Integrity tab.</p>
+      </div>
+
+      <!-- SECTION 1: GINGLES -->
+      <div class="sec-head">Section 1 — The <em>Thornburg v. Gingles</em> Preconditions (Post-<em>Callais</em>)</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px"><em>Thornburg v. Gingles</em>, 478 U.S. 30 (1986) established three preconditions for a Voting Rights Act Section 2 vote dilution claim. <em>Louisiana v. Callais</em>, 608 U.S. ___ (Apr. 29, 2026) substantially narrowed the framework — reinstating an intent standard and restricting the Gingles analysis — but did not formally overrule it. The following checklist maps Act 2 data against each precondition as it existed pre-<em>Callais</em> and as it may survive post-<em>Callais</em>.</p>
+
+      <!-- Prong 1 -->
+      <div style="background:var(--linen-lt);border:1px solid var(--border);border-left:4px solid var(--packed);padding:16px 18px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-family:var(--ff-serif);font-size:16px;font-weight:700;color:var(--charcoal)">Prong 1 — Sufficiently Large &amp; Geographically Compact Minority Population</div>
+          <span style="font-family:var(--ff-mono);font-size:9px;padding:3px 10px;border:1px solid rgba(143,45,30,0.4);color:var(--packed);background:rgba(143,45,30,0.06);white-space:nowrap;margin-left:12px">SUPPORTED BY DATA</span>
+        </div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px">The minority group must be sufficiently large and geographically compact to constitute a majority in a single-member district. The data shows this is met: District 2 achieves <strong>58.24% Black VAP</strong> under Act 2 — proving the Black population is large enough and concentrated enough to constitute a majority district when drawn to do so.</p>
+        <div class="tbl-wrap" style="margin-top:10px">
+          <table>
+            <thead><tr><th>Metric</th><th>Value</th><th>Source</th><th>Legal Significance</th></tr></thead>
+            <tbody>
+              <tr><td>D2 Black VAP</td><td><strong>58.24%</strong></td><td>Census 2020 PL 94-171, certified spatial join</td><td>Proves Black population can constitute a majority in a reasonably drawn district</td></tr>
+              <tr><td>D2 Black Population</td><td>468,667 of 774,808</td><td>Census 2020 PL 94-171, certified spatial join</td><td>Absolute size — not just percentage</td></tr>
+              <tr><td>Statewide Black VAP</td><td>31.24% (1,115,306)</td><td>Census 2020 PL 94-171</td><td>Baseline for proportionality analysis</td></tr>
+              <tr><td>Districts below statewide baseline</td><td>5 of 6 (D1, D3, D4, D5, D6)</td><td>Certified spatial join</td><td>Pattern of dispersion across five districts while concentrating in one</td></tr>
+              <tr><td>D1 Black VAP (most cracked)</td><td>13.36% — REI −17.88pp</td><td>Census 2020 PL 94-171, certified spatial join</td><td>Extreme deviation from proportional share in the coastal/suburban district</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout info" style="margin-top:12px">
+          <div class="cl-head">Post-<em>Callais</em> Status</div>
+          <p><em>Callais</em> did not eliminate Prong 1 analysis. The compactness requirement remains. The data here — D2 at 58.24% Black VAP from a certified spatial join — directly satisfies the prong. The question post-<em>Callais</em> is whether intent can also be shown. See Section 3.</p>
+        </div>
+      </div>
+
+      <!-- Prong 2 -->
+      <div style="background:var(--linen-lt);border:1px solid var(--border);border-left:4px solid var(--orange);padding:16px 18px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-family:var(--ff-serif);font-size:16px;font-weight:700;color:var(--charcoal)">Prong 2 — Political Cohesion of the Minority Group</div>
+          <span style="font-family:var(--ff-mono);font-size:9px;padding:3px 10px;border:1px solid rgba(183,107,58,0.4);color:var(--orange);background:rgba(183,107,58,0.06);white-space:nowrap;margin-left:12px">SUPPORTED — ADDITIONAL EVIDENCE NEEDED</span>
+        </div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px">The minority group must vote sufficiently as a bloc to usually prefer the same candidates. Registration data provides directional evidence; expert election analysis of actual voting patterns is required to establish Prong 2 definitively for litigation.</p>
+        <div class="tbl-wrap" style="margin-top:10px">
+          <table>
+            <thead><tr><th>Indicator</th><th>Value</th><th>Source</th><th>Inference</th></tr></thead>
+            <tbody>
+              <tr><td>D2 Democratic registration</td><td>58.3% of registered voters</td><td>SOS May 2026 — Provisional</td><td>Strong Democratic lean in the majority-Black district</td></tr>
+              <tr><td>D2 Black registration share</td><td>51.4% of all D2 registrants</td><td>SOS May 2026 — Provisional</td><td>Black voters constitute registration majority in D2</td></tr>
+              <tr><td>D2 Republican registration</td><td>13.9%</td><td>SOS May 2026 — Provisional</td><td>Low Republican registration in majority-Black district</td></tr>
+              <tr><td>Statewide Black registration</td><td>31.2% of all registrants</td><td>SOS May 2026</td><td>Black voters are a substantial statewide minority bloc</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout" style="margin-top:12px">
+          <div class="cl-head">What This Dashboard Cannot Show — Expert Evidence Needed</div>
+          <p>Prong 2 requires evidence of actual voting patterns — exit polls, precinct-level election results, ecological regression analysis. Registration data is directional but not sufficient alone. A political scientist expert witness would need to analyze Louisiana election results in D2 and adjacent districts to establish Black political cohesion for litigation.</p>
+        </div>
+      </div>
+
+      <!-- Prong 3 -->
+      <div style="background:var(--linen-lt);border:1px solid var(--border);border-left:4px solid var(--cracked);padding:16px 18px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-family:var(--ff-serif);font-size:16px;font-weight:700;color:var(--charcoal)">Prong 3 — White Bloc Voting That Usually Defeats Minority-Preferred Candidates</div>
+          <span style="font-family:var(--ff-mono);font-size:9px;padding:3px 10px;border:1px solid rgba(30,79,127,0.35);color:var(--cracked);background:rgba(30,79,127,0.05);white-space:nowrap;margin-left:12px">REQUIRES EXPERT ANALYSIS</span>
+        </div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px">The white majority must vote sufficiently as a bloc to enable it usually to defeat the minority's preferred candidate. This requires historical election analysis and cannot be established from registration data alone. However, the registration distribution across the five cracked districts provides structural context.</p>
+        <div class="tbl-wrap" style="margin-top:10px">
+          <table>
+            <thead><tr><th>District</th><th>White Reg %</th><th>Rep Reg %</th><th>Black VAP %</th><th>Structural Implication</th></tr></thead>
+            <tbody>
+              <tr><td>D1</td><td>70.9%</td><td>38.3%</td><td>13.36%</td><td>White supermajority; Black VAP cannot achieve electoral control</td></tr>
+              <tr><td>D3</td><td>68.0%</td><td>40.4%</td><td>27.79%</td><td>White majority; Black voters below decisive threshold</td></tr>
+              <tr><td>D4</td><td>60.0%</td><td>38.6%</td><td>30.25%</td><td>White majority with Republican lean</td></tr>
+              <tr><td>D5</td><td>60.1%</td><td>39.8%</td><td>33.25%</td><td>White majority; nominally near parity but Republican lean forecloses Black electoral control</td></tr>
+              <tr><td>D6</td><td>60.4%</td><td>35.5%</td><td>24.58%</td><td>White majority; Black VAP significantly below statewide baseline</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 2: SHAW -->
+      <div class="sec-head">Section 2 — <em>Shaw v. Reno</em> Racial Gerrymandering &amp; <em>Alexander v. SC NAACP</em></div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:16px"><em>Shaw v. Reno</em>, 509 U.S. 630 (1993) and its progeny hold that racial gerrymandering — where race is the predominant factor in drawing district lines — violates the Equal Protection Clause regardless of intent to help or harm minority voters. <em>Alexander v. South Carolina NAACP</em>, 602 U.S. 1 (2024) clarified the disentanglement standard: courts must determine whether race or partisan affiliation was the predominant factor when the two are highly correlated. This is currently the most viable federal challenge pathway post-<em>Callais</em>.</p>
+
+      <!-- D1 Extreme Cracking Visual -->
+      <div style="background:var(--linen-lt);border:1px solid var(--border);padding:20px;margin-bottom:16px">
+        <div style="font-family:var(--ff-serif);font-size:16px;font-weight:700;color:var(--charcoal);margin-bottom:12px">D1 — The Sharpest Evidence of Race as Predominant Factor</div>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:16px">District 1 has the most extreme Black population deviation in the map. At <strong>13.36% Black VAP</strong> in a state that is <strong>31.24% Black VAP</strong>, it is 17.88 percentage points below the statewide baseline. This does not happen by accident in a state where Black Louisianans are distributed across every region. The district boundaries actively excluded Black precincts.</p>
+        <!-- REI bar visual for all districts -->
+        <div style="margin:16px 0">
+          <div style="font-family:var(--ff-mono);font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">Black VAP % vs. Statewide Baseline (31.24%) — Census 2020 PL 94-171</div>
+          <!-- D2 -->
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:600">D2</span><span style="font-family:var(--ff-mono);color:var(--packed)">58.24% (+27.00pp) — PACKED</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:58.24%;background:var(--packed)"></div>
+            </div>
+          </div>
+          <!-- D5 -->
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:600">D5</span><span style="font-family:var(--ff-mono);color:var(--neutral)">33.25% (+2.01pp)</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:33.25%;background:var(--neutral)"></div>
+            </div>
+          </div>
+          <!-- D4 -->
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:600">D4</span><span style="font-family:var(--ff-mono);color:var(--text3)">30.25% (−0.99pp)</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:30.25%;background:var(--cracked)"></div>
+            </div>
+          </div>
+          <!-- D6 -->
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:600">D6</span><span style="font-family:var(--ff-mono);color:var(--cracked)">24.58% (−6.66pp)</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:24.58%;background:var(--cracked)"></div>
+            </div>
+          </div>
+          <!-- D3 -->
+          <div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:600">D3</span><span style="font-family:var(--ff-mono);color:var(--cracked)">27.79% (−3.45pp)</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:27.79%;background:var(--cracked)"></div>
+            </div>
+          </div>
+          <!-- D1 -->
+          <div style="margin-bottom:6px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px"><span style="font-weight:700;color:var(--packed)">D1</span><span style="font-family:var(--ff-mono);color:var(--packed);font-weight:700">13.36% (−17.88pp) — MOST CRACKED</span></div>
+            <div style="height:10px;background:var(--linen-dk);position:relative">
+              <div style="position:absolute;left:31.24%;top:0;width:1px;height:100%;background:var(--charcoal-lt);opacity:0.5"></div>
+              <div style="height:100%;width:13.36%;background:var(--packed)"></div>
+            </div>
+          </div>
+          <div style="font-family:var(--ff-mono);font-size:8px;color:var(--text3);margin-top:8px">Vertical line = statewide Black VAP baseline (31.24%, Census 2020). Source: certified spatial join.</div>
+        </div>
+
+        <!-- Shaw elements table -->
+        <div style="font-family:var(--ff-serif);font-size:14px;font-weight:700;color:var(--charcoal);margin:16px 0 10px">Shaw v. Reno / Alexander Elements Applied to Act 2</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Shaw Element</th><th>Evidence in Act 2</th><th>Source</th><th>Strength</th></tr></thead>
+            <tbody>
+              <tr><td>Race was predominant factor</td><td>D1 at 13.36% Black VAP in a 33.12% Black state; D2 packed to 58.24% Black VAP — 1-of-6 seats for 33% of population</td><td>Census 2020, certified spatial join</td><td style="color:var(--packed);font-weight:700">Strong</td></tr>
+              <tr><td>Boundaries not explainable by partisan data alone</td><td>Five districts cracked below statewide Black VAP baseline while Black registration % is near-statewide in D4/D5/D6 — cracking is racial, not purely partisan</td><td>Census 2020 + SOS May 2026</td><td style="color:var(--orange);font-weight:700">Moderate-Strong</td></tr>
+              <tr><td>Racial predominance over traditional criteria</td><td>Beaullieu Floor Amendment (HFASB121 3645 5695) completely rewrote all six districts on May 21, 2026 — 10 hours after overwhelming public opposition. Speed and totality of rewrite suggests racial rather than community criteria drove the final map.</td><td>Legislative record, May 21 hearing</td><td style="color:var(--orange);font-weight:700">Moderate (legislative intent)</td></tr>
+              <tr><td>Narrow tailoring (if race was used)</td><td>Post-<em>Callais</em>, legislature was on notice that VRA Section 2 compliance no longer required a second majority-Black district. Continued racial sorting of Black voters into a single district without a narrowly tailored justification is exposed.</td><td><em>Louisiana v. Callais</em> (Apr. 29, 2026)</td><td style="color:var(--packed);font-weight:700">Strong post-<em>Callais</em></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 3: INTENT TIMELINE -->
+      <div class="sec-head" style="margin-top:28px">Section 3 — Discriminatory Intent Timeline (<em>Arlington Heights</em> Factors)</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:14px"><em>Village of Arlington Heights v. Metropolitan Housing Development Corp.</em>, 429 U.S. 252 (1977) established factors for proving discriminatory intent, which <em>Callais</em> has re-elevated as a threshold requirement for VRA Section 2 claims. The legislative sequence surrounding Act 2 is relevant to this analysis.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Event</th><th><em>Arlington Heights</em> Factor</th><th>Significance</th></tr></thead>
+          <tbody>
+            <tr><td style="white-space:nowrap">Apr 29, 2026</td><td><em>Louisiana v. Callais</em> decided — SCOTUS 6-3, Alito majority reinstates intent standard, guts Gingles framework</td><td>Sequence of events</td><td>Legislature immediately aware that VRA Section 2 compliance no longer required a second majority-Black district</td></tr>
+            <tr><td style="white-space:nowrap">Apr 30, 2026</td><td>Governor Landry suspends primary. Thousands of absentee ballots voided.</td><td>Historical background</td><td>Democratic voters — disproportionately Black — disenfranchised in the immediate aftermath of Callais</td></tr>
+            <tr><td style="white-space:nowrap">May 13, 2026</td><td>Senate committee drops second majority-Black district. SB 121 passes 27-10.</td><td>Sequence of events; legislative history</td><td>Explicit decision to eliminate the second majority-Black district within 2 weeks of <em>Callais</em></td></tr>
+            <tr><td style="white-space:nowrap">May 21, 2026</td><td>Beaullieu Floor Amendment (HFASB121 3645 5695) adopted 10-7 after 10-hour hearing with overwhelming public opposition. Complete precinct-level rewrite of all six districts.</td><td>Procedural irregularities; departures from normal sequence; legislative history</td><td>Wholesale rewrite over public objection — a classic <em>Arlington Heights</em> procedural irregularity indicator</td></tr>
+            <tr><td style="white-space:nowrap">May 28, 2026</td><td>House passes SB 121 with Beaullieu Amendment incorporated</td><td>Sequence</td><td>29-day legislative sprint from <em>Callais</em> to final passage</td></tr>
+            <tr><td style="white-space:nowrap">May 2026</td><td>Governor Landry signs. Enrolled as Act 2, R.S. 18:1276.</td><td>—</td><td>Map effective for 2026 congressional elections</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 4: REMEDIAL GEOGRAPHY -->
+      <div class="sec-head" style="margin-top:28px">Section 4 — Remedial Geography: Evidence a Second Majority-Black District Is Feasible</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:14px">A core element of any redistricting challenge is showing that a constitutional remedial map can be drawn. The data establishes this affirmatively.</p>
+      <div class="stat-grid" style="max-width:700px;margin-bottom:16px">
+        <div class="stat-tile"><div class="num red">1,115,306</div><div class="lbl">Black VAP Statewide (Census 2020)</div></div>
+        <div class="stat-tile"><div class="num">31.24%</div><div class="lbl">Black Share of Statewide VAP</div></div>
+        <div class="stat-tile"><div class="num ora">2</div><div class="lbl">Proportional Black Seats (1 in 6 = 16.7%; Black VAP 31.24% ≈ 2 seats)</div></div>
+        <div class="stat-tile"><div class="num blu">1</div><div class="lbl">Majority-Black Districts Under Act 2</div></div>
+      </div>
+      <div class="callout danger">
+        <div class="cl-head">The Proportionality Gap</div>
+        <p>At <strong>31.24% Black VAP statewide</strong>, proportional representation would yield approximately <strong>2 majority-Black districts</strong> in a 6-seat delegation. Act 2 provides 1. District 2 proves the population is concentrated enough to draw a majority-Black district. The question for a remedial map is whether a second such district can be drawn without predominant racial motivation — and prior remedial maps (including those ordered by federal courts in prior Louisiana redistricting litigation) demonstrate that it can.</p>
+      </div>
+
+      <!-- CITATIONS -->
+      <div class="sec-head" style="margin-top:28px">Key Legal Citations</div>
+      <div class="about-grid" style="margin-top:12px">
+        <div class="about-card">
+          <h3>Binding Precedents</h3>
+          <ul>
+            <li><em>Louisiana v. Callais</em>, 608 U.S. ___ (Apr. 29, 2026) — Narrows Section 2 VRA; reinstates intent standard</li>
+            <li><em>Alexander v. SC NAACP</em>, 602 U.S. 1 (2024) — Race/partisan disentanglement standard</li>
+            <li><em>Shaw v. Reno</em>, 509 U.S. 630 (1993) — Racial predominance in redistricting violates Equal Protection</li>
+            <li><em>Miller v. Johnson</em>, 515 U.S. 900 (1995) — Race as predominant factor test</li>
+            <li><em>Thornburg v. Gingles</em>, 478 U.S. 30 (1986) — Three-prong VRA Section 2 test</li>
+            <li><em>Wesberry v. Sanders</em>, 376 U.S. 1 (1964) — Congressional one-person, one-vote</li>
+            <li><em>Karcher v. Daggett</em>, 462 U.S. 725 (1983) — Population equality standard for Congress</li>
+            <li><em>Village of Arlington Heights v. Metro Housing</em>, 429 U.S. 252 (1977) — Discriminatory intent factors</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3>Louisiana-Specific History</h3>
+          <ul>
+            <li><em>Allen v. Milligan</em>, 599 U.S. 1 (2023) — Prior Louisiana VRA Section 2 case; ordered remedial majority-Black district</li>
+            <li><em>Robinson v. Ardoin</em>, 5th Cir. (2023) — Louisiana redistricting litigation</li>
+            <li>Louisiana Constitution, Art. III — Community-of-interest provisions applicable to state legislative maps</li>
+            <li>R.S. 18:1276 — Enacted congressional district statute (Act 2)</li>
+            <li>SB 121 Legislative Record — May 2026 Regular Session committee and floor testimony</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
 
     <!-- ABOUT PANEL -->
