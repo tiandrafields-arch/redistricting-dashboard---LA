@@ -33,11 +33,19 @@ PURPOSE:
         Census_2020_TigerLine_VTD_Shapefile_Layer_as_Validated_by_the_LA_Legislature.shp
 
 LEGISLATIVE STATUS:
-    SB 121 signed by Governor Landry and enrolled as Act 2.
-    Effective for 2026 congressional elections.
+    SB 121 (Morris) passed House 66-36 (May 28, 2026); Senate concurred
+    28-10 (May 29, 2026); signed by Governor Landry and enrolled as
+    Act 2 of the 2026 Regular Session.
+    Effective for 2026 congressional elections upon signature.
     Full statutory effectiveness: noon, January 3, 2027.
     Enacts R.S. 18:1276.
-    Post-Louisiana v. Callais, 608 U.S. ___ (Apr. 29, 2026).
+    Post-Louisiana v. Callais, No. 24-109, ___ U.S. ___ (Apr. 29, 2026).
+
+    PENDING LITIGATION:
+    Callais v. Landry -- federal three-judge panel (Stewart, Joseph,
+    Summerhays), U.S. District Court, Western District of Louisiana,
+    Shreveport. Hearing June 17, 2026, 10:00 a.m. (may continue June 18).
+    Briefs on validity/effect of Act 2 due June 5; responses June 12.
 
 DATA SOURCE HIERARCHY (order of legal authority):
     1. Act 2 enrolled district geometry (SB_121_Enrolled.shp)
@@ -171,7 +179,7 @@ ACT2_STATUS = {
     "effective_elections":  "Effective for 2026 congressional elections upon Governor signature",
     "effective_full":       "Noon, January 3, 2027",
     "callais_decided":      "April 29, 2026",
-    "legal_context":        "Post-Louisiana v. Callais, 608 U.S. ___ (Apr. 29, 2026)",
+    "legal_context":        "Post-Louisiana v. Callais, No. 24-109, ___ U.S. ___ (Apr. 29, 2026)",
     "floor_amendment":      "HFASB121 3645 5695 (Beaullieu) -- House Floor Amendment adopted May 21, 2026",
     "floor_amendment_note": (
         "House Floor Amendment HFASB121 3645 5695, authored by Rep. Beaullieu, "
@@ -257,7 +265,7 @@ PARISH_DISTRICT = {
     "ASCENSION": 6,              # split D2+D6 -- majority precincts D6
     "EAST BATON ROUGE": 6,       # split D2+D6 -- majority precincts D6 (3-series)
     "IBERVILLE": 6,              # split D2+D6 -- majority precincts D6
-    "LAFOURCHE": 6,              # split D1+D6 -- majority precincts D6; reassigned from D2
+    "LAFOURCHE": 1,              # split D1+D6 -- enacted map majority D1 (corrected June 2026 from D6)
     "ST. CHARLES": 6,            # split D2+D6 -- majority precincts D6
     "ST. JOHN THE BAPTIST": 6,   # split D2+D6 -- majority precincts D6
     "WEST BATON ROUGE": 6,       # split D2+D6 -- majority precincts D6
