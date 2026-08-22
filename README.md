@@ -15,11 +15,14 @@ registration records, kept as two separate and clearly labeled layers.
 
 ---
 
-## Active Litigation
-Act 2 of 2026 goes before a federal three-judge panel on **June 17, 2026, 10:00 a.m.**,
-in *Callais v. Landry*, U.S. District Court for the Western District of Louisiana,
+## Active Litigation (status as of August 2026)
+Act 2 of 2026 was heard by a federal three-judge panel on **June 17, 2026** in
+*Callais v. Landry*, U.S. District Court for the Western District of Louisiana,
 Shreveport. Panel: Judges Carl E. Stewart, David C. Joseph, and Robert R. Summerhays.
-Opening briefs on the validity and effect of Act 2 were due June 5; responses June 12.
+Opening briefs were filed June 5 and responses June 12. The enacted Act 2 map remains
+in effect for the **November 3, 2026 election** while the challenge proceeds to full
+evidentiary review, expected to extend into 2027. Confirm the current docket before
+relying on this summary.
 
 ---
 
@@ -35,6 +38,21 @@ Opening briefs on the validity and effect of Act 2 were due June 5; responses Ju
 - Population deviation range is **0.9123 percent**, within constitutional tolerance
   under *Karcher v. Daggett*. The one person one vote theory is not the winning pathway;
   racial gerrymandering and discriminatory intent are.
+
+---
+
+## Data Notes (updated August 2026)
+- **Black VAP definition.** The Black VAP figures above are Any Part Black (Black alone
+  or in combination), consistent with the illustrative-district analysis in *Robinson v.
+  Ardoin*. The Redistricting Data Hub's published 120th-plan figures use Black alone
+  (single race) and run about 1 to 2 points lower (for example D2 at 55.9 percent). The
+  dashboard now shows both bases side by side. District 2 is majority Black, and the
+  other five fall short, under either definition.
+- **Change analysis.** The dashboard now incorporates the RDH 119th to 120th change
+  analysis: the Removed, Retained, and Added composition of each district, with VAP,
+  Black share, and 2024 presidential two-party Democratic share. District 6 is the clearest
+  case: it shed territory that was 56.5 percent Black and 59.5 percent Democratic and took
+  on territory that was 16.5 percent Black and 27.0 percent Democratic.
 
 ---
 
