@@ -1,0 +1,9 @@
+{
+  "status": "awaiting_final",
+  "election_date": "2026-11-03",
+  "reporting_period_end": "2026-10-27",
+  "source_url": "https://www.sos.la.gov/elections-voting/early-voting-statistics-parish",
+  "verified_at": null,
+  "observations": [],
+  "methodology": "Do not change status to final_verified without confirming the final Secretary of State report, report timestamp, and statewide reconciliation. Each observation must contain date, total, in_person, absentee and optional breakdowns object with party and race key/value counts. Daily observations represent cumulative report snapshots, not daily unique counts."
+}
