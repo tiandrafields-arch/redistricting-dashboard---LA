@@ -73,6 +73,16 @@ footer strong{color:#fff}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.districts{grid-template-columns:repeat(2,1fr)}.tool-row{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.grid,.districts,.vote-grid,.tool-row,.forecast{grid-template-columns:1fr}.forecast .badge{justify-self:start}.hero{padding-top:2.2rem}h1{font-size:2.55rem}.top{align-items:flex-start}.district h3{font-size:1rem}}
 </style>
+<style>
+.ev-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.ev-grid h3,.section .card h3{margin-top:0}
+.ev-grid label,.section label{display:block;font-weight:700;margin:.75rem 0 .3rem}
+.ev-grid select{padding:.5rem;max-width:100%;border:1px solid var(--border);background:var(--white)}
+.ev-bars{margin-top:.7rem}.ev-bar{height:18px;background:var(--soft);margin:.4rem 0}.ev-bar span{display:block;height:100%;background:var(--blue)}
+.ev-number{font:700 2rem Georgia,serif;color:var(--blue);margin:.5rem 0}
+input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,select:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+@media(max-width:620px){.ev-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -203,6 +213,43 @@ footer strong{color:#fff}
       </div>
     </div>
   </section>
+
+  <section class="section" id="early-voting" aria-labelledby="early-title">
+    <h2 id="early-title">2026 Early Voting Intelligence</h2>
+    <p class="sub">An interactive, descriptive participation workspace. Final October 27 totals will appear only after verification against the Louisiana Secretary of State's official cumulative reports.</p>
+    <div class="notice" id="ev-status" role="status"><strong>Awaiting final official figures.</strong> The date explorer is inactive until verified daily observations are published.</div>
+    <div class="grid" aria-label="Early voting summary">
+      <div class="card kpi"><div class="num" id="ev-total">Pending</div><div class="label">Official cumulative votes</div></div>
+      <div class="card kpi"><div class="num" id="ev-inperson">Pending</div><div class="label">In person</div></div>
+      <div class="card kpi"><div class="num" id="ev-absentee">Pending</div><div class="label">Absentee</div></div>
+      <div class="card kpi"><div class="num" id="ev-observation">Pending</div><div class="label">Reporting through date</div></div>
+    </div>
+    <div class="ev-grid">
+      <div class="card">
+        <h3>Explore voting days</h3>
+        <label for="ev-day">Cumulative participation reporting date</label>
+        <input id="ev-day" type="range" min="0" max="0" value="0" disabled style="width:100%" aria-describedby="ev-day-description">
+        <p id="ev-day-description" aria-live="polite">No verified daily series loaded.</p>
+        <div id="ev-daily-bars" class="ev-bars" aria-label="Reported in person and absentee shares"></div>
+      </div>
+      <div class="card">
+        <h3>Electorate composition</h3>
+        <label for="ev-breakdown">Select reported measure</label>
+        <select id="ev-breakdown" disabled><option value="method">Voting method</option><option value="party">Party registration</option><option value="race">Reported race</option></select>
+        <div id="ev-breakdown-output" aria-live="polite"><p>Official breakdowns are pending.</p></div>
+      </div>
+    </div>
+    <div class="card section">
+      <h3>Hypothetical participation sensitivity</h3>
+      <p>Move the slider to explore a statewide mathematical example using the October 1 registered voter baseline of 2,978,143. This is not a forecast, polling result, or estimate of support for any candidate.</p>
+      <label for="ev-scenario">Assumed statewide participation: <strong><output id="ev-scenario-rate" for="ev-scenario">50%</output></strong></label>
+      <input id="ev-scenario" type="range" min="20" max="90" step="5" value="50" style="width:100%" aria-describedby="ev-scenario-note">
+      <div class="ev-number" id="ev-scenario-total" aria-live="polite">1,489,072</div>
+      <p id="ev-scenario-note" class="sources">Illustrative count = assumed percentage × October 1 registered voters. Registration may change; turnout denominators and actual election participation differ. Not a prediction.</p>
+    </div>
+    <p class="sources">Primary source: <a href="https://www.sos.la.gov/elections-voting/early-voting-statistics-parish" target="_blank" rel="noopener">Louisiana Secretary of State early voting statistics</a>. Race and party labels describe recorded voter attributes, not candidate preferences. Parish counts are not congressional district totals.</p>
+  </section>
+
 </main>
 
 <footer>
@@ -267,6 +314,46 @@ fetch("data/processed/registration_snapshot_2026-10-01.json")
   })
   .then(render)
   .catch(() => render(fallback));
+</script>
+<script>
+(() => {
+const n=2978143,fmt=n=>Math.round(n).toLocaleString("en-US");
+const rate=document.getElementById("ev-scenario"), out=document.getElementById("ev-scenario-rate"), total=document.getElementById("ev-scenario-total");
+function scenario(){const r=Number(rate.value);out.textContent=r+"%";total.textContent=fmt(n*r/100)}
+rate.addEventListener("input",scenario);scenario();
+const day=document.getElementById("ev-day"), breakdown=document.getElementById("ev-breakdown");
+const status=document.getElementById("ev-status"), info=document.getElementById("ev-day-description");
+const bars=document.getElementById("ev-daily-bars"), breakdownOut=document.getElementById("ev-breakdown-output");
+let observations=[];
+const count=x=>Number.isFinite(Number(x))&&Number(x)>=0?Number(x):null;
+function draw(){
+ const d=observations[Number(day.value)];if(!d)return;
+ document.getElementById("ev-total").textContent=fmt(d.total);
+ document.getElementById("ev-inperson").textContent=fmt(d.in_person);
+ document.getElementById("ev-absentee").textContent=fmt(d.absentee);
+ document.getElementById("ev-observation").textContent=d.date;
+ info.textContent=d.date+": "+fmt(d.total)+" reported votes"+(Number(day.value)>0?" ("+fmt(d.total-observations[Number(day.value)-1].total)+" change from previous report)":"");
+ bars.replaceChildren();
+ for(const [label,num] of [["In person",d.in_person],["Absentee",d.absentee]]){
+ const p=document.createElement("p");p.textContent=label+": "+fmt(num);
+ const bar=document.createElement("div");bar.className="ev-bar";const fill=document.createElement("span");fill.style.width=(d.total?num/d.total*100:0)+"%";bar.append(fill);bars.append(p,bar);
+ }
+ const rows=(d.breakdowns||{})[breakdown.value]||{};
+ breakdownOut.replaceChildren();
+ for(const [label,v] of Object.entries(rows)){const p=document.createElement("p");p.textContent=label+": "+fmt(v);breakdownOut.append(p)}
+ if(!Object.keys(rows).length)breakdownOut.textContent="No verified breakdown available for this date.";
+}
+day.addEventListener("input",draw);breakdown.addEventListener("change",draw);
+fetch("data/processed/early_voting_2026.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("not published");return r.json()}).then(data=>{
+ if(data.status!=="final_verified"||!Array.isArray(data.observations)||!data.observations.length||!data.source_url||!data.verified_at)return;
+ const valid=data.observations.every(d=>/^2026-10-\d\d$/.test(d.date)&&count(d.total)!==null&&count(d.in_person)!==null&&count(d.absentee)!==null&&Number(d.total)===Number(d.in_person)+Number(d.absentee));
+ if(!valid)return;
+ observations=data.observations.slice().sort((a,b)=>a.date.localeCompare(b.date));
+ day.max=String(observations.length-1);day.value=day.max;day.disabled=observations.length<2;breakdown.disabled=false;
+ status.textContent="Final official figures verified "+data.verified_at+". Source: "+data.source_url;
+ draw();
+ }).catch(()=>{});
+})();
 </script>
 </body>
 </html>
