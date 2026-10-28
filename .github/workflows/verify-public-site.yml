@@ -11,29 +11,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate requested polling and timezone update
+        run: |
+          python scripts/validate_early_voting.py
+          python tests/test_polling_update.py
+          python -m py_compile scripts/build_early_voting_snapshot.py
+          node --check assets/dashboard-v20261028.js
       - name: Compare public files with committed release
         shell: python
         run: |
           import hashlib, json, os, pathlib, time, urllib.request
           base = 'https://tiandrafields-arch.github.io/redistricting-dashboard---LA/'
-          paths = ['index.html', 'assets/dashboard-v20261028.css', 'assets/dashboard-v20261028.js', 'data/processed/early_voting_2026.json', 'data/louisiana_parishes_2026.geojson']
+          paths = ['index.html', 'assets/dashboard-v20261028.css', 'assets/dashboard-v20261028.js', 'data/processed/early_voting_2026.json', 'data/processed/polling_la6_2026-10-28.json', 'data/louisiana_parishes_2026.geojson']
           result = []
           for path in paths:
               expected = pathlib.Path(path).read_bytes()
-              last_error = None
-              for attempt in range(8):
+              for attempt in range(12):
                   try:
                       request = urllib.request.Request(base + path + '?release=' + os.environ['GITHUB_SHA'], headers={'Cache-Control': 'no-cache'})
                       with urllib.request.urlopen(request, timeout=25) as response:
                           actual = response.read()
                           status = response.status
                       assert actual == expected, 'Public bytes differ from the committed file'
+                      if path == 'index.html':
+                          page = actual.decode('utf-8')
+                          assert 'id="poll-confidential-bars"' in page
+                          assert 'Central Time' in page
+                          assert 'The workbook does not state a timezone' not in page
+                          assert 'timezone is not stated' not in page
+                          assert 'Unverified survey excluded' not in page
+                          assert page.count('data-response=') == 10
                       result.append({'path': path, 'http_status': status, 'bytes': len(actual), 'sha256': hashlib.sha256(actual).hexdigest(), 'matches_commit': True})
                       break
                   except Exception as error:
-                      last_error = str(error)
-                      if attempt == 7:
-                          raise RuntimeError(path + ': ' + last_error)
+                      if attempt == 11:
+                          raise RuntimeError(path + ': ' + str(error))
                       time.sleep(10)
           folder = pathlib.Path('public-verification'); folder.mkdir()
           (folder / 'results.json').write_text(json.dumps({'site': base, 'commit': os.environ['GITHUB_SHA'], 'files': result}, indent=2))
