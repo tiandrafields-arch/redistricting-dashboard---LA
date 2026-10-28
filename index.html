@@ -83,7 +83,14 @@ footer strong{color:#fff}
 input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,select:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
 @media(max-width:620px){.ev-grid{grid-template-columns:1fr}}
 </style>
-</head>
+<style id="early-voting-priority">
+:root{--linen:#f4f7fb;--paper:#fff;--charcoal:#102b4b;--muted:#51657c;--orange:#3978b7;--orange-dark:#245b91;--border:#dce5ef;--soft:#e8f0f9;--blue:#19558e;--shadow:0 5px 20px rgba(15,42,73,.055)}
+header{background:#102b4b;border-bottom:0}.top{padding:.8rem 1.25rem}.brand strong{font-size:.96rem}.brand span{font-size:.68rem;color:#c5d9ed}.status{font-size:.72rem;color:#dce9f8}
+.hero{padding:1.2rem 1.25rem 1.4rem}.hero h1{font-family:Inter,system-ui,sans-serif;font-size:clamp(1.45rem,3.5vw,2.4rem);line-height:1.16;max-width:850px;margin:.3rem 0}.hero p{font-size:.87rem;line-height:1.5;max-width:780px;margin:.4rem 0;color:#d5e5f3}.eyebrow{color:#a7d0f5;font-size:.65rem}.actions{margin-top:.7rem}.btn{font-size:.76rem;padding:.5rem .7rem;border-radius:7px}.btn.primary{background:#fff;color:#12385c}.btn.secondary{border-color:#6e92b8}
+main{padding-top:1rem}.section h2{font-family:Inter,system-ui,sans-serif;font-size:clamp(1.4rem,3vw,2.05rem);letter-spacing:-.025em}.card,.district{border-radius:11px}.kpi .num{font-family:Inter,system-ui,sans-serif;font-size:clamp(1.5rem,3vw,2.25rem);letter-spacing:-.035em;color:#123b67}.notice{border-radius:9px}.vote-card{background:#123456;border-radius:9px}.vote-card .date{font-family:Inter,system-ui,sans-serif;color:#dbeaff;font-size:1.4rem}
+#early-voting{margin-top:0}#early-voting>.sub{max-width:800px}#parish-explorer{margin-top:1.4rem}
+@media(max-width:620px){.top{gap:.4rem}.hero{padding:1rem 1.25rem}.hero h1{font-size:1.6rem}.hero p{font-size:.82rem}.hero .actions{display:none}.brand strong{font-size:.88rem}.status{font-size:.67rem}.section{margin-top:1.4rem}}
+</style></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header>
@@ -92,12 +99,12 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
       <strong>Louisiana Congressional Voter & Participation Dashboard</strong>
       <span>Tia Fields / Provisional Consulting LLC</span>
     </div>
-    <div class="status">Updated Oct. 21, 2026 · Registration snapshot Oct. 1</div>
+    <div class="status">Updated Oct. 28, 2026 · Early voting through Oct. 27</div>
   </div>
   <div class="hero">
     <div class="eyebrow">2026 Congressional Election Tool</div>
-    <h1>Know the electorate. Know your district. Make a plan to vote.</h1>
-    <p>This public-interest tool combines Louisiana's enacted 2026 congressional district framework with the latest Louisiana Secretary of State registration reports available to this project. Registration is shown as registration—not as turnout, candidate preference, or a prediction of who will win.</p>
+    <h1>Louisiana 2026 Early Voting & Participation</h1>
+    <p>Explore reported early voting participation, parish comparisons, and voter registration across Louisiana. Data reflect reported participation, not candidate preference or an election forecast.</p>
     <div class="actions">
       <a class="btn primary" href="https://voterportal.sos.la.gov/" target="_blank" rel="noopener">Find my voter information</a>
       <a class="btn secondary" href="https://www.sos.la.gov/elections-voting/sample-ballots" target="_blank" rel="noopener">View sample ballots</a>
@@ -107,7 +114,44 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
   </div>
 </header>
 
-<main id="main"><div id="early-top"></div>
+<main id="main">
+<section class="section" id="early-voting" aria-labelledby="early-title">
+    <h2 id="early-title">2026 Early Voting Intelligence</h2>
+    <p class="sub">An interactive, descriptive participation workspace. Final October 27 totals will appear only after verification against the Louisiana Secretary of State's official cumulative reports.</p>
+    <div class="notice" id="ev-status" role="status"><strong>Awaiting final official figures.</strong> The date explorer is inactive until verified daily observations are published.</div>
+    <div class="grid" aria-label="Early voting summary">
+      <div class="card kpi"><div class="num" id="ev-total">Pending</div><div class="label">Official cumulative votes</div></div>
+      <div class="card kpi"><div class="num" id="ev-inperson">Pending</div><div class="label">In person</div></div>
+      <div class="card kpi"><div class="num" id="ev-absentee">Pending</div><div class="label">Absentee</div></div>
+      <div class="card kpi"><div class="num" id="ev-observation">Pending</div><div class="label">Reporting through date</div></div>
+    </div>
+    <div class="card section" id="ev-staged" hidden aria-live="polite"><h3>October 27 reporting snapshot under verification</h3><p>These statewide figures are staged for research review and are not yet authenticated against the complete official parish report. They are not certified election results.</p><div class="grid"><div class="card kpi"><div class="num" id="ev-staged-total"></div><div class="label">Cumulative reported votes</div></div><div class="card kpi"><div class="num" id="ev-staged-in"></div><div class="label">In person</div></div><div class="card kpi"><div class="num" id="ev-staged-abs"></div><div class="label">Absentee</div></div></div><p class="sources">Final day of in person early voting: October 27. Absentee totals can change before the ballot receipt deadline. Parish reconciliation and official report verification remain pending.</p></div>
+<div class="ev-grid">
+      <div class="card">
+        <h3>Explore voting days</h3>
+        <label for="ev-day">Cumulative participation reporting date</label>
+        <input id="ev-day" type="range" min="0" max="0" value="0" disabled style="width:100%" aria-describedby="ev-day-description">
+        <p id="ev-day-description" aria-live="polite">No verified daily series loaded.</p>
+        <div id="ev-daily-bars" class="ev-bars" aria-label="Reported in person and absentee shares"></div>
+      </div>
+      <div class="card">
+        <h3>Electorate composition</h3>
+        <label for="ev-breakdown">Select reported measure</label>
+        <select id="ev-breakdown" disabled><option value="method">Voting method</option><option value="party">Party registration</option><option value="race">Reported race</option></select>
+        <div id="ev-breakdown-output" aria-live="polite"><p>Official breakdowns are pending.</p></div>
+      </div>
+    </div>
+    <div class="card section">
+      <h3>Hypothetical participation sensitivity</h3>
+      <p>Move the slider to explore a statewide mathematical example using the October 1 registered voter baseline of 2,978,143. This is not a forecast, polling result, or estimate of support for any candidate.</p>
+      <label for="ev-scenario">Assumed statewide participation: <strong><output id="ev-scenario-rate" for="ev-scenario">50%</output></strong></label>
+      <input id="ev-scenario" type="range" min="20" max="90" step="5" value="50" style="width:100%" aria-describedby="ev-scenario-note">
+      <div class="ev-number" id="ev-scenario-total" aria-live="polite">1,489,072</div>
+      <p id="ev-scenario-note" class="sources">Illustrative count = assumed percentage × October 1 registered voters. Registration may change; turnout denominators and actual election participation differ. Not a prediction.</p>
+    </div>
+    <p class="sources">Primary source: <a href="https://www.sos.la.gov/elections-voting/early-voting-statistics-parish" target="_blank" rel="noopener">Louisiana Secretary of State early voting statistics</a>. Race and party labels describe recorded voter attributes, not candidate preferences. Parish counts are not congressional district totals.</p>
+  </section>
+<div id="early-top"></div>
   <div class="notice">
     <strong>Data note:</strong> the October 1 registration report predates the October 13 online registration deadline. It is the latest official registration snapshot loaded into this dashboard, not a live voter-roll count.
   </div>
@@ -215,42 +259,7 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
   </section>
 
   <section class="section" id="parish-explorer" aria-labelledby="parish-title"><h2 id="parish-title">Parish participation explorer</h2><p class="sub">Select a parish to compare reported participation. This is a geographic data explorer, not a congressional district turnout map.</p><div class="card"><label for="parish-select">Parish</label><select id="parish-select"><option>Loading parish data</option></select><div class="grid"><div class="card kpi"><div class="num" id="parish-total">Pending</div><div class="label">Reported votes</div></div><div class="card kpi"><div class="num" id="parish-share">Pending</div><div class="label">Share of statewide votes</div></div></div><div id="parish-bars"></div></div><p class="sources">Parish boundaries and congressional boundaries differ. No district vote allocation is inferred.</p></section>
-<section class="section" id="early-voting" aria-labelledby="early-title">
-    <h2 id="early-title">2026 Early Voting Intelligence</h2>
-    <p class="sub">An interactive, descriptive participation workspace. Final October 27 totals will appear only after verification against the Louisiana Secretary of State's official cumulative reports.</p>
-    <div class="notice" id="ev-status" role="status"><strong>Awaiting final official figures.</strong> The date explorer is inactive until verified daily observations are published.</div>
-    <div class="grid" aria-label="Early voting summary">
-      <div class="card kpi"><div class="num" id="ev-total">Pending</div><div class="label">Official cumulative votes</div></div>
-      <div class="card kpi"><div class="num" id="ev-inperson">Pending</div><div class="label">In person</div></div>
-      <div class="card kpi"><div class="num" id="ev-absentee">Pending</div><div class="label">Absentee</div></div>
-      <div class="card kpi"><div class="num" id="ev-observation">Pending</div><div class="label">Reporting through date</div></div>
-    </div>
-    <div class="card section" id="ev-staged" hidden aria-live="polite"><h3>October 27 reporting snapshot under verification</h3><p>These statewide figures are staged for research review and are not yet authenticated against the complete official parish report. They are not certified election results.</p><div class="grid"><div class="card kpi"><div class="num" id="ev-staged-total"></div><div class="label">Cumulative reported votes</div></div><div class="card kpi"><div class="num" id="ev-staged-in"></div><div class="label">In person</div></div><div class="card kpi"><div class="num" id="ev-staged-abs"></div><div class="label">Absentee</div></div></div><p class="sources">Final day of in person early voting: October 27. Absentee totals can change before the ballot receipt deadline. Parish reconciliation and official report verification remain pending.</p></div>
-<div class="ev-grid">
-      <div class="card">
-        <h3>Explore voting days</h3>
-        <label for="ev-day">Cumulative participation reporting date</label>
-        <input id="ev-day" type="range" min="0" max="0" value="0" disabled style="width:100%" aria-describedby="ev-day-description">
-        <p id="ev-day-description" aria-live="polite">No verified daily series loaded.</p>
-        <div id="ev-daily-bars" class="ev-bars" aria-label="Reported in person and absentee shares"></div>
-      </div>
-      <div class="card">
-        <h3>Electorate composition</h3>
-        <label for="ev-breakdown">Select reported measure</label>
-        <select id="ev-breakdown" disabled><option value="method">Voting method</option><option value="party">Party registration</option><option value="race">Reported race</option></select>
-        <div id="ev-breakdown-output" aria-live="polite"><p>Official breakdowns are pending.</p></div>
-      </div>
-    </div>
-    <div class="card section">
-      <h3>Hypothetical participation sensitivity</h3>
-      <p>Move the slider to explore a statewide mathematical example using the October 1 registered voter baseline of 2,978,143. This is not a forecast, polling result, or estimate of support for any candidate.</p>
-      <label for="ev-scenario">Assumed statewide participation: <strong><output id="ev-scenario-rate" for="ev-scenario">50%</output></strong></label>
-      <input id="ev-scenario" type="range" min="20" max="90" step="5" value="50" style="width:100%" aria-describedby="ev-scenario-note">
-      <div class="ev-number" id="ev-scenario-total" aria-live="polite">1,489,072</div>
-      <p id="ev-scenario-note" class="sources">Illustrative count = assumed percentage × October 1 registered voters. Registration may change; turnout denominators and actual election participation differ. Not a prediction.</p>
-    </div>
-    <p class="sources">Primary source: <a href="https://www.sos.la.gov/elections-voting/early-voting-statistics-parish" target="_blank" rel="noopener">Louisiana Secretary of State early voting statistics</a>. Race and party labels describe recorded voter attributes, not candidate preferences. Parish counts are not congressional district totals.</p>
-  </section>
+
 
 </main>
 
