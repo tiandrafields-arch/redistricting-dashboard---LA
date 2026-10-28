@@ -107,7 +107,7 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
   </div>
 </header>
 
-<main id="main">
+<main id="main"><div id="early-top"></div>
   <div class="notice">
     <strong>Data note:</strong> the October 1 registration report predates the October 13 online registration deadline. It is the latest official registration snapshot loaded into this dashboard, not a live voter-roll count.
   </div>
@@ -214,7 +214,8 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
     </div>
   </section>
 
-  <section class="section" id="early-voting" aria-labelledby="early-title">
+  <section class="section" id="parish-explorer" aria-labelledby="parish-title"><h2 id="parish-title">Parish participation explorer</h2><p class="sub">Select a parish to compare reported participation. This is a geographic data explorer, not a congressional district turnout map.</p><div class="card"><label for="parish-select">Parish</label><select id="parish-select"><option>Loading parish data</option></select><div class="grid"><div class="card kpi"><div class="num" id="parish-total">Pending</div><div class="label">Reported votes</div></div><div class="card kpi"><div class="num" id="parish-share">Pending</div><div class="label">Share of statewide votes</div></div></div><div id="parish-bars"></div></div><p class="sources">Parish boundaries and congressional boundaries differ. No district vote allocation is inferred.</p></section>
+<section class="section" id="early-voting" aria-labelledby="early-title">
     <h2 id="early-title">2026 Early Voting Intelligence</h2>
     <p class="sub">An interactive, descriptive participation workspace. Final October 27 totals will appear only after verification against the Louisiana Secretary of State's official cumulative reports.</p>
     <div class="notice" id="ev-status" role="status"><strong>Awaiting final official figures.</strong> The date explorer is inactive until verified daily observations are published.</div>
@@ -357,5 +358,11 @@ fetch("data/processed/early_voting_2026.json",{cache:"no-store"}).then(r=>{if(!r
  }).catch(()=>{});
 })();
 </script>
-</body>
+<script>
+(() => {const main=document.getElementById("main"),ev=document.getElementById("early-voting"),parish=document.getElementById("parish-explorer"),anchor=document.getElementById("early-top");main.insertBefore(ev,anchor);main.insertBefore(parish,anchor);anchor.remove();
+const sel=document.getElementById("parish-select"),total=document.getElementById("parish-total"),share=document.getElementById("parish-share"),bars=document.getElementById("parish-bars");
+fetch("data/processed/early_voting_2026.json").then(r=>r.json()).then(d=>{if(!Array.isArray(d.parishes)||!d.parishes.length)return;sel.replaceChildren();for(const p of d.parishes){const o=document.createElement("option");o.value=p.parish_code;o.textContent=p.parish;sel.append(o)}
+function render(){const p=d.parishes.find(p=>p.parish_code===sel.value);if(!p)return;total.textContent=p.total.toLocaleString("en-US");share.textContent=(p.total/d.statewide.total*100).toFixed(2)+"%";bars.replaceChildren();for(const [label,value] of [["In person",p.in_person],["Absentee",p.absentee]]){const line=document.createElement("p");line.textContent=label+": "+value.toLocaleString("en-US");const track=document.createElement("div");track.className="ev-bar";const fill=document.createElement("span");fill.style.width=(100*value/p.total)+"%";track.append(fill);bars.append(line,track)}}sel.addEventListener("change",render);render()}).catch(()=>{sel.replaceChildren();sel.add(new Option("Parish data pending",""))});
+})();
+</script></body>
 </html>
