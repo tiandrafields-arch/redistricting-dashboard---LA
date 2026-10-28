@@ -1,0 +1,31 @@
+name: Build verified parish snapshot
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - data/processed/early_voting_2026_parishes.csv
+      - scripts/build_early_voting_snapshot.py
+      - .github/workflows/build-parish-snapshot.yml
+permissions:
+  contents: write
+concurrency:
+  group: parish-snapshot
+  cancel-in-progress: false
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and validate audited aggregate snapshot
+        run: |
+          python scripts/build_early_voting_snapshot.py
+          python scripts/validate_early_voting.py
+      - name: Commit verified JSON only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/processed/early_voting_2026.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish verified October 27 parish snapshot from reconciled SOS exports'
+          git pull --rebase origin main
+          git push origin HEAD:main
