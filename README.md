@@ -133,3 +133,7 @@ Third-party source data retains its own source terms and is not automatically re
 ## Disclaimer
 
 This dashboard provides independent descriptive spatial and civic-data analysis using public data. It is not legal advice, an official government product, expert testimony, a legal determination, or an election forecast. Litigation, election administration, statutes, district boundaries, and voter-registration totals may change; users should verify current primary sources before relying on time-sensitive information.
+
+## October 28, 2026 Early Voting Research Update
+
+The dashboard now stages the reported October 27 statewide cumulative early voting snapshot of 520,942 ballots, including 448,525 in person and 72,417 absentee. The snapshot is explicitly marked **source reconciliation pending**, not `final_verified`. Its stated report printing timestamp is October 28, 2026, 3:10:06 a.m. Central. The Secretary of State's updating PDF endpoint is https://electionstatistics.sos.la.gov/Data/Early_Voting_Statistics/statewide/2026_1103_StatewideStats.pdf . Independent retrieval of that PDF and the complete 64 parish table was not achieved in this session. The date slider and final breakdown controls remain locked until the authoritative source and parish totals reconcile. The October 1 registration baseline and congressional map are unchanged. Absentee reporting can continue after the last day of in person early voting.
