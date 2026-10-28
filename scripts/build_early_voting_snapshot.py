@@ -8,6 +8,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 PARTY = {'democratic': 221066, 'republican': 205085, 'no_party': 92922, 'other': 1869}
@@ -43,14 +44,16 @@ for key in ('total', 'in_person', 'absentee'):
 for group in ('party', 'race'):
     for key, value in STATE['breakdowns'][group].items():
         assert sum(p['breakdowns'][group][key] for p in parishes) == value
+verified = datetime.now(timezone.utc)
 result = {
     'schema_version': 2, 'status': 'verified_snapshot', 'election_date': '2026-11-03',
     'reporting_period_end': '2026-10-27', 'report_printed_at_local': '2026-10-28 03:10:06',
     'report_printed_timezone': 'America/Chicago',
     'display_timezone_label': 'Central Time',
-    'report_printed_at': '2026-10-28T03:10:06-05:00',
+    'report_printed_at': datetime(2026, 10, 28, 3, 10, 6, tzinfo=ZoneInfo('America/Chicago')).isoformat(),
     'timezone_basis': 'Louisiana local reporting time confirmed by the publisher; display normalized with America/Chicago.',
-    'verified_at': datetime.now(timezone.utc).isoformat(),
+    'verified_at': verified.isoformat(),
+    'verified_at_local': verified.astimezone(ZoneInfo('America/Chicago')).isoformat(),
     'source_url': 'https://www.sos.la.gov/elections-voting/early-voting-statistics-parish',
     'source_files': [
         {'filename': '2026_1103_StatewideStats.xlsx', 'sha256': '9265f07ed7d1e2d351726ab5c02d788d25341e1184721e6d194e7e1733f5a37c', 'origin': 'User supplied SOS workbook'},
@@ -61,4 +64,4 @@ result = {
     'statewide': STATE, 'parishes': parishes, 'observations': [{'date': '2026-10-27', **STATE}],
 }
 (ROOT / 'data/processed/early_voting_2026.json').write_text(json.dumps(result, indent=2) + '\n')
-print('PASS: 64 parish records, all categories and geographic identities reconcile')
+print('PASS: 64 parish records, all categories, geographic identities and Central Time metadata reconcile')
