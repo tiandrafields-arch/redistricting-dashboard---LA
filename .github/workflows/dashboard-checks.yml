@@ -29,6 +29,7 @@ jobs:
       - name: Validate published data and JavaScript
         run: |
           python scripts/validate_early_voting.py
+          python tests/test_polling_update.py
           node --check assets/dashboard-v20261028.js
       - name: Install browser test dependencies
         run: |

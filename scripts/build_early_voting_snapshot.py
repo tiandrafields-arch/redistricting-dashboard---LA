@@ -46,7 +46,10 @@ for group in ('party', 'race'):
 result = {
     'schema_version': 2, 'status': 'verified_snapshot', 'election_date': '2026-11-03',
     'reporting_period_end': '2026-10-27', 'report_printed_at_local': '2026-10-28 03:10:06',
-    'report_printed_timezone': 'Not stated in workbook',
+    'report_printed_timezone': 'America/Chicago',
+    'display_timezone_label': 'Central Time',
+    'report_printed_at': '2026-10-28T03:10:06-05:00',
+    'timezone_basis': 'Louisiana local reporting time confirmed by the publisher; display normalized with America/Chicago.',
     'verified_at': datetime.now(timezone.utc).isoformat(),
     'source_url': 'https://www.sos.la.gov/elections-voting/early-voting-statistics-parish',
     'source_files': [

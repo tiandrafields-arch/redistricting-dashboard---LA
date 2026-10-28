@@ -56,6 +56,13 @@ try:
         assert len((OUT / 'export.csv').read_text(encoding='utf-8-sig').splitlines()) == 65
         assert page.locator('#commission a[href="https://www.tiafields.com/engage"]').count() == 1
         assert page.locator('#commission a[href="https://civiclensdata.com/"]').count() == 1
+        # Confidential poll regression
+        assert page.locator('#poll-confidential-bars .bar-row').count() == 10
+        assert page.locator('#poll-bars .bar-row').count() == 6
+        assert 'Pull date: October 28, 2026' in page.locator('#poll-confidential').inner_text()
+        assert 'Source verified by Tia Fields' in page.locator('#poll-confidential-source').inner_text()
+        assert 'Central Time' in page.locator('.snapshot-line').inner_text()
+        page.locator('#polling-research').screenshot(path=str(OUT / 'polling-desktop.png'))
         assert not errors, errors
         assert not failures, failures
         page.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
@@ -69,6 +76,8 @@ try:
         assert y < 500, y
         phone.select_option('#parish-select', '28')
         assert phone.locator('#selected-total').inner_text() == '26,858'
+        assert phone.locator('#poll-confidential-bars .bar-row').count() == 10
+        phone.locator('#poll-confidential').screenshot(path=str(OUT / 'polling-mobile.png'))
         phone.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
         phone.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
         results['mobile'] = {'horizontal_overflow': False, 'early_vote_total_y': y, 'selection': 'PASS'}

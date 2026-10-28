@@ -2,7 +2,7 @@
 
 ## Release and scope
 
-Release: `20261028.parish.2`, October 28, 2026.
+Release: `20261028.poll.3`, October 28, 2026.
 
 Election: November 3, 2026. Reporting cutoff: October 27, 2026. Statewide reported participation: 520,942, comprising 448,525 in person and 72,417 absentee.
 
@@ -10,7 +10,7 @@ These are cumulative administrative participation records through the final day 
 
 ## Source artifacts
 
-The source was the two user supplied Louisiana Secretary of State workbooks, not an independently downloaded new PDF. Their headers identify the November 3 election and an end date of October 27. The print footer in both reports reads October 28, 2026, 3:10:06 a.m. No timezone is stated in that footer.
+The source was the two user supplied Louisiana Secretary of State workbooks, not an independently downloaded new PDF. Their headers identify the November 3 election and an end date of October 27. The print footer is displayed as October 28, 2026, 3:10:06 a.m. Central Time. The publisher confirmed Louisiana local reporting time. The dashboard uses America/Chicago and the corresponding offset for each date.
 
 | Workbook | SHA256 |
 |:--|:--|
@@ -75,7 +75,7 @@ This is arithmetic using an older registration snapshot, not certified turnout. 
 
 The existing JMC panel is attributed to WBRZ reporting dated October 9, 2026. It is labeled as a September 19 to 21 survey of 790 likely voters, with the reported full sample margin of error of 3.5 percentage points and the named funder. The full questionnaire and original technical report are not archived here. Only percentages explicitly reported by the cited article appear in the chart. The chart uses a common 0 to 100 scale and does not reconstruct omitted categories.
 
-The unattributed 419 respondent screenshot is excluded from quantitative comparison. No Party administrative registration is not the same as an undecided survey response. Polling, administrative voting records and registration are separate populations and measures.
+The 419 respondent survey is published separately with a pull date of October 28, 2026, following source verification attested by Tia Fields. The source requested anonymity. Field dates remain unspecified; the pull date is not an interview date. The chart transcribes all ten initial ballot categories without inferring leaner results, probabilities or a trend. See `docs/POLLING_METHODS.md`. No Party administrative registration is not the same as an undecided survey response. Polling, administrative voting records and registration are separate populations and measures.
 
 ## Reproducibility and tests
 

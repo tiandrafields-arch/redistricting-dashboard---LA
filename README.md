@@ -85,3 +85,7 @@ The footer keeps two purposes distinct. [Commission Tia Fields](https://www.tiaf
 Only aggregate, nonidentifying information is published. Do not add individual voter records, walk lists, phone lists, addresses or private contact information. Raw workbook hashes establish the source files used; they do not imply that a newer online report was retrieved.
 
 Copyright 2026 Tia Fields / Provisional Consulting LLC. Analysis under CC BY 4.0 unless otherwise stated. Third party data retain their original terms. This is independent descriptive research, not an official government publication, legal advice, a candidate forecast or certified election results.
+
+## October 28 polling and Central Time update
+
+The public Polling section includes the 419 respondent District 6 survey from a confidential source verified by Tia Fields, with a pull date of October 28, 2026. Pull date is distinct from the unspecified survey field dates. All ten initial ballot percentages are displayed separately from the JMC survey. Central Time is used across report labels and metadata. See `docs/POLLING_METHODS.md` for disclosure and interpretation rules.

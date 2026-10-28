@@ -27,3 +27,7 @@ The earlier estimate that 81% of Black registrants were outside District 2 was w
 Official voter resource links and election timing were added. Registration wording implying candidate preferences or turnout was removed. Census 2020 VAP analysis, the demographic REI measure and historical legal narrative remain in the archive rather than being presented as current turnout measures.
 
 No candidate or turnout forecast is published. Any future predictive research requires verified historical inputs, geographic crosswalks, comparable election definitions and documented testing.
+
+## October 28, 2026: confidential survey and Central Time
+
+Added all ten reported District 6 initial ballot percentages from the confidential source survey, with publisher attested source verification and October 28 pull date. Replaced the prior survey exclusion with a chart and transparent methodology disclosures. Normalized timestamps to America/Chicago, removed the timezone uncertainty wording, and added regression tests. Early voting counts, parish boundaries, the calculator, registration baseline and commissioning links are unchanged.
