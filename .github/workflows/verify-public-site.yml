@@ -1,0 +1,45 @@
+name: Verify published dashboard files
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/verify-public-site.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare public files with committed release
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, time, urllib.request
+          base = 'https://tiandrafields-arch.github.io/redistricting-dashboard---LA/'
+          paths = ['index.html', 'assets/dashboard-v20261028.css', 'assets/dashboard-v20261028.js', 'data/processed/early_voting_2026.json', 'data/louisiana_parishes_2026.geojson']
+          result = []
+          for path in paths:
+              expected = pathlib.Path(path).read_bytes()
+              last_error = None
+              for attempt in range(8):
+                  try:
+                      request = urllib.request.Request(base + path + '?release=' + os.environ['GITHUB_SHA'], headers={'Cache-Control': 'no-cache'})
+                      with urllib.request.urlopen(request, timeout=25) as response:
+                          actual = response.read()
+                          status = response.status
+                      assert actual == expected, 'Public bytes differ from the committed file'
+                      result.append({'path': path, 'http_status': status, 'bytes': len(actual), 'sha256': hashlib.sha256(actual).hexdigest(), 'matches_commit': True})
+                      break
+                  except Exception as error:
+                      last_error = str(error)
+                      if attempt == 7:
+                          raise RuntimeError(path + ': ' + last_error)
+                      time.sleep(10)
+          folder = pathlib.Path('public-verification'); folder.mkdir()
+          (folder / 'results.json').write_text(json.dumps({'site': base, 'commit': os.environ['GITHUB_SHA'], 'files': result}, indent=2))
+          print(json.dumps(result, indent=2))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: published-dashboard-verification
+          path: public-verification/
+          retention-days: 7
