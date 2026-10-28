@@ -24,3 +24,7 @@
 ### Turnout forecasting
 
 No turnout forecast is published in this release. Forecasting is reserved for the Louisiana Congressional Representation & Participation Lab after historical election data, geography crosswalks, back-testing, and uncertainty reporting are complete.
+
+## October 28, 2026
+
+Staged the reported October 27 statewide early voting snapshot in `data/processed/early_voting_2026.json` with `source_reconciliation_pending` status. Updated `index.html` to show clearly labeled preliminary figures without enabling final data exploration. Official PDF retrieval and 64 parish reconciliation remain incomplete. No changes to voter registration or district boundaries.
