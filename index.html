@@ -224,7 +224,8 @@ input[type=range]{accent-color:var(--blue)}input[type=range]:focus-visible,selec
       <div class="card kpi"><div class="num" id="ev-absentee">Pending</div><div class="label">Absentee</div></div>
       <div class="card kpi"><div class="num" id="ev-observation">Pending</div><div class="label">Reporting through date</div></div>
     </div>
-    <div class="ev-grid">
+    <div class="card section" id="ev-staged" hidden aria-live="polite"><h3>October 27 reporting snapshot under verification</h3><p>These statewide figures are staged for research review and are not yet authenticated against the complete official parish report. They are not certified election results.</p><div class="grid"><div class="card kpi"><div class="num" id="ev-staged-total"></div><div class="label">Cumulative reported votes</div></div><div class="card kpi"><div class="num" id="ev-staged-in"></div><div class="label">In person</div></div><div class="card kpi"><div class="num" id="ev-staged-abs"></div><div class="label">Absentee</div></div></div><p class="sources">Final day of in person early voting: October 27. Absentee totals can change before the ballot receipt deadline. Parish reconciliation and official report verification remain pending.</p></div>
+<div class="ev-grid">
       <div class="card">
         <h3>Explore voting days</h3>
         <label for="ev-day">Cumulative participation reporting date</label>
@@ -345,6 +346,7 @@ function draw(){
 }
 day.addEventListener("input",draw);breakdown.addEventListener("change",draw);
 fetch("data/processed/early_voting_2026.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("not published");return r.json()}).then(data=>{
+ if(data.status==="source_reconciliation_pending"&&data.candidate_snapshot){const x=data.candidate_snapshot;const panel=document.getElementById("ev-staged");panel.hidden=false;document.getElementById("ev-staged-total").textContent=fmt(x.total);document.getElementById("ev-staged-in").textContent=fmt(x.in_person);document.getElementById("ev-staged-abs").textContent=fmt(x.absentee);status.textContent="October 27 statewide figures staged for verification. Parish data and official PDF validation are pending."}
  if(data.status!=="final_verified"||!Array.isArray(data.observations)||!data.observations.length||!data.source_url||!data.verified_at)return;
  const valid=data.observations.every(d=>/^2026-10-\d\d$/.test(d.date)&&count(d.total)!==null&&count(d.in_person)!==null&&count(d.absentee)!==null&&Number(d.total)===Number(d.in_person)+Number(d.absentee));
  if(!valid)return;
