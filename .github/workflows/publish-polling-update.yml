@@ -1,0 +1,51 @@
+name: Publish requested poll and Central Time update
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/publish-polling-update.yml
+permissions:
+  contents: write
+concurrency:
+  group: publisher-polling-update
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply publisher authorized changes
+        run: |
+          python scripts/publish_polling_update.py
+          python scripts/validate_early_voting.py
+          python tests/test_polling_update.py
+          node --check assets/dashboard-v20261028.js
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Test both poll charts, map, calculator and phone display
+        run: python tests/test_dashboard.py
+      - name: Commit tested changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html data/processed/early_voting_2026.json scripts/build_early_voting_snapshot.py docs/EARLY_VOTING_METHODS.md docs/POLLING_METHODS.md README.md CHANGELOG.md .github/workflows/dashboard-checks.yml tests/test_dashboard.py
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish confidential District 6 poll and Central Time reporting'
+            git push origin HEAD:main
+          fi
+          git rev-parse HEAD | tee test-output/published_commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: polling-update-verification
+          path: test-output/
+          retention-days: 7
