@@ -1,0 +1,44 @@
+name: Dashboard browser and data checks
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - index.html
+      - assets/**
+      - data/**
+      - scripts/validate_early_voting.py
+      - tests/**
+      - .github/workflows/dashboard-checks.yml
+  pull_request:
+    paths:
+      - index.html
+      - assets/**
+      - data/**
+      - scripts/validate_early_voting.py
+      - tests/**
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate published data and JavaScript
+        run: |
+          python scripts/validate_early_voting.py
+          node --check assets/dashboard-v20261028.js
+      - name: Install browser test dependencies
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Test desktop and phone interfaces
+        run: python tests/test_dashboard.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dashboard-browser-verification
+          path: test-output/
+          retention-days: 7
