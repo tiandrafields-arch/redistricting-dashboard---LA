@@ -8,7 +8,8 @@
   "display_timezone_label": "Central Time",
   "report_printed_at": "2026-10-28T03:10:06-05:00",
   "timezone_basis": "Louisiana local reporting time confirmed by the publisher; display normalized with America/Chicago.",
-  "verified_at": "2026-10-28T18:30:12.948867+00:00",
+  "verified_at": "2026-10-28T18:30:57.327485+00:00",
+  "verified_at_local": "2026-10-28T13:30:57.327485-05:00",
   "source_url": "https://www.sos.la.gov/elections-voting/early-voting-statistics-parish",
   "source_files": [
     {
