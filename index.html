@@ -90,7 +90,7 @@ header{background:#102b4b;border-bottom:0}.top{padding:.8rem 1.25rem}.brand stro
 main{padding-top:1rem}.section h2{font-family:Inter,system-ui,sans-serif;font-size:clamp(1.4rem,3vw,2.05rem);letter-spacing:-.025em}.card,.district{border-radius:11px}.kpi .num{font-family:Inter,system-ui,sans-serif;font-size:clamp(1.5rem,3vw,2.25rem);letter-spacing:-.035em;color:#123b67}.notice{border-radius:9px}.vote-card{background:#123456;border-radius:9px}.vote-card .date{font-family:Inter,system-ui,sans-serif;color:#dbeaff;font-size:1.4rem}
 #early-voting{margin-top:0}#early-voting>.sub{max-width:800px}#parish-explorer{margin-top:1.4rem}
 @media(max-width:620px){.top{gap:.4rem}.hero{padding:1rem 1.25rem}.hero h1{font-size:1.6rem}.hero p{font-size:.82rem}.hero .actions{display:none}.brand strong{font-size:.88rem}.status{font-size:.67rem}.section{margin-top:1.4rem}}
-</style></head>
+</style><style id="polling-research-style">.poll-row{display:grid;grid-template-columns:minmax(110px,1fr) minmax(120px,3fr) 65px;gap:.7rem;align-items:center;margin:.65rem 0;font-size:.88rem}.poll-track{height:14px;background:#e7edf5;border-radius:4px;overflow:hidden}.poll-fill{display:block;height:100%}.poll-rep{background:#d92d3a}.poll-dem{background:#2563eb}.poll-neutral{background:#8d96a4}#polling-research .card{margin-top:1rem}@media(max-width:620px){.poll-row{grid-template-columns:90px minmax(70px,1fr) 52px;gap:.35rem;font-size:.76rem}}</style></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header>
@@ -233,7 +233,23 @@ main{padding-top:1rem}.section h2{font-family:Inter,system-ui,sans-serif;font-si
     </div>
   </section>
 
-  <section class="section" aria-labelledby="forecast-title">
+  <section class="section" id="polling-research" aria-labelledby="polling-title">
+<h2 id="polling-title">Congressional Polling Research</h2>
+<p class="sub">Survey measurements are separate from administrative early voting records. The following publicly attributed poll concerns Congressional District 6 only and does not measure votes cast.</p>
+<div class="card"><h3>District 6 · JMC Analytics and Polling</h3>
+<p class="sources">Fielded September 19 to 21, 2026 · 790 likely voters · reported margin of error ±3.5 percentage points for the full sample · funded by the Greater Baton Rouge Economic Foundation. Source: <a href="https://www.wbrz.com/news/wbrz-to-host-6th-district-congressional-debate-in-october/" target="_blank" rel="noopener noreferrer">WBRZ reporting</a>.</p>
+<div id="polling-bars" aria-label="Reported initial candidate support percentages">
+<div class="poll-row"><span>Edmonds (R)</span><div class="poll-track"><span class="poll-fill poll-rep" style="width:13.8%"></span></div><strong>13.8%</strong></div>
+<div class="poll-row"><span>Banks (D)</span><div class="poll-track"><span class="poll-fill poll-dem" style="width:13.2%"></span></div><strong>13.2%</strong></div>
+<div class="poll-row"><span>Miguez (R)</span><div class="poll-track"><span class="poll-fill poll-rep" style="width:9.7%"></span></div><strong>9.7%</strong></div>
+<div class="poll-row"><span>Garcia (D)</span><div class="poll-track"><span class="poll-fill poll-dem" style="width:7.7%"></span></div><strong>7.7%</strong></div>
+<div class="poll-row"><span>Forbes (D)</span><div class="poll-track"><span class="poll-fill poll-dem" style="width:7.6%"></span></div><strong>7.6%</strong></div>
+<div class="poll-row"><span>Undecided</span><div class="poll-track"><span class="poll-fill poll-neutral" style="width:35.7%"></span></div><strong>35.7%</strong></div>
+</div>
+<p class="sources">Only categories reported with specific percentages in the cited article are displayed. The remaining responses are not reconstructed. Bar widths use a common 0 to 100% scale.</p></div>
+<div class="card section"><h3>Unverified survey record</h3><p>An unattributed screenshot circulating for District 6 describes a text message survey of 419 likely voters with an asserted ±4.8 point margin of error. Its pollster, sponsor, field dates, questionnaire and full methodology have not been authenticated. It is excluded from the public quantitative comparison pending documentation.</p><p class="sources">Publication standard: record pollster, sponsor, field dates, sample size, population, mode, weighting, full question wording, source and disclosure status. Polls are observations with sampling limitations, not election forecasts.</p></div>
+</section>
+<section class="section" aria-labelledby="forecast-title">
     <div class="forecast">
       <div>
         <h3 id="forecast-title">Turnout forecast: not published yet</h3>
