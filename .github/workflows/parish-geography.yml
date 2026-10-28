@@ -5,11 +5,15 @@ on:
     paths:
       - .github/workflows/parish-geography.yml
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: parish-geography
+  cancel-in-progress: false
 jobs:
   boundaries:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Retrieve and verify official Census boundaries
         shell: python
         run: |
@@ -24,14 +28,18 @@ jobs:
           ids = [f['properties']['GEOID'] for f in data['features']]
           assert len(set(ids)) == 64 and all(x.startswith('22') for x in ids)
           assert all(f['geometry']['type'] in ('Polygon', 'MultiPolygon') for f in data['features'])
-          folder = pathlib.Path('verified_boundaries'); folder.mkdir()
+          folder = pathlib.Path('data'); folder.mkdir(exist_ok=True)
           output = folder / 'louisiana_parishes_2026.geojson'
           output.write_text(json.dumps(data, separators=(',', ':')))
           metadata = {'source': 'U.S. Census Bureau TIGERweb BAS 2026', 'vintage': '2026-01-01', 'source_url': url, 'retrieved_at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'display_generalization_degrees': 0.005, 'crs': 'EPSG:4326', 'feature_count': 64, 'sha256': hashlib.sha256(output.read_bytes()).hexdigest()}
           (folder / 'boundary_source.json').write_text(json.dumps(metadata, indent=2))
           print(json.dumps(metadata))
-      - uses: actions/upload-artifact@v4
-        with:
-          name: verified-louisiana-parishes
-          path: verified_boundaries/
-          retention-days: 7
+      - name: Commit only verified boundary files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/louisiana_parishes_2026.geojson data/boundary_source.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Cache 64 verified Census parish boundaries and provenance'
+          git pull --rebase origin main
+          git push origin HEAD:main
