@@ -1,28 +1,1415 @@
 {
-  "status": "source_reconciliation_pending",
+  "schema_version": 2,
+  "status": "verified_snapshot",
   "election_date": "2026-11-03",
   "reporting_period_end": "2026-10-27",
+  "report_printed_at_local": "2026-10-28 03:10:06",
+  "report_printed_timezone": "Not stated in workbook",
+  "verified_at": "2026-10-28T17:58:33.923727+00:00",
   "source_url": "https://www.sos.la.gov/elections-voting/early-voting-statistics-parish",
-  "verified_at": null,
-  "observations": [],
-  "methodology": "Do not change status to final_verified without confirming the final Secretary of State report, report timestamp, and statewide reconciliation. Each observation must contain date, total, in_person, absentee and optional breakdowns object with party and race key/value counts. Daily observations represent cumulative report snapshots, not daily unique counts.",
-  "report_printed_at": "2026-10-28T03:10:06-05:00",
-  "candidate_snapshot": {
-    "date": "2026-10-27",
+  "source_files": [
+    {
+      "filename": "2026_1103_StatewideStats.xlsx",
+      "sha256": "9265f07ed7d1e2d351726ab5c02d788d25341e1184721e6d194e7e1733f5a37c",
+      "origin": "User supplied SOS workbook"
+    },
+    {
+      "filename": "2026_1103_ParishStats.xlsx",
+      "sha256": "77c7b7afd43576781659ef345b4ef70499c7b63adaa9ee49ad17463d5977feff",
+      "origin": "User supplied SOS workbook"
+    }
+  ],
+  "verification": {
+    "parishes": 64,
+    "detail_rows_checked": 6869,
+    "workbooks_reconciled": true,
+    "geography_matches": 64,
+    "reported_sex_gap": 266
+  },
+  "scope_note": "Reported participation through October 27, not certified final election turnout. Later absentee receipts and corrections are not included.",
+  "statewide": {
     "total": 520942,
     "in_person": 448525,
     "absentee": 72417,
-    "party": {
-      "democratic": 221066,
-      "republican": 205085,
-      "no_party": 92922,
-      "other": 1869
-    },
-    "race": {
-      "white": 319138,
-      "black": 179094,
-      "other": 22710
+    "breakdowns": {
+      "party": {
+        "democratic": 221066,
+        "republican": 205085,
+        "no_party": 92922,
+        "other": 1869
+      },
+      "race": {
+        "white": 319138,
+        "black": 179094,
+        "other": 22710
+      }
     }
   },
-  "verification_note": "Reported October 28 final in person period figures. Official PDF and 64 parish records still require independent retrieval and source reconciliation before status may be changed to final_verified."
+  "parishes": [
+    {
+      "parish_code": "01",
+      "geoid": "22001",
+      "parish": "ACADIA",
+      "total": 4922,
+      "in_person": 4287,
+      "absentee": 635,
+      "breakdowns": {
+        "party": {
+          "democratic": 1461,
+          "republican": 2741,
+          "no_party": 703,
+          "other": 17
+        },
+        "race": {
+          "white": 4020,
+          "black": 814,
+          "other": 88
+        }
+      }
+    },
+    {
+      "parish_code": "02",
+      "geoid": "22003",
+      "parish": "ALLEN",
+      "total": 1971,
+      "in_person": 1759,
+      "absentee": 212,
+      "breakdowns": {
+        "party": {
+          "democratic": 635,
+          "republican": 1066,
+          "no_party": 269,
+          "other": 1
+        },
+        "race": {
+          "white": 1550,
+          "black": 360,
+          "other": 61
+        }
+      }
+    },
+    {
+      "parish_code": "03",
+      "geoid": "22005",
+      "parish": "ASCENSION",
+      "total": 17538,
+      "in_person": 16068,
+      "absentee": 1470,
+      "breakdowns": {
+        "party": {
+          "democratic": 6815,
+          "republican": 7430,
+          "no_party": 3230,
+          "other": 63
+        },
+        "race": {
+          "white": 11119,
+          "black": 5637,
+          "other": 782
+        }
+      }
+    },
+    {
+      "parish_code": "04",
+      "geoid": "22007",
+      "parish": "ASSUMPTION",
+      "total": 2072,
+      "in_person": 1802,
+      "absentee": 270,
+      "breakdowns": {
+        "party": {
+          "democratic": 1151,
+          "republican": 688,
+          "no_party": 227,
+          "other": 6
+        },
+        "race": {
+          "white": 1123,
+          "black": 934,
+          "other": 15
+        }
+      }
+    },
+    {
+      "parish_code": "05",
+      "geoid": "22009",
+      "parish": "AVOYELLES",
+      "total": 3768,
+      "in_person": 3220,
+      "absentee": 548,
+      "breakdowns": {
+        "party": {
+          "democratic": 1393,
+          "republican": 1721,
+          "no_party": 634,
+          "other": 20
+        },
+        "race": {
+          "white": 2789,
+          "black": 883,
+          "other": 96
+        }
+      }
+    },
+    {
+      "parish_code": "06",
+      "geoid": "22011",
+      "parish": "BEAUREGARD",
+      "total": 3305,
+      "in_person": 2869,
+      "absentee": 436,
+      "breakdowns": {
+        "party": {
+          "democratic": 811,
+          "republican": 1886,
+          "no_party": 595,
+          "other": 13
+        },
+        "race": {
+          "white": 2566,
+          "black": 564,
+          "other": 175
+        }
+      }
+    },
+    {
+      "parish_code": "07",
+      "geoid": "22013",
+      "parish": "BIENVILLE",
+      "total": 1812,
+      "in_person": 1437,
+      "absentee": 375,
+      "breakdowns": {
+        "party": {
+          "democratic": 1104,
+          "republican": 461,
+          "no_party": 245,
+          "other": 2
+        },
+        "race": {
+          "white": 633,
+          "black": 1158,
+          "other": 21
+        }
+      }
+    },
+    {
+      "parish_code": "08",
+      "geoid": "22015",
+      "parish": "BOSSIER",
+      "total": 13960,
+      "in_person": 11377,
+      "absentee": 2583,
+      "breakdowns": {
+        "party": {
+          "democratic": 3642,
+          "republican": 7819,
+          "no_party": 2445,
+          "other": 54
+        },
+        "race": {
+          "white": 10318,
+          "black": 2977,
+          "other": 665
+        }
+      }
+    },
+    {
+      "parish_code": "09",
+      "geoid": "22017",
+      "parish": "CADDO",
+      "total": 24556,
+      "in_person": 18560,
+      "absentee": 5996,
+      "breakdowns": {
+        "party": {
+          "democratic": 12982,
+          "republican": 7662,
+          "no_party": 3840,
+          "other": 72
+        },
+        "race": {
+          "white": 12063,
+          "black": 11672,
+          "other": 821
+        }
+      }
+    },
+    {
+      "parish_code": "10",
+      "geoid": "22019",
+      "parish": "CALCASIEU",
+      "total": 18950,
+      "in_person": 16280,
+      "absentee": 2670,
+      "breakdowns": {
+        "party": {
+          "democratic": 6593,
+          "republican": 8928,
+          "no_party": 3349,
+          "other": 80
+        },
+        "race": {
+          "white": 13539,
+          "black": 4798,
+          "other": 613
+        }
+      }
+    },
+    {
+      "parish_code": "11",
+      "geoid": "22021",
+      "parish": "CALDWELL",
+      "total": 1265,
+      "in_person": 1095,
+      "absentee": 170,
+      "breakdowns": {
+        "party": {
+          "democratic": 264,
+          "republican": 807,
+          "no_party": 190,
+          "other": 4
+        },
+        "race": {
+          "white": 1107,
+          "black": 150,
+          "other": 8
+        }
+      }
+    },
+    {
+      "parish_code": "12",
+      "geoid": "22023",
+      "parish": "CAMERON",
+      "total": 645,
+      "in_person": 544,
+      "absentee": 101,
+      "breakdowns": {
+        "party": {
+          "democratic": 119,
+          "republican": 428,
+          "no_party": 96,
+          "other": 2
+        },
+        "race": {
+          "white": 633,
+          "black": 3,
+          "other": 9
+        }
+      }
+    },
+    {
+      "parish_code": "13",
+      "geoid": "22025",
+      "parish": "CATAHOULA",
+      "total": 1024,
+      "in_person": 769,
+      "absentee": 255,
+      "breakdowns": {
+        "party": {
+          "democratic": 385,
+          "republican": 498,
+          "no_party": 139,
+          "other": 2
+        },
+        "race": {
+          "white": 665,
+          "black": 352,
+          "other": 7
+        }
+      }
+    },
+    {
+      "parish_code": "14",
+      "geoid": "22027",
+      "parish": "CLAIBORNE",
+      "total": 2445,
+      "in_person": 2200,
+      "absentee": 245,
+      "breakdowns": {
+        "party": {
+          "democratic": 980,
+          "republican": 1014,
+          "no_party": 448,
+          "other": 3
+        },
+        "race": {
+          "white": 1413,
+          "black": 1003,
+          "other": 29
+        }
+      }
+    },
+    {
+      "parish_code": "15",
+      "geoid": "22029",
+      "parish": "CONCORDIA",
+      "total": 2026,
+      "in_person": 1791,
+      "absentee": 235,
+      "breakdowns": {
+        "party": {
+          "democratic": 894,
+          "republican": 842,
+          "no_party": 286,
+          "other": 4
+        },
+        "race": {
+          "white": 1163,
+          "black": 842,
+          "other": 21
+        }
+      }
+    },
+    {
+      "parish_code": "16",
+      "geoid": "22031",
+      "parish": "DE SOTO",
+      "total": 4583,
+      "in_person": 4095,
+      "absentee": 488,
+      "breakdowns": {
+        "party": {
+          "democratic": 1913,
+          "republican": 2021,
+          "no_party": 640,
+          "other": 9
+        },
+        "race": {
+          "white": 2633,
+          "black": 1849,
+          "other": 101
+        }
+      }
+    },
+    {
+      "parish_code": "17",
+      "geoid": "22033",
+      "parish": "EAST BATON ROUGE",
+      "total": 53645,
+      "in_person": 46115,
+      "absentee": 7530,
+      "breakdowns": {
+        "party": {
+          "democratic": 27686,
+          "republican": 15577,
+          "no_party": 10097,
+          "other": 285
+        },
+        "race": {
+          "white": 26261,
+          "black": 25001,
+          "other": 2383
+        }
+      }
+    },
+    {
+      "parish_code": "18",
+      "geoid": "22035",
+      "parish": "EAST CARROLL",
+      "total": 1021,
+      "in_person": 892,
+      "absentee": 129,
+      "breakdowns": {
+        "party": {
+          "democratic": 577,
+          "republican": 320,
+          "no_party": 120,
+          "other": 4
+        },
+        "race": {
+          "white": 438,
+          "black": 575,
+          "other": 8
+        }
+      }
+    },
+    {
+      "parish_code": "19",
+      "geoid": "22037",
+      "parish": "EAST FELICIANA",
+      "total": 2978,
+      "in_person": 2565,
+      "absentee": 413,
+      "breakdowns": {
+        "party": {
+          "democratic": 1365,
+          "republican": 1184,
+          "no_party": 423,
+          "other": 6
+        },
+        "race": {
+          "white": 1663,
+          "black": 1225,
+          "other": 90
+        }
+      }
+    },
+    {
+      "parish_code": "20",
+      "geoid": "22039",
+      "parish": "EVANGELINE",
+      "total": 3042,
+      "in_person": 2535,
+      "absentee": 507,
+      "breakdowns": {
+        "party": {
+          "democratic": 1510,
+          "republican": 1085,
+          "no_party": 441,
+          "other": 6
+        },
+        "race": {
+          "white": 1601,
+          "black": 1400,
+          "other": 41
+        }
+      }
+    },
+    {
+      "parish_code": "21",
+      "geoid": "22041",
+      "parish": "FRANKLIN",
+      "total": 2158,
+      "in_person": 1915,
+      "absentee": 243,
+      "breakdowns": {
+        "party": {
+          "democratic": 660,
+          "republican": 1278,
+          "no_party": 217,
+          "other": 3
+        },
+        "race": {
+          "white": 1573,
+          "black": 572,
+          "other": 13
+        }
+      }
+    },
+    {
+      "parish_code": "22",
+      "geoid": "22043",
+      "parish": "GRANT",
+      "total": 1646,
+      "in_person": 1291,
+      "absentee": 355,
+      "breakdowns": {
+        "party": {
+          "democratic": 343,
+          "republican": 1062,
+          "no_party": 239,
+          "other": 2
+        },
+        "race": {
+          "white": 1414,
+          "black": 206,
+          "other": 26
+        }
+      }
+    },
+    {
+      "parish_code": "23",
+      "geoid": "22045",
+      "parish": "IBERIA",
+      "total": 5984,
+      "in_person": 4908,
+      "absentee": 1076,
+      "breakdowns": {
+        "party": {
+          "democratic": 2347,
+          "republican": 2761,
+          "no_party": 860,
+          "other": 16
+        },
+        "race": {
+          "white": 3813,
+          "black": 2037,
+          "other": 134
+        }
+      }
+    },
+    {
+      "parish_code": "24",
+      "geoid": "22047",
+      "parish": "IBERVILLE",
+      "total": 3951,
+      "in_person": 3342,
+      "absentee": 609,
+      "breakdowns": {
+        "party": {
+          "democratic": 2198,
+          "republican": 1123,
+          "no_party": 623,
+          "other": 7
+        },
+        "race": {
+          "white": 2019,
+          "black": 1861,
+          "other": 71
+        }
+      }
+    },
+    {
+      "parish_code": "25",
+      "geoid": "22049",
+      "parish": "JACKSON",
+      "total": 2313,
+      "in_person": 1994,
+      "absentee": 319,
+      "breakdowns": {
+        "party": {
+          "democratic": 853,
+          "republican": 1122,
+          "no_party": 324,
+          "other": 14
+        },
+        "race": {
+          "white": 1474,
+          "black": 797,
+          "other": 42
+        }
+      }
+    },
+    {
+      "parish_code": "26",
+      "geoid": "22051",
+      "parish": "JEFFERSON",
+      "total": 44086,
+      "in_person": 37395,
+      "absentee": 6691,
+      "breakdowns": {
+        "party": {
+          "democratic": 20165,
+          "republican": 14434,
+          "no_party": 9324,
+          "other": 163
+        },
+        "race": {
+          "white": 24632,
+          "black": 15100,
+          "other": 4354
+        }
+      }
+    },
+    {
+      "parish_code": "27",
+      "geoid": "22053",
+      "parish": "JEFFERSON DAVIS",
+      "total": 4613,
+      "in_person": 4104,
+      "absentee": 509,
+      "breakdowns": {
+        "party": {
+          "democratic": 1160,
+          "republican": 2599,
+          "no_party": 842,
+          "other": 12
+        },
+        "race": {
+          "white": 3903,
+          "black": 648,
+          "other": 62
+        }
+      }
+    },
+    {
+      "parish_code": "28",
+      "geoid": "22055",
+      "parish": "LAFAYETTE",
+      "total": 26858,
+      "in_person": 22975,
+      "absentee": 3883,
+      "breakdowns": {
+        "party": {
+          "democratic": 9273,
+          "republican": 12072,
+          "no_party": 5384,
+          "other": 129
+        },
+        "race": {
+          "white": 19314,
+          "black": 6370,
+          "other": 1174
+        }
+      }
+    },
+    {
+      "parish_code": "29",
+      "geoid": "22057",
+      "parish": "LAFOURCHE",
+      "total": 9038,
+      "in_person": 8179,
+      "absentee": 859,
+      "breakdowns": {
+        "party": {
+          "democratic": 2288,
+          "republican": 5016,
+          "no_party": 1699,
+          "other": 35
+        },
+        "race": {
+          "white": 7769,
+          "black": 1010,
+          "other": 259
+        }
+      }
+    },
+    {
+      "parish_code": "30",
+      "geoid": "22059",
+      "parish": "LASALLE",
+      "total": 1560,
+      "in_person": 1401,
+      "absentee": 159,
+      "breakdowns": {
+        "party": {
+          "democratic": 219,
+          "republican": 1140,
+          "no_party": 200,
+          "other": 1
+        },
+        "race": {
+          "white": 1439,
+          "black": 101,
+          "other": 20
+        }
+      }
+    },
+    {
+      "parish_code": "31",
+      "geoid": "22061",
+      "parish": "LINCOLN",
+      "total": 5280,
+      "in_person": 4445,
+      "absentee": 835,
+      "breakdowns": {
+        "party": {
+          "democratic": 2090,
+          "republican": 2321,
+          "no_party": 856,
+          "other": 13
+        },
+        "race": {
+          "white": 3304,
+          "black": 1831,
+          "other": 145
+        }
+      }
+    },
+    {
+      "parish_code": "32",
+      "geoid": "22063",
+      "parish": "LIVINGSTON",
+      "total": 14864,
+      "in_person": 13365,
+      "absentee": 1499,
+      "breakdowns": {
+        "party": {
+          "democratic": 2890,
+          "republican": 9206,
+          "no_party": 2707,
+          "other": 61
+        },
+        "race": {
+          "white": 12832,
+          "black": 1521,
+          "other": 511
+        }
+      }
+    },
+    {
+      "parish_code": "33",
+      "geoid": "22065",
+      "parish": "MADISON",
+      "total": 1238,
+      "in_person": 987,
+      "absentee": 251,
+      "breakdowns": {
+        "party": {
+          "democratic": 728,
+          "republican": 352,
+          "no_party": 156,
+          "other": 2
+        },
+        "race": {
+          "white": 452,
+          "black": 778,
+          "other": 8
+        }
+      }
+    },
+    {
+      "parish_code": "34",
+      "geoid": "22067",
+      "parish": "MOREHOUSE",
+      "total": 3813,
+      "in_person": 3218,
+      "absentee": 595,
+      "breakdowns": {
+        "party": {
+          "democratic": 1808,
+          "republican": 1529,
+          "no_party": 471,
+          "other": 5
+        },
+        "race": {
+          "white": 1957,
+          "black": 1811,
+          "other": 45
+        }
+      }
+    },
+    {
+      "parish_code": "35",
+      "geoid": "22069",
+      "parish": "NATCHITOCHES",
+      "total": 4182,
+      "in_person": 3591,
+      "absentee": 591,
+      "breakdowns": {
+        "party": {
+          "democratic": 1935,
+          "republican": 1475,
+          "no_party": 764,
+          "other": 8
+        },
+        "race": {
+          "white": 2264,
+          "black": 1747,
+          "other": 171
+        }
+      }
+    },
+    {
+      "parish_code": "36",
+      "geoid": "22071",
+      "parish": "ORLEANS",
+      "total": 47645,
+      "in_person": 42668,
+      "absentee": 4977,
+      "breakdowns": {
+        "party": {
+          "democratic": 35037,
+          "republican": 3378,
+          "no_party": 9035,
+          "other": 195
+        },
+        "race": {
+          "white": 15762,
+          "black": 28775,
+          "other": 3108
+        }
+      }
+    },
+    {
+      "parish_code": "37",
+      "geoid": "22073",
+      "parish": "OUACHITA",
+      "total": 17376,
+      "in_person": 14790,
+      "absentee": 2586,
+      "breakdowns": {
+        "party": {
+          "democratic": 7012,
+          "republican": 7793,
+          "no_party": 2531,
+          "other": 40
+        },
+        "race": {
+          "white": 10338,
+          "black": 6605,
+          "other": 433
+        }
+      }
+    },
+    {
+      "parish_code": "38",
+      "geoid": "22075",
+      "parish": "PLAQUEMINES",
+      "total": 4102,
+      "in_person": 3932,
+      "absentee": 170,
+      "breakdowns": {
+        "party": {
+          "democratic": 1364,
+          "republican": 1920,
+          "no_party": 802,
+          "other": 16
+        },
+        "race": {
+          "white": 2869,
+          "black": 926,
+          "other": 307
+        }
+      }
+    },
+    {
+      "parish_code": "39",
+      "geoid": "22077",
+      "parish": "POINTE COUPEE",
+      "total": 2847,
+      "in_person": 2413,
+      "absentee": 434,
+      "breakdowns": {
+        "party": {
+          "democratic": 1512,
+          "republican": 891,
+          "no_party": 442,
+          "other": 2
+        },
+        "race": {
+          "white": 1521,
+          "black": 1295,
+          "other": 31
+        }
+      }
+    },
+    {
+      "parish_code": "40",
+      "geoid": "22079",
+      "parish": "RAPIDES",
+      "total": 12203,
+      "in_person": 9879,
+      "absentee": 2324,
+      "breakdowns": {
+        "party": {
+          "democratic": 4623,
+          "republican": 5569,
+          "no_party": 1966,
+          "other": 45
+        },
+        "race": {
+          "white": 7926,
+          "black": 3885,
+          "other": 392
+        }
+      }
+    },
+    {
+      "parish_code": "41",
+      "geoid": "22081",
+      "parish": "RED RIVER",
+      "total": 1134,
+      "in_person": 966,
+      "absentee": 168,
+      "breakdowns": {
+        "party": {
+          "democratic": 649,
+          "republican": 370,
+          "no_party": 112,
+          "other": 3
+        },
+        "race": {
+          "white": 489,
+          "black": 636,
+          "other": 9
+        }
+      }
+    },
+    {
+      "parish_code": "42",
+      "geoid": "22083",
+      "parish": "RICHLAND",
+      "total": 2175,
+      "in_person": 1909,
+      "absentee": 266,
+      "breakdowns": {
+        "party": {
+          "democratic": 824,
+          "republican": 1061,
+          "no_party": 286,
+          "other": 4
+        },
+        "race": {
+          "white": 1372,
+          "black": 789,
+          "other": 14
+        }
+      }
+    },
+    {
+      "parish_code": "43",
+      "geoid": "22085",
+      "parish": "SABINE",
+      "total": 2716,
+      "in_person": 2337,
+      "absentee": 379,
+      "breakdowns": {
+        "party": {
+          "democratic": 584,
+          "republican": 1659,
+          "no_party": 460,
+          "other": 13
+        },
+        "race": {
+          "white": 2165,
+          "black": 258,
+          "other": 293
+        }
+      }
+    },
+    {
+      "parish_code": "44",
+      "geoid": "22087",
+      "parish": "ST. BERNARD",
+      "total": 4142,
+      "in_person": 3869,
+      "absentee": 273,
+      "breakdowns": {
+        "party": {
+          "democratic": 1828,
+          "republican": 1322,
+          "no_party": 972,
+          "other": 20
+        },
+        "race": {
+          "white": 2630,
+          "black": 1230,
+          "other": 282
+        }
+      }
+    },
+    {
+      "parish_code": "45",
+      "geoid": "22089",
+      "parish": "ST. CHARLES",
+      "total": 5867,
+      "in_person": 5208,
+      "absentee": 659,
+      "breakdowns": {
+        "party": {
+          "democratic": 2357,
+          "republican": 2459,
+          "no_party": 1031,
+          "other": 20
+        },
+        "race": {
+          "white": 3781,
+          "black": 1830,
+          "other": 256
+        }
+      }
+    },
+    {
+      "parish_code": "46",
+      "geoid": "22091",
+      "parish": "ST. HELENA",
+      "total": 1548,
+      "in_person": 1289,
+      "absentee": 259,
+      "breakdowns": {
+        "party": {
+          "democratic": 1001,
+          "republican": 390,
+          "no_party": 153,
+          "other": 4
+        },
+        "race": {
+          "white": 602,
+          "black": 938,
+          "other": 8
+        }
+      }
+    },
+    {
+      "parish_code": "47",
+      "geoid": "22093",
+      "parish": "ST. JAMES",
+      "total": 3573,
+      "in_person": 3201,
+      "absentee": 372,
+      "breakdowns": {
+        "party": {
+          "democratic": 2273,
+          "republican": 958,
+          "no_party": 339,
+          "other": 3
+        },
+        "race": {
+          "white": 1663,
+          "black": 1880,
+          "other": 30
+        }
+      }
+    },
+    {
+      "parish_code": "48",
+      "geoid": "22095",
+      "parish": "ST. JOHN THE BAPTIST",
+      "total": 6082,
+      "in_person": 5473,
+      "absentee": 609,
+      "breakdowns": {
+        "party": {
+          "democratic": 4224,
+          "republican": 968,
+          "no_party": 882,
+          "other": 8
+        },
+        "race": {
+          "white": 1617,
+          "black": 4215,
+          "other": 250
+        }
+      }
+    },
+    {
+      "parish_code": "49",
+      "geoid": "22097",
+      "parish": "ST. LANDRY",
+      "total": 7532,
+      "in_person": 6191,
+      "absentee": 1341,
+      "breakdowns": {
+        "party": {
+          "democratic": 4221,
+          "republican": 2247,
+          "no_party": 1043,
+          "other": 21
+        },
+        "race": {
+          "white": 3362,
+          "black": 4037,
+          "other": 133
+        }
+      }
+    },
+    {
+      "parish_code": "50",
+      "geoid": "22099",
+      "parish": "ST. MARTIN",
+      "total": 7090,
+      "in_person": 6313,
+      "absentee": 777,
+      "breakdowns": {
+        "party": {
+          "democratic": 2426,
+          "republican": 3604,
+          "no_party": 1046,
+          "other": 14
+        },
+        "race": {
+          "white": 5187,
+          "black": 1805,
+          "other": 98
+        }
+      }
+    },
+    {
+      "parish_code": "51",
+      "geoid": "22101",
+      "parish": "ST. MARY",
+      "total": 4890,
+      "in_person": 4304,
+      "absentee": 586,
+      "breakdowns": {
+        "party": {
+          "democratic": 2017,
+          "republican": 2119,
+          "no_party": 740,
+          "other": 14
+        },
+        "race": {
+          "white": 3072,
+          "black": 1700,
+          "other": 118
+        }
+      }
+    },
+    {
+      "parish_code": "52",
+      "geoid": "22103",
+      "parish": "ST. TAMMANY",
+      "total": 40958,
+      "in_person": 35415,
+      "absentee": 5543,
+      "breakdowns": {
+        "party": {
+          "democratic": 10446,
+          "republican": 21164,
+          "no_party": 9194,
+          "other": 154
+        },
+        "race": {
+          "white": 32611,
+          "black": 5950,
+          "other": 2397
+        }
+      }
+    },
+    {
+      "parish_code": "53",
+      "geoid": "22105",
+      "parish": "TANGIPAHOA",
+      "total": 13060,
+      "in_person": 11033,
+      "absentee": 2027,
+      "breakdowns": {
+        "party": {
+          "democratic": 4546,
+          "republican": 6077,
+          "no_party": 2400,
+          "other": 37
+        },
+        "race": {
+          "white": 9161,
+          "black": 3494,
+          "other": 405
+        }
+      }
+    },
+    {
+      "parish_code": "54",
+      "geoid": "22107",
+      "parish": "TENSAS",
+      "total": 853,
+      "in_person": 632,
+      "absentee": 221,
+      "breakdowns": {
+        "party": {
+          "democratic": 471,
+          "republican": 291,
+          "no_party": 91,
+          "other": 0
+        },
+        "race": {
+          "white": 392,
+          "black": 457,
+          "other": 4
+        }
+      }
+    },
+    {
+      "parish_code": "55",
+      "geoid": "22109",
+      "parish": "TERREBONNE",
+      "total": 8635,
+      "in_person": 7460,
+      "absentee": 1175,
+      "breakdowns": {
+        "party": {
+          "democratic": 2400,
+          "republican": 4802,
+          "no_party": 1394,
+          "other": 39
+        },
+        "race": {
+          "white": 6576,
+          "black": 1662,
+          "other": 397
+        }
+      }
+    },
+    {
+      "parish_code": "56",
+      "geoid": "22111",
+      "parish": "UNION",
+      "total": 2491,
+      "in_person": 2222,
+      "absentee": 269,
+      "breakdowns": {
+        "party": {
+          "democratic": 696,
+          "republican": 1454,
+          "no_party": 335,
+          "other": 6
+        },
+        "race": {
+          "white": 1893,
+          "black": 542,
+          "other": 56
+        }
+      }
+    },
+    {
+      "parish_code": "57",
+      "geoid": "22113",
+      "parish": "VERMILION",
+      "total": 4560,
+      "in_person": 3726,
+      "absentee": 834,
+      "breakdowns": {
+        "party": {
+          "democratic": 1261,
+          "republican": 2539,
+          "no_party": 742,
+          "other": 18
+        },
+        "race": {
+          "white": 3852,
+          "black": 603,
+          "other": 105
+        }
+      }
+    },
+    {
+      "parish_code": "58",
+      "geoid": "22115",
+      "parish": "VERNON",
+      "total": 3843,
+      "in_person": 3466,
+      "absentee": 377,
+      "breakdowns": {
+        "party": {
+          "democratic": 885,
+          "republican": 2173,
+          "no_party": 775,
+          "other": 10
+        },
+        "race": {
+          "white": 2940,
+          "black": 671,
+          "other": 232
+        }
+      }
+    },
+    {
+      "parish_code": "59",
+      "geoid": "22117",
+      "parish": "WASHINGTON",
+      "total": 4816,
+      "in_person": 4249,
+      "absentee": 567,
+      "breakdowns": {
+        "party": {
+          "democratic": 2024,
+          "republican": 2005,
+          "no_party": 766,
+          "other": 21
+        },
+        "race": {
+          "white": 2904,
+          "black": 1829,
+          "other": 83
+        }
+      }
+    },
+    {
+      "parish_code": "60",
+      "geoid": "22119",
+      "parish": "WEBSTER",
+      "total": 4844,
+      "in_person": 4073,
+      "absentee": 771,
+      "breakdowns": {
+        "party": {
+          "democratic": 1885,
+          "republican": 2176,
+          "no_party": 768,
+          "other": 15
+        },
+        "race": {
+          "white": 3035,
+          "black": 1721,
+          "other": 88
+        }
+      }
+    },
+    {
+      "parish_code": "61",
+      "geoid": "22121",
+      "parish": "WEST BATON ROUGE",
+      "total": 4014,
+      "in_person": 3700,
+      "absentee": 314,
+      "breakdowns": {
+        "party": {
+          "democratic": 1945,
+          "republican": 1396,
+          "no_party": 660,
+          "other": 13
+        },
+        "race": {
+          "white": 2184,
+          "black": 1774,
+          "other": 56
+        }
+      }
+    },
+    {
+      "parish_code": "62",
+      "geoid": "22123",
+      "parish": "WEST CARROLL",
+      "total": 1077,
+      "in_person": 957,
+      "absentee": 120,
+      "breakdowns": {
+        "party": {
+          "democratic": 175,
+          "republican": 725,
+          "no_party": 176,
+          "other": 1
+        },
+        "race": {
+          "white": 979,
+          "black": 91,
+          "other": 7
+        }
+      }
+    },
+    {
+      "parish_code": "63",
+      "geoid": "22125",
+      "parish": "WEST FELICIANA",
+      "total": 1974,
+      "in_person": 1870,
+      "absentee": 104,
+      "breakdowns": {
+        "party": {
+          "democratic": 703,
+          "republican": 924,
+          "no_party": 342,
+          "other": 5
+        },
+        "race": {
+          "white": 1389,
+          "black": 558,
+          "other": 27
+        }
+      }
+    },
+    {
+      "parish_code": "64",
+      "geoid": "22127",
+      "parish": "WINN",
+      "total": 1783,
+      "in_person": 1610,
+      "absentee": 173,
+      "breakdowns": {
+        "party": {
+          "democratic": 440,
+          "republican": 983,
+          "no_party": 356,
+          "other": 4
+        },
+        "race": {
+          "white": 1410,
+          "black": 351,
+          "other": 22
+        }
+      }
+    }
+  ],
+  "observations": [
+    {
+      "date": "2026-10-27",
+      "total": 520942,
+      "in_person": 448525,
+      "absentee": 72417,
+      "breakdowns": {
+        "party": {
+          "democratic": 221066,
+          "republican": 205085,
+          "no_party": 92922,
+          "other": 1869
+        },
+        "race": {
+          "white": 319138,
+          "black": 179094,
+          "other": 22710
+        }
+      }
+    }
+  ]
 }
