@@ -1,4 +1,5 @@
-"""Browser regression tests against real repository files, with no mocked responses."""
+"""Browser regression tests against real repository files, with no mocked data responses."""
+import csv
 import json
 import threading
 from functools import partial
@@ -63,6 +64,72 @@ try:
         assert 'Source verified by Tia Fields' in page.locator('#poll-confidential-source').inner_text()
         assert 'Central Time' in page.locator('.snapshot-line').inner_text()
         page.locator('#polling-research').screenshot(path=str(OUT / 'polling-desktop.png'))
+        # Planner integration uses the actual published snapshot, not a fixture.
+        assert page.locator('#voting-plan').count() == 1
+        assert page.locator('.nav-inner a[href="#voting-plan"]').count() == 1
+        assert page.locator('#vp-org-parish option').count() == 65
+        assert page.locator('.mini-heading h4').inner_text() == 'Who has voted so far'
+        page.click('#vp-tab-org')
+        snapshot = json.loads((ROOT / 'data/processed/early_voting_2026.json').read_text())
+        for parish in snapshot['parishes']:
+            page.select_option('#vp-org-parish', parish['parish_code'])
+            page.locator('#vp-org-form button[type="submit"]').click()
+            assert f"{parish['total']:,} reported early ballots" in page.locator('#vp-org-preview').inner_text()
+            assert 'not a turnout rate' in page.locator('#vp-org-preview').inner_text()
+        page.select_option('#vp-org-parish', '36')
+        page.locator('#vp-org-form button[type="submit"]').click()
+        assert page.locator('#vp-rta').is_visible()
+        assert 'RTA announced no fares' in page.locator('#vp-org-preview').inner_text()
+        page.select_option('#vp-org-parish', '17')
+        page.fill('#vp-org-name', 'Example community organization')
+        page.locator('#vp-org-form button[type="submit"]').click()
+        assert page.locator('#vp-rta').is_hidden()
+        assert page.locator('#vp-org-preview tbody tr').count() == 10
+        with page.expect_download() as event:
+            page.click('#vp-csv')
+        event.value.save_as(OUT / 'East_Baton_Rouge_Organization_Checklist.csv')
+        with (OUT / 'East_Baton_Rouge_Organization_Checklist.csv').open(encoding='utf-8-sig', newline='') as handle:
+            rows = list(csv.reader(handle))
+        assert len(rows) == 14 and all(len(row) == 9 for row in rows)
+        assert rows[1][0] == 'Example community organization' and rows[1][1] == 'East Baton Rouge'
+        page.evaluate("window.print = () => { window.__plannerPrint = true; }")
+        page.click('#vp-print-org')
+        assert page.evaluate('window.__plannerPrint === true')
+        page.pdf(path=str(OUT / 'East_Baton_Rouge_Organization_Plan.pdf'), prefer_css_page_size=True, print_background=True)
+        page.evaluate("document.body.classList.remove('vp-printing')")
+        page.fill('#vp-org-name', '=1+1')
+        page.locator('#vp-org-form button[type="submit"]').click()
+        with page.expect_download() as event:
+            page.click('#vp-csv')
+        with open(event.value.path(), encoding='utf-8-sig', newline='') as handle:
+            protected_rows = list(csv.reader(handle))
+        assert protected_rows[1][0] == "'=1+1"
+        page.fill('#vp-org-name', '<img src=x onerror=alert(1)>')
+        page.locator('#vp-org-form button[type="submit"]').click()
+        assert page.locator('#vp-org-preview img').count() == 0
+        page.fill('#vp-org-name', 'Example community organization')
+        page.locator('#vp-org-form button[type="submit"]').click()
+        page.click('#vp-org-map')
+        assert page.locator('#selected-total').inner_text() == '53,645'
+        page.click('#vp-tab-voter')
+        page.locator('#vp-voter-form button[type="submit"]').click()
+        assert page.locator('#vp-personal-actions').is_hidden()
+        page.select_option('#vp-parish', '17')
+        page.fill('#vp-address', '123 Example Street, Baton Rouge, Louisiana')
+        page.fill('#vp-time', '08:30')
+        page.check('#vp-confirm')
+        page.locator('#vp-voter-form button[type="submit"]').click()
+        assert '8:30 a.m. Central Time' in page.input_value('#vp-personal-preview')
+        page.evaluate("window.open = url => { window.__plannerDirection = url; return null; }")
+        page.click('#vp-directions')
+        assert 'destination=123%20Example' in page.evaluate('window.__plannerDirection')
+        page.fill('#vp-address', '456 Changed Example Street, Baton Rouge, Louisiana')
+        assert not page.is_checked('#vp-confirm')
+        assert page.locator('#vp-personal-actions').is_hidden()
+        page.click('#vp-clear')
+        assert page.input_value('#vp-address') == ''
+        assert page.evaluate('localStorage.length === 0 && sessionStorage.length === 0')
+        results['planner'] = {'parishes': 64, 'csv': 'PASS', 'print': 'PASS', 'directions': 'PASS', 'confirmation': 'PASS', 'input_safety': 'PASS', 'browser_storage': 'NONE'}
         assert not errors, errors
         assert not failures, failures
         page.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
@@ -72,15 +139,24 @@ try:
         phone.goto(url, wait_until='networkidle')
         phone.wait_for_selector('html[data-map-ready="true"]')
         assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
-        y = phone.locator('#ev-total').bounding_box()['y']
-        assert y < 500, y
+        # The intentional new entry point is the polling lookup, not a ballot metric.
+        lookup = phone.locator('.vp-hero a[href="https://voterportal.sos.la.gov/Home/VoterLogin"]')
+        y = lookup.bounding_box()['y']
+        assert y < 600, y
+        assert phone.locator('.vp-sticky').is_visible()
+        assert phone.locator('#ev-total').inner_text() == '520,942'
         phone.select_option('#parish-select', '28')
         assert phone.locator('#selected-total').inner_text() == '26,858'
         assert phone.locator('#poll-confidential-bars .bar-row').count() == 10
         phone.locator('#poll-confidential').screenshot(path=str(OUT / 'polling-mobile.png'))
+        phone.click('#vp-tab-org')
+        phone.select_option('#vp-org-parish', '17')
+        phone.locator('#vp-org-form button[type="submit"]').click()
+        assert '53,645 reported early ballots' in phone.locator('#vp-org-preview').inner_text()
+        assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         phone.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
         phone.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
-        results['mobile'] = {'horizontal_overflow': False, 'early_vote_total_y': y, 'selection': 'PASS'}
+        results['mobile'] = {'horizontal_overflow': False, 'polling_lookup_y': y, 'selection': 'PASS', 'parish_plan': 'PASS'}
         browser.close()
 finally:
     server.shutdown()
