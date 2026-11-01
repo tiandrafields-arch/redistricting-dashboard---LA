@@ -19,6 +19,24 @@ server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=s
 threading.Thread(target=server.serve_forever, daemon=True).start()
 url = f'http://127.0.0.1:{server.server_port}/'
 results = {}
+order = ['early-voting', 'parish-map', 'senate-research', 'polling-research', 'house-races', 'registration', 'voting-plan', 'methodology']
+races = json.loads((ROOT / 'data/processed/house_races_2026-11-01.json').read_text())
+assert [r['district'] for r in races['races']] == [1, 2, 3, 4, 5]
+assert [len(r['candidates']) for r in races['races']] == [4, 5, 6, 5, 9]
+assert sum(r['candidate_count'] for r in races['races']) == 29
+
+def check_house(page):
+    assert page.locator('#house-races .house-snapshot').count() == 5
+    assert page.locator('#house-races .house-candidates li').count() == 29
+    for race in races['races']:
+        card = page.locator('#house-district-' + str(race['district']))
+        names = card.locator('.house-candidates strong').all_text_contents()
+        parties = card.locator('.house-party').all_text_contents()
+        assert names == [c['name'] for c in race['candidates']]
+        assert parties == [c['party'] for c in race['candidates']]
+        assert card.locator('.house-source a').get_attribute('href') == race['source_url']
+    assert len(set(page.locator('.house-party').evaluate_all('(items) => items.map(e => getComputedStyle(e).color)'))) == 1
+
 try:
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -28,16 +46,23 @@ try:
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.on('response', lambda r: failures.append(f'{r.status} {r.url}') if r.status >= 400 and 'favicon' not in r.url else None)
         page.goto(url, wait_until='networkidle')
-        page.wait_for_selector('html[data-map-ready="true"]')
+        page.wait_for_selector('html[data-map-ready="true"][data-education-ready="true"]')
+        page.wait_for_selector('#senate-research[data-ready="true"]')
+        assert page.locator('#main > section').evaluate_all('(items) => items.map(e => e.id)') == order
+        assert page.locator('.nav-inner a').evaluate_all('(items) => items.map(e => e.getAttribute("href").slice(1))') == order
+        assert page.locator('#page-title').inner_text() == 'Louisiana voting statistics'
+        assert page.locator('.nav-inner a[href="#early-voting"]').inner_text() == 'Voting statistics'
+        assert page.locator('#calculator, #use-in-calculator, #ev-scenario, a[href="#calculator"]').count() == 0
+        assert 'assumptions' not in page.locator('#early-voting .intro').inner_text()
+        assert 'calculator' not in page.locator('main').inner_text().lower()
+        assert page.locator('#senate-research .eyebrow').first.inner_text() == '02 / SENATE SURVEY RESEARCH'
+        check_house(page)
+        page.locator('#house-races').screenshot(path=str(OUT / 'house-races-desktop.png'))
         assert page.locator('#map-shapes path').count() == 64
         assert page.locator('#district-cards .district-card').count() == 6
         assert page.locator('#ev-total').inner_text() == '520,942'
         page.select_option('#parish-select', '17')
         assert page.locator('#selected-total').inner_text() == '53,645'
-        page.click('#use-in-calculator')
-        assert page.locator('#scenario-total').inner_text() == '107,290'
-        page.locator('#additional-rate').evaluate("e => {e.value='50';e.dispatchEvent(new Event('input',{bubbles:true}));}")
-        assert page.locator('#scenario-total').inner_text() == '80,468'
         page.select_option('#map-metric', 'republican')
         assert 'Republican registration share' in page.locator('#metric-description').inner_text()
         before = page.locator('#map-svg').get_attribute('viewBox')
@@ -52,12 +77,10 @@ try:
         assert page.locator('#parish-table tr').count() == 2
         with page.expect_download() as event:
             page.click('#download-data')
-        download = event.value
-        download.save_as(OUT / 'export.csv')
+        event.value.save_as(OUT / 'export.csv')
         assert len((OUT / 'export.csv').read_text(encoding='utf-8-sig').splitlines()) == 65
         assert page.locator('#commission a[href="https://www.tiafields.com/engage"]').count() == 1
         assert page.locator('#commission a[href="https://civiclensdata.com/"]').count() == 1
-        # Confidential poll regression
         assert page.locator('#poll-confidential-bars .bar-row').count() == 10
         assert page.locator('#poll-bars .bar-row').count() == 6
         assert 'Pull date: October 28, 2026' in page.locator('#poll-confidential').inner_text()
@@ -133,18 +156,18 @@ try:
         assert not errors, errors
         assert not failures, failures
         page.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
-        page.screenshot(path=str(OUT / 'desktop.png'), full_page=True)
-        results['desktop'] = {'map_paths': 64, 'selection': 'PASS', 'calculator': 'PASS', 'keyboard': 'PASS', 'zoom': 'PASS', 'search': 'PASS', 'csv_rows': 64, 'page_errors': errors, 'http_failures': failures}
+        page.screenshot(path=str(OUT / 'desktop-top.png'))
+        results['desktop'] = {'map_paths': 64, 'selection': 'PASS', 'calculator': 'REMOVED', 'keyboard': 'PASS', 'zoom': 'PASS', 'search': 'PASS', 'csv_rows': 64, 'page_errors': errors, 'http_failures': failures, 'section_order': order}
         phone = browser.new_page(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True)
         phone.goto(url, wait_until='networkidle')
-        phone.wait_for_selector('html[data-map-ready="true"]')
+        phone.wait_for_selector('html[data-map-ready="true"][data-education-ready="true"]')
         assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
-        # The intentional new entry point is the polling lookup, not a ballot metric.
-        lookup = phone.locator('.vp-hero a[href="https://voterportal.sos.la.gov/Home/VoterLogin"]')
-        y = lookup.bounding_box()['y']
-        assert y < 600, y
+        assert phone.locator('#main > section').first.get_attribute('id') == 'early-voting'
         assert phone.locator('.vp-sticky').is_visible()
         assert phone.locator('#ev-total').inner_text() == '520,942'
+        phone.screenshot(path=str(OUT / 'mobile-top.png'))
+        check_house(phone)
+        phone.locator('#house-races').screenshot(path=str(OUT / 'house-races-mobile.png'))
         phone.select_option('#parish-select', '28')
         assert phone.locator('#selected-total').inner_text() == '26,858'
         assert phone.locator('#poll-confidential-bars .bar-row').count() == 10
@@ -154,9 +177,20 @@ try:
         phone.locator('#vp-org-form button[type="submit"]').click()
         assert '53,645 reported early ballots' in phone.locator('#vp-org-preview').inner_text()
         assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
-        phone.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
-        phone.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
-        results['mobile'] = {'horizontal_overflow': False, 'polling_lookup_y': y, 'selection': 'PASS', 'parish_plan': 'PASS'}
+        phone.locator('#voting-plan').screenshot(path=str(OUT / 'planner-mobile.png'))
+        results['mobile'] = {'horizontal_overflow': False, 'selection': 'PASS', 'parish_plan': 'PASS'}
+        for width in [320, 768]:
+            page.set_viewport_size({'width': width, 'height': 900})
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), width
+        plain = browser.new_page(java_script_enabled=False, viewport={'width': 390, 'height': 844})
+        plain.goto(url, wait_until='networkidle')
+        check_house(plain)
+        assert plain.locator('#voting-plan').count() == 1
+        assert plain.locator('#senate-research').count() == 1
+        assert plain.locator('#calculator').count() == 0
+        assert plain.evaluate("Boolean(document.getElementById('registration').compareDocumentPosition(document.getElementById('voting-plan')) & Node.DOCUMENT_POSITION_FOLLOWING)")
+        assert plain.evaluate("Boolean(document.getElementById('voting-plan').compareDocumentPosition(document.getElementById('methodology')) & Node.DOCUMENT_POSITION_FOLLOWING)")
+        results['house_races'] = {'districts': 5, 'candidates': 29, 'source_links': 'PASS', 'names_and_parties': 'PASS', 'uniform_style': 'PASS', 'without_javascript': 'PASS'}
         browser.close()
 finally:
     server.shutdown()
