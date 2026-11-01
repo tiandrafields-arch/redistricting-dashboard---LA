@@ -36,7 +36,8 @@ try:
         page.wait_for_selector('#senate-research[data-ready="true"]')
         assert page.evaluate("document.querySelector('#senate-research').nextElementSibling.id") == 'polling-research'
         assert page.locator('#senate-poll-select option').count() == 3
-        assert '03B' in page.locator('#polling-research .eyebrow').first.inner_text()
+        assert page.locator('#polling-research .eyebrow').first.inner_text() == '03 / DISTRICT 6 SURVEY RESEARCH'
+        assert page.locator('#senate-research .eyebrow').first.inner_text() == '02 / SENATE SURVEY RESEARCH'
         assert page.locator('.nav-inner a[href="#senate-research"]').count() == 1
         for poll in DATA['polls']:
             page.select_option('#senate-poll-select', poll['id'])

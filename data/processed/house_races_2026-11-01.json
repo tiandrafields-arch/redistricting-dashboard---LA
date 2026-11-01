@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "release": "20261101.education.1",
+  "reviewed_date": "2026-11-01",
+  "election_date": "2026-11-03",
+  "election_type": "Open U.S. Representative primary",
+  "scope": "Louisiana U.S. House districts 1 through 5. District 6 survey research and statewide Senate research are separate dashboard sections.",
+  "status": "official_candidate_snapshot",
+  "publication_date_note": "November 1 is the review date, not an asserted publication date for the dynamic SOS records.",
+  "source_policy": "Candidate names and party labels are transcribed from the Louisiana Secretary of State candidate inquiry for election 344. Candidate nickname quotation marks are retained. Personal addresses, phone numbers, race and gender are not reproduced. The order follows the official source, alphabetically by surname. No candidate endorsement, ranking, vote estimate or forecast is inferred.",
+  "geography_note": "The parish inquiry is a source for the candidates in a named congressional contest, not a claim that an entire parish belongs to that district. Voters must use the official voter portal to confirm their own district and ballot.",
+  "rules": {
+    "summary": "All candidates in each U.S. House contest appear on the same November 3 ballot regardless of party. A candidate needs more than half the votes cast in that race to win outright. If no candidate receives a majority, a December 12 election follows, ordinarily between the two leading candidates. Tie rules can affect who advances.",
+    "source_url": "https://www.sos.la.gov/elections-voting/how-candidates-are-elected",
+    "calendar_url": "https://www.sos.la.gov/elections-voting/election-dates",
+    "voter_lookup_url": "https://voterportal.sos.la.gov/Home/VoterLogin"
+  },
+  "races": [
+    {
+      "district": 1,
+      "office": "U.S. Representative, District 1",
+      "candidate_count": 4,
+      "source_label": "Louisiana SOS, Jefferson parish candidate inquiry, U.S. Representative 1st Congressional District",
+      "source_url": "https://voterportal.sos.la.gov/CandidateInquiry/ParishCandidate/Print?electionDate=11%2F03%2F2026&electionId=344&parishId=27&parishName=JEFFERSON",
+      "candidates": [
+        {"name": "Randall Arrington", "party": "Republican"},
+        {"name": "E. \"Liddy\" Glass", "party": "No Party"},
+        {"name": "Lauren Jewett", "party": "Democrat"},
+        {"name": "Steve Scalise", "party": "Republican"}
+      ]
+    },
+    {
+      "district": 2,
+      "office": "U.S. Representative, District 2",
+      "candidate_count": 5,
+      "source_label": "Louisiana SOS, Jefferson parish candidate inquiry, U.S. Representative 2nd Congressional District",
+      "source_url": "https://voterportal.sos.la.gov/CandidateInquiry/ParishCandidate/Print?electionDate=11%2F03%2F2026&electionId=344&parishId=27&parishName=JEFFERSON",
+      "candidates": [
+        {"name": "Lisa Ballay", "party": "Libertarian"},
+        {"name": "Walter \"Rocky\" Beach", "party": "No Party"},
+        {"name": "Troy A. Carter Sr.", "party": "Democrat"},
+        {"name": "Renada \"Honey\" Collins", "party": "No Party"},
+        {"name": "Peter Williams", "party": "Republican"}
+      ]
+    },
+    {
+      "district": 3,
+      "office": "U.S. Representative, District 3",
+      "candidate_count": 6,
+      "source_label": "Louisiana SOS, Lafayette parish candidate inquiry, U.S. Representative 3rd Congressional District",
+      "source_url": "https://voterportal.sos.la.gov/CandidateInquiry/ParishCandidate/Print?electionDate=11%2F03%2F2026&electionId=344&parishId=29&parishName=LAFAYETTE",
+      "candidates": [
+        {"name": "\"Kate\" Cotten", "party": "Republican"},
+        {"name": "John Day", "party": "Democrat"},
+        {"name": "Priscilla Gonzalez", "party": "Democrat"},
+        {"name": "\"Clay\" Higgins", "party": "Republican"},
+        {"name": "Tia LeBrun", "party": "No Party"},
+        {"name": "Caleb \"With a C\" Walker", "party": "Democrat"}
+      ]
+    },
+    {
+      "district": 4,
+      "office": "U.S. Representative, District 4",
+      "candidate_count": 5,
+      "source_label": "Louisiana SOS, Bienville parish candidate inquiry, U.S. Representative 4th Congressional District",
+      "source_url": "https://voterportal.sos.la.gov/CandidateInquiry/ParishCandidate/Print?electionDate=11%2F03%2F2026&electionId=344&parishId=8&parishName=BIENVILLE",
+      "candidates": [
+        {"name": "Conrad Cable", "party": "Democrat"},
+        {"name": "\"Matt\" Gromlich", "party": "Democrat"},
+        {"name": "Gordon Heslop", "party": "Republican"},
+        {"name": "\"Mike\" Johnson", "party": "Republican"},
+        {"name": "\"Mike\" Nichols", "party": "Republican"}
+      ]
+    },
+    {
+      "district": 5,
+      "office": "U.S. Representative, District 5",
+      "candidate_count": 9,
+      "source_label": "Louisiana SOS, Jackson parish candidate inquiry, U.S. Representative 5th Congressional District",
+      "source_url": "https://voterportal.sos.la.gov/CandidateInquiry/ParishCandidate/Print?electionDate=11%2F03%2F2026&electionId=344&parishId=26&parishName=JACKSON",
+      "candidates": [
+        {"name": "Stewart Cathey Jr.", "party": "Republican"},
+        {"name": "Misti Cordell", "party": "Republican"},
+        {"name": "Oscar \"Omar\" Dantzler", "party": "Republican"},
+        {"name": "Michael Echols", "party": "Republican"},
+        {"name": "\"Gabe\" Firment", "party": "Republican"},
+        {"name": "Austin Magee", "party": "Republican"},
+        {"name": "Dan McKay", "party": "Democrat"},
+        {"name": "Patricia \"Pat\" Moore", "party": "Democrat"},
+        {"name": "Antonio Wilson", "party": "Democrat"}
+      ]
+    }
+  ],
+  "source_discrepancies": [
+    "Some secondary guides list Tia LeBrun as Democrat. The SOS record reviewed here lists No Party, which is the label published.",
+    "Some secondary guides list Oscar Dantzler as Democrat. The SOS record reviewed here lists Republican, which is the label published.",
+    "Some secondary guides spell Priscilla Gonzalez with a final s. The SOS record reviewed here spells Gonzalez with a final z, which is the spelling published."
+  ]
+}
