@@ -19,7 +19,7 @@ server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=s
 threading.Thread(target=server.serve_forever, daemon=True).start()
 url = f'http://127.0.0.1:{server.server_port}/'
 results = {}
-order = ['early-voting', 'parish-map', 'senate-research', 'polling-research', 'house-races', 'registration', 'voting-plan', 'methodology']
+order = ['runoffs', 'election-results', 'early-voting', 'parish-map', 'senate-research', 'polling-research', 'house-races', 'registration', 'voting-plan', 'methodology']
 races = json.loads((ROOT / 'data/processed/house_races_2026-11-01.json').read_text())
 assert [r['district'] for r in races['races']] == [1, 2, 3, 4, 5]
 assert [len(r['candidates']) for r in races['races']] == [4, 5, 6, 5, 9]
@@ -50,8 +50,8 @@ try:
         page.wait_for_selector('#senate-research[data-ready="true"]')
         assert page.locator('#main > section').evaluate_all('(items) => items.map(e => e.id)') == order
         assert page.locator('.nav-inner a').evaluate_all('(items) => items.map(e => e.getAttribute("href").slice(1))') == order
-        assert page.locator('#page-title').inner_text() == 'Louisiana voting statistics'
-        assert page.locator('.nav-inner a[href="#early-voting"]').inner_text() == 'Voting statistics'
+        assert page.locator('#page-title').inner_text() == 'Early and absentee voting statistics'
+        assert page.locator('.nav-inner a[href="#early-voting"]').inner_text() == 'Early ballot statistics'
         assert page.locator('#calculator, #use-in-calculator, #ev-scenario, a[href="#calculator"]').count() == 0
         assert 'assumptions' not in page.locator('#early-voting .intro').inner_text()
         assert 'calculator' not in page.locator('main').inner_text().lower()
@@ -60,9 +60,9 @@ try:
         page.locator('#house-races').screenshot(path=str(OUT / 'house-races-desktop.png'))
         assert page.locator('#map-shapes path').count() == 64
         assert page.locator('#district-cards .district-card').count() == 6
-        assert page.locator('#ev-total').inner_text() == '520,942'
+        assert page.locator('#ev-total').inner_text() == '536,185'
         page.select_option('#parish-select', '17')
-        assert page.locator('#selected-total').inner_text() == '53,645'
+        assert page.locator('#selected-total').inner_text() == '55,853'
         page.select_option('#map-metric', 'republican')
         assert 'Republican registration share' in page.locator('#metric-description').inner_text()
         before = page.locator('#map-svg').get_attribute('viewBox')
@@ -71,7 +71,7 @@ try:
         page.click('#map-reset')
         page.locator('#map-shapes path[data-code="36"]').focus()
         page.keyboard.press('Enter')
-        assert page.locator('#selected-total').inner_text() == '47,645'
+        assert page.locator('#selected-total').inner_text() == '49,250'
         page.locator('.table-details > summary').click()
         page.fill('#parish-search', 'Baton Rouge')
         assert page.locator('#parish-table tr').count() == 2
@@ -91,9 +91,9 @@ try:
         assert page.locator('#voting-plan').count() == 1
         assert page.locator('.nav-inner a[href="#voting-plan"]').count() == 1
         assert page.locator('#vp-org-parish option').count() == 65
-        assert page.locator('.mini-heading h4').inner_text() == 'Who has voted so far'
+        assert page.locator('.mini-heading h4').inner_text() == 'Who voted early or absentee'
         page.click('#vp-tab-org')
-        snapshot = json.loads((ROOT / 'data/processed/early_voting_2026.json').read_text())
+        snapshot = json.loads((ROOT / 'data/processed/early_voting_2026-11-03.json').read_text())
         for parish in snapshot['parishes']:
             page.select_option('#vp-org-parish', parish['parish_code'])
             page.locator('#vp-org-form button[type="submit"]').click()
@@ -101,8 +101,8 @@ try:
             assert 'not a turnout rate' in page.locator('#vp-org-preview').inner_text()
         page.select_option('#vp-org-parish', '36')
         page.locator('#vp-org-form button[type="submit"]').click()
-        assert page.locator('#vp-rta').is_visible()
-        assert 'RTA announced no fares' in page.locator('#vp-org-preview').inner_text()
+        assert page.locator('#vp-rta').is_hidden()
+        assert 'No December transportation service has been verified' in page.locator('#vp-org-preview').inner_text()
         page.select_option('#vp-org-parish', '17')
         page.fill('#vp-org-name', 'Example community organization')
         page.locator('#vp-org-form button[type="submit"]').click()
@@ -133,7 +133,7 @@ try:
         page.fill('#vp-org-name', 'Example community organization')
         page.locator('#vp-org-form button[type="submit"]').click()
         page.click('#vp-org-map')
-        assert page.locator('#selected-total').inner_text() == '53,645'
+        assert page.locator('#selected-total').inner_text() == '55,853'
         page.click('#vp-tab-voter')
         page.locator('#vp-voter-form button[type="submit"]').click()
         assert page.locator('#vp-personal-actions').is_hidden()
@@ -162,20 +162,20 @@ try:
         phone.goto(url, wait_until='networkidle')
         phone.wait_for_selector('html[data-map-ready="true"][data-education-ready="true"]')
         assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
-        assert phone.locator('#main > section').first.get_attribute('id') == 'early-voting'
+        assert phone.locator('#main > section').first.get_attribute('id') == 'runoffs'
         assert phone.locator('.vp-sticky').is_visible()
-        assert phone.locator('#ev-total').inner_text() == '520,942'
+        assert phone.locator('#ev-total').inner_text() == '536,185'
         phone.screenshot(path=str(OUT / 'mobile-top.png'))
         check_house(phone)
         phone.locator('#house-races').screenshot(path=str(OUT / 'house-races-mobile.png'))
         phone.select_option('#parish-select', '28')
-        assert phone.locator('#selected-total').inner_text() == '26,858'
+        assert phone.locator('#selected-total').inner_text() == '27,753'
         assert phone.locator('#poll-confidential-bars .bar-row').count() == 10
         phone.locator('#poll-confidential').screenshot(path=str(OUT / 'polling-mobile.png'))
         phone.click('#vp-tab-org')
         phone.select_option('#vp-org-parish', '17')
         phone.locator('#vp-org-form button[type="submit"]').click()
-        assert '53,645 reported early ballots' in phone.locator('#vp-org-preview').inner_text()
+        assert '55,853 reported early ballots' in phone.locator('#vp-org-preview').inner_text()
         assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         phone.locator('#voting-plan').screenshot(path=str(OUT / 'planner-mobile.png'))
         results['mobile'] = {'horizontal_overflow': False, 'selection': 'PASS', 'parish_plan': 'PASS'}
