@@ -256,7 +256,6 @@ for span in soup.select('.footer-base span'):
     if 'Release ' in span.get_text():span.string='Release 20261104.results.1'
 for ns in soup.select('noscript'):
     if ns.select_one('#voting-plan'):
-        ns.string=None if False else ns.string
         # Replace only this planner fallback, not historical Senate dates.
         raw=str(ns).replace('Tuesday, November 3, 2026','Saturday, December 12, 2026').replace('6 a.m. to 8 p.m.','7 a.m. to 8 p.m.')
         ns.replace_with(BeautifulSoup(raw,'html.parser'))

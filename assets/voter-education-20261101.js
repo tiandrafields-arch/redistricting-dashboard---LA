@@ -44,7 +44,9 @@
   }
   const nav = document.querySelector('.nav-inner');
   const order = [
-    ['early-voting', 'Voting statistics'],
+    ['runoffs', 'Runoffs'],
+    ['election-results', 'Results and turnout'],
+    ['early-voting', 'Early ballot statistics'],
     ['parish-map', 'Parish map'],
     ['senate-research', 'Senate'],
     ['polling-research', 'District 6'],

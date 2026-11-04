@@ -1,0 +1,42 @@
+contest,candidate,party,votes,sos_share,sos_unofficial_turnout,precincts_reporting,precincts_expected,status,retrieved_at,source
+U.S. Senate,"""Jamie"" Davis",DEM,720106,49%,49.3%,3722,3722,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+U.S. Senate,Julia Letlow,REP,745963,51%,49.3%,3722,3722,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 1,Randall Arrington,REP,9776,4%,51.1%,522,522,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 1,"E. ""Liddy"" Glass",NOPTY,4279,2%,51.1%,522,522,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 1,Lauren Jewett,DEM,89428,34%,51.1%,522,522,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 1,Steve Scalise,REP,159890,61%,51.1%,522,522,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 2,Lisa Ballay,LBT,6405,3%,48.1%,613,613,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 2,"Walter ""Rocky"" Beach",NOPTY,2553,1%,48.1%,613,613,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 2,"Troy A. Carter, Sr.",DEM,192258,80%,48.1%,613,613,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 2,"Renada ""Honey"" Collins",NOPTY,2999,1%,48.1%,613,613,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 2,Peter Williams,REP,36367,15%,48.1%,613,613,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,"""Kate"" Cotten",REP,15661,7%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,John Day,DEM,49162,21%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,Priscilla Gonzalez,DEM,16828,7%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,"""Clay"" Higgins",REP,129203,55%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,Tia LeBrun,NOPTY,4208,2%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 3,"Caleb ""With a C"" Walker",DEM,19932,8%,47.4%,571,571,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 4,Conrad Cable,DEM,52893,23%,47.8%,684,684,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 4,"""Matt"" Gromlich",DEM,32866,14%,47.8%,684,684,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 4,Gordon Heslop,REP,2571,1%,47.8%,684,684,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 4,"""Mike"" Johnson",REP,134739,58%,47.8%,684,684,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 4,"""Mike"" Nichols",REP,7270,3%,47.8%,684,684,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,"Stewart Cathey, Jr.",REP,28160,12%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,Misti Cordell,REP,33366,15%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,"Oscar ""Omar"" Dantzler",REP,2238,1%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,Michael Echols,REP,32902,14%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,"""Gabe"" Firment",REP,39131,17%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,Austin Magee,REP,7920,3%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,Dan McKay,DEM,16047,7%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,"Patricia ""Pat"" Moore",DEM,40789,18%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 5,Antonio Wilson,DEM,27364,12%,47.1%,791,791,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Monique Appeaning,REP,8109,3%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Chauna Banks,DEM,50878,19%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Rufus Craig,LBT,3461,1%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Larry Davis III,REP,11356,4%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,"""Rick"" Edmonds",REP,49241,19%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,"Patrick ""Pat"" Forbes",DEM,23820,9%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,"Lindsay ""Rubia"" Garcia",DEM,33544,13%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Michael Mebruer,REP,3160,1%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Blake Miguez,REP,50213,19%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
+House District 6,Stephen Wagley,REP,28169,11%,52.5%,541,541,unofficial,2026-11-04T09:11:11.703682-06:00,https://voterportal.sos.la.gov/graphical
