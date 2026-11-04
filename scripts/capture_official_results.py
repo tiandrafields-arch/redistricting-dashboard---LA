@@ -12,11 +12,10 @@ OUT.mkdir(exist_ok=True)
 HOSTS = {'voterportal.sos.la.gov', 'electionstatistics.sos.la.gov'}
 PAGES = [
     ('graphical', 'https://voterportal.sos.la.gov/graphical'),
-    ('text_results', 'https://voterportal.sos.la.gov/static/2026-11-03'),
     ('post_statewide', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Post_Election_Statistics&Type=Statewide'),
     ('post_parish', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Post_Election_Statistics&Type=Parish'),
-    ('early_statewide', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Early_Voting_Statistics&Type=Statewide'),
-    ('early_parish', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Early_Voting_Statistics&Type=Parish'),
+    ('registration_statewide', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Registration_Statistics&Type=Statewide'),
+    ('registration_parish', 'https://electionstatistics.sos.la.gov/default.aspx?Stats=Registration_Statistics&Type=Parish'),
 ]
 manifest = {'retrieved_at_local': datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat(), 'pages': [], 'responses': [], 'downloads': []}
 with sync_playwright() as p:
@@ -27,41 +26,45 @@ with sync_playwright() as p:
         if (urlparse(response.url).hostname or '') not in HOSTS:
             return
         try:
-            kind = response.request.resource_type
             content_type = response.headers.get('content-type', '')
-            if 'json' not in content_type and kind not in {'xhr', 'fetch', 'script'}:
+            if 'json' not in content_type:
+                return
+            if 'GetClientIpAddress' in response.url:
                 return
             body = response.body()
             if len(body) > 12000000:
                 return
-            filename = 'response_' + str(len(manifest['responses'])).zfill(3) + '.txt'
+            filename = 'response_' + str(len(manifest['responses'])).zfill(3) + '.json'
             (OUT / filename).write_bytes(body)
-            manifest['responses'].append({'url':response.url,'status':response.status,'kind':kind,'content_type':content_type,'file':filename,'sha256':hashlib.sha256(body).hexdigest()})
+            manifest['responses'].append({'url':response.url,'status':response.status,'content_type':content_type,'file':filename,'sha256':hashlib.sha256(body).hexdigest(),'retrieved_at_local':datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat()})
         except Exception as exc:
             manifest['responses'].append({'url':response.url,'error':str(exc)[:200]})
     page.on('response', capture)
-    def inspect(key, url):
+    for key,url in PAGES:
         record = {'key':key,'url':url}
         try:
             response = page.goto(url, wait_until='domcontentloaded', timeout=35000)
-            page.wait_for_timeout(10000 if key in {'graphical','text_results'} else 2000)
+            page.wait_for_timeout(10000 if key == 'graphical' else 1500)
             record['status'] = response.status if response else None
             record['final_url'] = page.url
             record['text'] = page.locator('body').inner_text(timeout=10000)
             record['selects'] = page.locator('select').evaluate_all('(es)=>es.map(e=>({id:e.id,name:e.name,options:Array.from(e.options).map(o=>({value:o.value,text:o.text,selected:o.selected}))}))')
             record['links'] = page.locator('a[href]').evaluate_all('(es)=>es.map(e=>({text:e.innerText,url:e.href}))')
-            record['controls'] = page.locator('button,input[type=button],input[type=submit]').evaluate_all('(es)=>es.map(e=>({text:e.innerText||e.value,id:e.id}))')
+            record['retrieved_at_local'] = datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat()
             (OUT / (key+'.html')).write_text(page.content())
             (OUT / (key+'.txt')).write_text(record['text'])
             page.screenshot(path=str(OUT / (key+'.png')), full_page=True)
             print('\nSOURCE', key, record['status'], record['final_url'])
             print(record['text'][:45000])
             print('SELECTS', json.dumps(record['selects']))
-            print('CONTROLS', json.dumps(record['controls']))
-            if key not in {'graphical','text_results'}:
+            if key != 'graphical':
+                seen=set()
                 for a in record['links']:
                     target = a['url']
-                    if urlparse(target).hostname not in HOSTS or not any(x in target for x in ['2026_1103','20261103','2026_1101','20261101']):
+                    if target in seen or urlparse(target).hostname not in HOSTS:
+                        continue
+                    seen.add(target)
+                    if not any(x in target for x in ['2026_1103','20261103','2026_1101','20261101','2026_11_01']):
                         continue
                     if not any(target.lower().split('?')[0].endswith(x) for x in ['.xlsx','.xls','.csv','.pdf','.zip','.txt']):
                         continue
@@ -79,8 +82,6 @@ with sync_playwright() as p:
             print('SOURCE ERROR',key,record['error'])
         manifest['pages'].append(record)
         (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
-    for key,url in PAGES:
-        inspect(key,url)
     browser.close()
 (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
 print('RESPONSE INDEX',json.dumps(manifest['responses'],indent=2))
