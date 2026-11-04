@@ -1,0 +1,80 @@
+name: Build November results release
+on:
+  push:
+    branches: [feature/20261104-results-runoffs]
+    paths:
+      - .github/workflows/publish-results-20261104.yml
+      - scripts/build_results_release_20261104.py
+      - tests/test_results_release.py
+      - assets/results-20261104.css
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: november-results-release
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/20261104-results-runoffs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve preserved early ballot evidence
+        uses: actions/download-artifact@v4
+        with:
+          name: sos-public-source-review
+          path: source-input/early
+          run-id: 41850427492
+          github-token: ${{ github.token }}
+      - name: Retrieve preserved registration and results evidence
+        uses: actions/download-artifact@v4
+        with:
+          name: sos-public-source-review
+          path: source-input/latest
+          run-id: 41854993575
+          github-token: ${{ github.token }}
+      - name: Install validation tools
+        run: |
+          python -m pip install beautifulsoup4 playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Build dated source records and update the dashboard
+        run: |
+          sed -i '/ns.string=None if False else ns.string/d' scripts/build_results_release_20261104.py
+          python scripts/build_results_release_20261104.py
+          node --check assets/dashboard-v20261028.js
+          node --check assets/voting-plan-20261101.js
+          node --check assets/voter-education-20261101.js
+      - name: Preserve historical validation and test all interfaces
+        run: |
+          python scripts/validate_early_voting.py
+          python tests/test_polling_update.py
+          python tests/test_dashboard.py
+          python tests/test_senate_research.py
+          python tests/test_results_release.py
+      - name: Commit validated release to feature branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html assets/dashboard-v20261028.js assets/voting-plan-20261101.js assets/voter-education-20261101.js scripts/build_results_release_20261104.py tests/test_dashboard.py data/processed/election_results_2026-11-03.json data/processed/election_results_2026-11-03.csv data/processed/early_voting_2026-11-03.json data/processed/early_voting_parishes_2026-11-03.csv data/processed/registration_snapshot_2026-11-01.json data/processed/registration_districts_2026-11-01.csv data/processed/registration_statewide_2026-11-01.csv data/sources/20261104 docs/RESULTS_RELEASE_20261104.md
+          git diff --cached --quiet || git commit -m 'Publish reviewed SOS returns, runoff priority and November registration snapshot'
+          git push origin HEAD:feature/20261104-results-runoffs
+      - name: Preserve test evidence and review files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: november-results-release-review
+          path: |
+            test-output/
+            index.html
+            assets/
+            data/processed/
+            data/sources/20261104/
+            docs/RESULTS_RELEASE_20261104.md
+            scripts/build_results_release_20261104.py
+          retention-days: 14
+          if-no-files-found: warn
