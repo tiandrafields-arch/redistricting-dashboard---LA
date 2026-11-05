@@ -1,0 +1,56 @@
+name: Build public voter guide
+on:
+  push:
+    branches: [feature/20261105-public-guide]
+    paths:
+      - scripts/build_public_guide_20261105.py
+      - .github/workflows/build-public-guide.yml
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/20261105-public-guide
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation tools
+        run: |
+          python -m pip install beautifulsoup4 playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Build public guide without changing historical records
+        run: |
+          python scripts/build_public_guide_20261105.py
+          node --check assets/parish-participation-20261104.js
+          node --check assets/voting-plan-20261101.js
+      - name: Validate the current page and preserved archive
+        run: |
+          python scripts/validate_early_voting.py
+          python tests/test_polling_update.py
+          python tests/test_parish_focus.py
+          python tests/test_dashboard.py
+          python tests/test_senate_research.py
+      - name: Commit tested presentation changes to feature branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html assets/parish-participation-20261104.js assets/parish-participation-20261104.css tests/test_parish_focus.py docs/PUBLIC_GUIDE_20261105.md
+          git diff --cached --quiet || git commit -m 'Publish accessible parish explanations and remove the comparison table'
+          git push origin HEAD:feature/20261105-public-guide
+      - name: Preserve test evidence and release review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-guide-verification
+          retention-days: 14
+          path: |
+            test-output/
+            index.html
+            assets/
+            tests/test_parish_focus.py
+            docs/PUBLIC_GUIDE_20261105.md
+          if-no-files-found: error
