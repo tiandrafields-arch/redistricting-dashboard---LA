@@ -1,0 +1,102 @@
+name: Verify published public voter guide
+on:
+  push:
+    branches: [feature/20261105-public-guide]
+    paths: [.github/workflows/verify-public-guide-live.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install public page browser
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Verify the actual published page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          import json
+          from playwright.sync_api import sync_playwright
+          out=Path('live-verification');out.mkdir()
+          url='https://tiandrafields-arch.github.io/redistricting-dashboard---LA/'
+          report={'url':url,'expected_release':'20261105-plain1','read_only':True,'checks':{}}
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch()
+              page=browser.new_page(viewport={'width':1440,'height':1000},accept_downloads=True)
+              errors=[]
+              page.on('pageerror',lambda e:errors.append(str(e)))
+              for attempt in range(8):
+                  page.goto(url+'?v=20261105-plain1',wait_until='networkidle',timeout=45000)
+                  version=page.locator('meta[name="dashboard-release"]').get_attribute('content')
+                  if version=='20261105-plain1':break
+                  page.wait_for_timeout(8000)
+              assert version=='20261105-plain1', f'Public release is {version}'
+              page.wait_for_selector('html[data-map-ready="true"][data-parish-ready="true"]')
+              expected=['runoffs','parish-map','november-results','registration','voting-plan','methodology']
+              assert page.locator('#main > section').evaluate_all('(es)=>es.map(e=>e.id)')==expected
+              assert page.locator('#parish-comparison,#parish-table,#polling-research,#senate-research,#house-races').count()==0
+              assert page.locator('#map-shapes path').count()==64
+              assert page.locator('#runoffs .runoff-person').count()==4
+              assert 'denominator' not in page.locator('#main').inner_text().lower()
+              response=page.request.get(url+'data/processed/parish_participation_2026-11-03.json')
+              assert response.ok
+              data=response.json();ebr=next(p for p in data['parishes'] if p['parish_code']=='17')
+              page.select_option('#parish-select','17')
+              assert page.locator('#selected-total').inner_text()==f"{ebr['results']['turnout_pct']:.1f}%"
+              assert 'out of every 100' in page.locator('#detail-body').inner_text()
+              assert 'statewide' in page.locator('.parish-comparison-note').inner_text()
+              page.click('#start-org-plan')
+              assert page.locator('#vp-tab-org').get_attribute('aria-selected')=='true'
+              assert page.locator('#vp-org-parish').input_value()=='17'
+              assert 'East Baton Rouge' in page.locator('#vp-org-preview').inner_text()
+              page.click('#start-voter-plan')
+              assert page.locator('#vp-tab-voter').get_attribute('aria-selected')=='true'
+              for tab in ['race','gender','method']:
+                  page.click('#view-'+tab)
+                  assert 'Election Day is not included' in page.locator('#scope-label').inner_text()
+              page.click('#view-gender');page.select_option('#group-select','female')
+              assert page.locator('#selected-total').inner_text()==f"{ebr['early']['sex']['female']:,}"
+              with page.expect_download() as event:page.click('#download-parish')
+              event.value.save_as(out/'parish_view.csv')
+              page.locator('#november-results summary').click()
+              assert page.locator('#november-results .november-card').count()==7
+              page.locator('#november-results').screenshot(path=str(out/'november-results.png'))
+              page.locator('#november-results summary').click()
+              page.click('#view-overview');page.select_option('#parish-select','state')
+              page.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
+              page.wait_for_timeout(150)
+              page.screenshot(path=str(out/'published-desktop.png'))
+              phone=browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
+              phone.goto(url+'?v=20261105-plain1',wait_until='networkidle')
+              phone.wait_for_selector('html[data-map-ready="true"]')
+              assert phone.locator('meta[name="dashboard-release"]').get_attribute('content')=='20261105-plain1'
+              for tab in ['overview','race','gender','method']:
+                  phone.click('#view-'+tab)
+                  assert phone.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+              phone.click('#view-overview');phone.select_option('#parish-select','17')
+              phone.locator('.selection-card').screenshot(path=str(out/'published-parish-phone.png'))
+              phone.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
+              phone.wait_for_timeout(150)
+              phone.screenshot(path=str(out/'published-phone.png'))
+              assert not errors,errors
+              report['checks']={'release':'PASS','comparison_table':'REMOVED','map_parishes':64,'readable_parish_story':'PASS','source_scope':'PASS','voter_and_organization_shortcuts':'PASS','csv_download':'PASS','congressional_summary':7,'mobile_overflow':False,'console_errors':errors}
+              report['verified_at_local']=datetime.now(ZoneInfo('America/Chicago')).isoformat()
+              browser.close()
+          (out/'verification.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-guide-live-verification
+          path: live-verification/
+          retention-days: 14
+          if-no-files-found: error
