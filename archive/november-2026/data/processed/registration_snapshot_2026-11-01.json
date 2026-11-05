@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "source": "Louisiana Secretary of State Registered Voters by Party and Race",
+    "report_date": "2026-11-01",
+    "status": "Both",
+    "source_url": "https://electionstatistics.sos.la.gov/Data/Registration_Statistics/statewide/2026_1101_sta_comb.xlsx",
+    "retrieved_at_local": "2026-11-04T09:11:00.701574-06:00",
+    "qa": "Six congressional summaries and their parish components reconcile to statewide party and race controls.",
+    "registration_note": "Monthly registration, not Census voting age population, candidate support, or the election results portal turnout denominator."
+  },
+  "statewide": {
+    "total_registered": 2984520,
+    "white_registered": 1856442,
+    "black_registered": 936512,
+    "other_race_registered": 191566,
+    "democratic": 1063006,
+    "republican": 1068738,
+    "no_party": 828286,
+    "other_parties": 24490,
+    "black_share_pct": 31.38,
+    "democratic_share_pct": 35.62,
+    "republican_share_pct": 35.81,
+    "no_party_share_pct": 27.75
+  },
+  "districts": [
+    {
+      "district": 1,
+      "total_registered": 516317,
+      "white_registered": 401706,
+      "black_registered": 64639,
+      "other_race_registered": 49972,
+      "democratic": 125586,
+      "republican": 223897,
+      "no_party": 161734,
+      "other_parties": 5100,
+      "black_share_pct": 12.52,
+      "democratic_share_pct": 24.32,
+      "republican_share_pct": 43.36,
+      "no_party_share_pct": 31.32
+    },
+    {
+      "district": 2,
+      "total_registered": 501813,
+      "white_registered": 154196,
+      "black_registered": 301462,
+      "other_race_registered": 46155,
+      "democratic": 298197,
+      "republican": 62606,
+      "no_party": 136380,
+      "other_parties": 4630,
+      "black_share_pct": 60.07,
+      "democratic_share_pct": 59.42,
+      "republican_share_pct": 12.48,
+      "no_party_share_pct": 27.18
+    },
+    {
+      "district": 3,
+      "total_registered": 496703,
+      "white_registered": 336943,
+      "black_registered": 135898,
+      "other_race_registered": 23862,
+      "democratic": 158731,
+      "republican": 196145,
+      "no_party": 138296,
+      "other_parties": 3531,
+      "black_share_pct": 27.36,
+      "democratic_share_pct": 31.96,
+      "republican_share_pct": 39.49,
+      "no_party_share_pct": 27.84
+    },
+    {
+      "district": 4,
+      "total_registered": 483595,
+      "white_registered": 312248,
+      "black_registered": 146686,
+      "other_race_registered": 24661,
+      "democratic": 156903,
+      "republican": 193699,
+      "no_party": 129542,
+      "other_parties": 3451,
+      "black_share_pct": 30.33,
+      "democratic_share_pct": 32.45,
+      "republican_share_pct": 40.05,
+      "no_party_share_pct": 26.79
+    },
+    {
+      "district": 5,
+      "total_registered": 484980,
+      "white_registered": 306488,
+      "black_registered": 162495,
+      "other_race_registered": 15997,
+      "democratic": 168495,
+      "republican": 191391,
+      "no_party": 122101,
+      "other_parties": 2993,
+      "black_share_pct": 33.51,
+      "democratic_share_pct": 34.74,
+      "republican_share_pct": 39.46,
+      "no_party_share_pct": 25.18
+    },
+    {
+      "district": 6,
+      "total_registered": 501112,
+      "white_registered": 344861,
+      "black_registered": 125332,
+      "other_race_registered": 30919,
+      "democratic": 155094,
+      "republican": 201000,
+      "no_party": 140233,
+      "other_parties": 4785,
+      "black_share_pct": 25.01,
+      "democratic_share_pct": 30.95,
+      "republican_share_pct": 40.11,
+      "no_party_share_pct": 27.98
+    }
+  ],
+  "derived": {
+    "black_registered_outside_district_2": 635050,
+    "pct_black_registered_outside_district_2": 67.81
+  }
+}

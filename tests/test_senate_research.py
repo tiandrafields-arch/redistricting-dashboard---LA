@@ -24,7 +24,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
         pass
 server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
-url = f'http://127.0.0.1:{server.server_port}/'
+url = f'http://127.0.0.1:{server.server_port}/archive/november-2026/'
 results = {'dataset': 'PASS', 'surveys': 3, 'firms': 2}
 try:
     with sync_playwright() as p:

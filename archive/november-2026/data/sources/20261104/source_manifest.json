@@ -1,0 +1,79 @@
+{
+  "release": "20261104-results1",
+  "built_at_local": "2026-11-04T09:21:28.012761-06:00",
+  "source_files": [
+    {
+      "file": "data/sources/20261104/sos_candidates.json",
+      "sha256": "71d09488b6e02028305f386d9fc81ce9850c784ead840322430fff58f625f08a",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/RacesCandidates_Multiparish.htm"
+    },
+    {
+      "file": "data/sources/20261104/sos_votes.json",
+      "sha256": "6d1d3bee6647da11f687aa7695d4d8e802a118943ff88b3f0aac03baa937cc6b",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/Votes_Multiparish.htm"
+    },
+    {
+      "file": "data/sources/20261104/graphical.txt",
+      "sha256": "d3225c4fbc270f334dffcbb42eab2dbabadfebe2dea84ecc07beac0d4f998c42"
+    },
+    {
+      "file": "data/sources/20261104/graphical.png",
+      "sha256": "43ae3fb354b3c468bc58e191a3f2a031056b10f4d34d6fd9aa0d8217ec11d352"
+    },
+    {
+      "file": "data/sources/20261104/post_statewide.txt",
+      "sha256": "2ac51d77e5c129649ec24b28bcbf085759aa9e44be8961383c9939ce11bc9345"
+    },
+    {
+      "file": "data/sources/20261104/post_parish.txt",
+      "sha256": "57ce4f0ec1c2cd6ac2afa50ac71fb1110c5b100256427f4d7192f19d79c84c76"
+    },
+    {
+      "file": "data/sources/20261104/registration_statewide.txt",
+      "sha256": "4808c0183a50ba841b5a0e5d4825826da6d159ae0934b0e6f162c90eeaa5dce7"
+    },
+    {
+      "file": "data/sources/20261104/registration_parish.txt",
+      "sha256": "943c5cd17784973e34828d65e2638a2b2eeb65a9d8f7edf75aab5f24f7b31593"
+    },
+    {
+      "file": "data/sources/20261104/early_statewide_2026_1103_StatewideStats.xlsx",
+      "sha256": "21c9a2cebba310305e61e582a1be5d7f170c02d9ecd48ced69caf5b53444c495",
+      "url": "https://electionstatistics.sos.la.gov/Data/Early_Voting_Statistics/statewide/2026_1103_StatewideStats.xlsx"
+    },
+    {
+      "file": "data/sources/20261104/early_parish_2026_1103_ParishStats.xlsx",
+      "sha256": "16b4da916920c4313168ad0485dfc6ea64a9c06968b0ee56ec74af4a1aac53ad",
+      "url": "https://electionstatistics.sos.la.gov/Data/Early_Voting_Statistics/parish/2026_1103_ParishStats.xlsx"
+    },
+    {
+      "file": "data/sources/20261104/registration_statewide_2026_1101_sta_comb.xlsx",
+      "sha256": "6ed76e468d9ad29f00a26a6f564af87ff75c1ae6646c6f52816d7227482f4540",
+      "url": "https://electionstatistics.sos.la.gov/Data/Registration_Statistics/statewide/2026_1101_sta_comb.xlsx"
+    }
+  ],
+  "checks": {
+    "candidate_sums_and_displayed_totals": "All seven match; 41 candidates",
+    "early_workbooks": {
+      "parishes": 64,
+      "detail_rows": 6314,
+      "total": 536185,
+      "sex_residual": 278
+    },
+    "registration": {
+      "statewide": 2984520,
+      "districts": 6,
+      "black_registered": 936512,
+      "outside_district_2": 635050,
+      "outside_district_2_pct": 67.81
+    }
+  },
+  "retrieved_at_local": "2026-11-04T09:11:11.703682-06:00",
+  "historical_files_preserved": [
+    "data/processed/early_voting_2026.json",
+    "data/processed/registration_snapshot_2026-10-01.json",
+    "data/processed/house_races_2026-11-01.json",
+    "data/processed/polling_senate_2026-11-01.json",
+    "data/processed/polling_la6_2026-10-28.json"
+  ]
+}

@@ -1,0 +1,76 @@
+name: Parish participation source review
+on:
+  push:
+    branches: [feature/20261104-parish-focus]
+    paths: [.github/workflows/parish-focus-review.yml]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Read public aggregate sources
+        run: |
+          python - <<'PY'
+          import json,datetime,hashlib
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          from playwright.sync_api import sync_playwright
+          out=Path('parish-source-review');out.mkdir()
+          manifest={'retrieved_at_local':datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat(),'sources':[]}
+          urls={
+          'senate_parishes':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/VotesRaceByParish/Votes_67997.htm',
+          'senate_early':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/VotesEarly/Votes_67997.htm',
+          'stats_parish':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsParish.htm',
+          'stats_statewide':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsStatewide.htm',
+          'senate_stats':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsRace/Stats_67997.htm',
+          'election_dates':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=ElectionDates.htm',
+          'all_results':'https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/Votes_Multiparish.htm'}
+          with sync_playwright() as p:
+            browser=p.chromium.launch();context=browser.new_context();page=context.new_page()
+            page.goto('https://voterportal.sos.la.gov/graphical',wait_until='domcontentloaded',timeout=45000)
+            page.wait_for_timeout(6000)
+            (out/'graphical.txt').write_text(page.locator('body').inner_text())
+            for key,url in urls.items():
+              record={'key':key,'url':url,'retrieved_at_local':datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat()}
+              try:
+                r=context.request.get(url,timeout=30000);body=r.body()
+                record.update(status=r.status,bytes=len(body),sha256=hashlib.sha256(body).hexdigest())
+                if r.ok:
+                  data=r.json();(out/(key+'.json')).write_text(json.dumps(data,indent=2))
+                  print(key,str(data)[:3000])
+              except Exception as e:record['error']=str(e)[:200]
+              manifest['sources'].append(record)
+            for key,kind in [('post_parish','Parish'),('post_statewide','Statewide')]:
+              url='https://electionstatistics.sos.la.gov/default.aspx?Stats=Post_Election_Statistics&Type='+kind
+              try:
+                page.goto(url,wait_until='domcontentloaded',timeout=30000)
+                text=page.locator('body').inner_text();(out/(key+'.txt')).write_text(text)
+                links=page.locator('a[href]').evaluate_all('(es)=>es.map(e=>({text:e.innerText,url:e.href}))')
+                (out/(key+'_links.json')).write_text(json.dumps(links,indent=2))
+                manifest['sources'].append({'key':key,'url':url,'retrieved_at_local':datetime.datetime.now(ZoneInfo('America/Chicago')).isoformat(),'november_listed':'2026_1103' in text})
+                print(key,text[:5000])
+              except Exception as e:manifest['sources'].append({'key':key,'url':url,'error':str(e)[:200]})
+            browser.close()
+          (out/'manifest.json').write_text(json.dumps(manifest,indent=2));print(json.dumps(manifest,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parish-source-review
+          path: |
+            parish-source-review/
+            data/louisiana_parishes_2026.geojson
+            data/boundary_source.json
+          retention-days: 14
+          if-no-files-found: error

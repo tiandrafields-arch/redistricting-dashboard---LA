@@ -1,0 +1,10 @@
+{
+  "source": "U.S. Census Bureau TIGERweb BAS 2026",
+  "vintage": "2026-01-01",
+  "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/19/query?where=STATE%3D%2722%27&outFields=GEOID%2CSTATE%2CCOUNTY%2CBASENAME%2CNAME&returnGeometry=true&outSR=4326&geometryPrecision=4&maxAllowableOffset=0.005&f=geojson",
+  "retrieved_at": "2026-10-28T17:50:58.347887+00:00",
+  "display_generalization_degrees": 0.005,
+  "crs": "EPSG:4326",
+  "feature_count": 64,
+  "sha256": "28d062dcd38024374971e3e40ad7bcd1e6ac4fae525892a783ffc951ae1a1af5"
+}

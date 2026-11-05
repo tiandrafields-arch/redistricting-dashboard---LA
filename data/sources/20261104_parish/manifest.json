@@ -1,0 +1,120 @@
+{
+  "retrieved_at_local": "2026-11-04T20:28:18.809464-06:00",
+  "sources": [
+    {
+      "key": "senate_parishes",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/VotesRaceByParish/Votes_67997.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.133294-06:00",
+      "status": 200,
+      "bytes": 16617,
+      "sha256": "9d2165aa8f0d94a781e8abdf4388aa4104ee2935d4e10975e63ab76b68311d5f"
+    },
+    {
+      "key": "senate_early",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/VotesEarly/Votes_67997.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.365839-06:00",
+      "status": 200,
+      "bytes": 7730,
+      "sha256": "773c171558d2198980a1a52e7736032f5d38346f11e6ded3dbc85f452128f57e"
+    },
+    {
+      "key": "stats_parish",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsParish.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.500678-06:00",
+      "status": 200,
+      "bytes": 25307,
+      "sha256": "d388c237c1a3427f6053c409e28472cd80fb0454586dce8e09d749cb304fac84"
+    },
+    {
+      "key": "stats_statewide",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsStatewide.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.617707-06:00",
+      "status": 200,
+      "bytes": 453,
+      "sha256": "2e6afc0d627e5f0b4560bc42541fc33fa07f7dbb10961a33d7dcc5bf083a6469"
+    },
+    {
+      "key": "senate_stats",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/StatsRace/Stats_67997.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.763066-06:00",
+      "status": 200,
+      "bytes": 27166,
+      "sha256": "f5619df038d5ab474777d4434cf73ddd4490c067bd9aa736e89c429daf8aedb7"
+    },
+    {
+      "key": "election_dates",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=ElectionDates.htm",
+      "retrieved_at_local": "2026-11-04T20:28:26.916024-06:00",
+      "status": 200,
+      "bytes": 91491,
+      "sha256": "3ca905856cca28b22d7363a09d6fa892d4ff52f0888744627590034045d9faec"
+    },
+    {
+      "key": "all_results",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/Votes_Multiparish.htm",
+      "retrieved_at_local": "2026-11-04T20:28:27.042775-06:00",
+      "status": 200,
+      "bytes": 27627,
+      "sha256": "6d1d3bee6647da11f687aa7695d4d8e802a118943ff88b3f0aac03baa937cc6b"
+    },
+    {
+      "key": "post_parish",
+      "url": "https://electionstatistics.sos.la.gov/default.aspx?Stats=Post_Election_Statistics&Type=Parish",
+      "retrieved_at_local": "2026-11-04T20:28:27.431350-06:00",
+      "november_listed": false
+    },
+    {
+      "key": "post_statewide",
+      "url": "https://electionstatistics.sos.la.gov/default.aspx?Stats=Post_Election_Statistics&Type=Statewide",
+      "retrieved_at_local": "2026-11-04T20:28:27.608716-06:00",
+      "november_listed": false
+    }
+  ],
+  "preserved_files": [
+    {
+      "file": "data/sources/20261104_parish/stats_parish.json",
+      "sha256": "aaf0873119e9e45fac301e082bf82ab8cfeef72c92581d58a31420b7c41dea3d"
+    },
+    {
+      "file": "data/sources/20261104_parish/senate_stats.json",
+      "sha256": "6d045ebac74e3a3bf20cf00156c537d80853c10804298696c37d29e05aff2252"
+    },
+    {
+      "file": "data/sources/20261104_parish/all_results.json",
+      "sha256": "7d43da27c2ac63a0b8fb6989497e5569c6abda91e0b6e554a0b3e9e19a52d652"
+    },
+    {
+      "file": "data/sources/20261104_parish/post_parish.txt",
+      "sha256": "57ce4f0ec1c2cd6ac2afa50ac71fb1110c5b100256427f4d7192f19d79c84c76"
+    },
+    {
+      "file": "data/sources/20261104_parish/senate_early.json",
+      "sha256": "411d56d479657be80fcc7ef5ebc1a82c18dc6d39e3e6326152745a031cee10e9"
+    },
+    {
+      "file": "data/sources/20261104_parish/stats_statewide.json",
+      "sha256": "25623e69912a6a88417b2dc390a0c38874f470cd65e1e7178716322bab1514c2"
+    },
+    {
+      "file": "data/sources/20261104_parish/senate_parishes.json",
+      "sha256": "7cfcc74a218e2cd55ddb1a437d76706adedc656a129ff9d1bc4cba3fd5881009"
+    },
+    {
+      "file": "data/sources/20261104_parish/election_dates.json",
+      "sha256": "4169b019243c62fe89b0293f045bf504e43522e5539fcf8aeffb1ac1bb1eb2a6"
+    },
+    {
+      "file": "data/sources/20261104_parish/post_statewide.txt",
+      "sha256": "2ac51d77e5c129649ec24b28bcbf085759aa9e44be8961383c9939ce11bc9345"
+    }
+  ],
+  "checks": {
+    "parish_count": 64,
+    "votes_reconciled": 1466069,
+    "qualified_voters_reconciled": 2975695,
+    "early_ballots_reconciled": 536185,
+    "sex_unallocated": 278,
+    "full_election_demographics_available": false,
+    "historical_records_preserved": true
+  }
+}

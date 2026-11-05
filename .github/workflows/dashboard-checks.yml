@@ -32,13 +32,16 @@ jobs:
           python tests/test_polling_update.py
           node --check assets/dashboard-v20261028.js
           node --check assets/senate-research-20261101.js
+          node --check assets/parish-participation-20261104.js
       - name: Install browser test dependencies
         run: |
           python -m pip install playwright==1.55.0
           python -m playwright install --with-deps chromium
-      - name: Test desktop and phone interfaces
+      - name: Test the current parish participation page
+        run: python tests/test_parish_focus.py
+      - name: Test archived desktop and phone interfaces
         run: python tests/test_dashboard.py
-      - name: Test Senate research and source displays
+      - name: Test archived Senate research and source displays
         run: python tests/test_senate_research.py
       - uses: actions/upload-artifact@v4
         if: always()

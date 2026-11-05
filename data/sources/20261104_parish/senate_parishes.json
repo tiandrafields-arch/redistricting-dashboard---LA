@@ -1,0 +1,1223 @@
+{
+  "Parishes": {
+    "VersionDateTime": "1900-01-01T00:00:00",
+    "Parish": [
+      {
+        "ParishValue": "01",
+        "PrecinctsReporting": "47",
+        "PrecinctsExpected": "47",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "37805",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4699"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "13351"
+          }
+        ]
+      },
+      {
+        "ParishValue": "02",
+        "PrecinctsReporting": "18",
+        "PrecinctsExpected": "18",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "12381",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2026"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4511"
+          }
+        ]
+      },
+      {
+        "ParishValue": "03",
+        "PrecinctsReporting": "72",
+        "PrecinctsExpected": "72",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "84772",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "19559"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "23386"
+          }
+        ]
+      },
+      {
+        "ParishValue": "04",
+        "PrecinctsReporting": "28",
+        "PrecinctsExpected": "28",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "13939",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3131"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3944"
+          }
+        ]
+      },
+      {
+        "ParishValue": "05",
+        "PrecinctsReporting": "41",
+        "PrecinctsExpected": "41",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "23014",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4591"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7656"
+          }
+        ]
+      },
+      {
+        "ParishValue": "06",
+        "PrecinctsReporting": "37",
+        "PrecinctsExpected": "37",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "23449",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2259"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7987"
+          }
+        ]
+      },
+      {
+        "ParishValue": "07",
+        "PrecinctsReporting": "33",
+        "PrecinctsExpected": "33",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "8754",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2568"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2422"
+          }
+        ]
+      },
+      {
+        "ParishValue": "08",
+        "PrecinctsReporting": "85",
+        "PrecinctsExpected": "85",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "76662",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "12647"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "23158"
+          }
+        ]
+      },
+      {
+        "ParishValue": "09",
+        "PrecinctsReporting": "128",
+        "PrecinctsExpected": "128",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "151879",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "42171"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "29338"
+          }
+        ]
+      },
+      {
+        "ParishValue": "10",
+        "PrecinctsReporting": "123",
+        "PrecinctsExpected": "123",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "123921",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "22726"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "33195"
+          }
+        ]
+      },
+      {
+        "ParishValue": "11",
+        "PrecinctsReporting": "19",
+        "PrecinctsExpected": "19",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "5905",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "680"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2459"
+          }
+        ]
+      },
+      {
+        "ParishValue": "12",
+        "PrecinctsReporting": "11",
+        "PrecinctsExpected": "11",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "4306",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "274"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1683"
+          }
+        ]
+      },
+      {
+        "ParishValue": "13",
+        "PrecinctsReporting": "28",
+        "PrecinctsExpected": "28",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "6095",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1220"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1945"
+          }
+        ]
+      },
+      {
+        "ParishValue": "14",
+        "PrecinctsReporting": "25",
+        "PrecinctsExpected": "25",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "8334",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2109"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2603"
+          }
+        ]
+      },
+      {
+        "ParishValue": "15",
+        "PrecinctsReporting": "17",
+        "PrecinctsExpected": "17",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "12042",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2720"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3035"
+          }
+        ]
+      },
+      {
+        "ParishValue": "16",
+        "PrecinctsReporting": "26",
+        "PrecinctsExpected": "26",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "19756",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4087"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5829"
+          }
+        ]
+      },
+      {
+        "ParishValue": "17",
+        "PrecinctsReporting": "329",
+        "PrecinctsExpected": "329",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "288374",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "97901"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "54262"
+          }
+        ]
+      },
+      {
+        "ParishValue": "18",
+        "PrecinctsReporting": "17",
+        "PrecinctsExpected": "17",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "4650",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1333"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "751"
+          }
+        ]
+      },
+      {
+        "ParishValue": "19",
+        "PrecinctsReporting": "23",
+        "PrecinctsExpected": "23",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "13483",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3387"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3998"
+          }
+        ]
+      },
+      {
+        "ParishValue": "20",
+        "PrecinctsReporting": "55",
+        "PrecinctsExpected": "55",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "20727",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4055"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "6243"
+          }
+        ]
+      },
+      {
+        "ParishValue": "21",
+        "PrecinctsReporting": "23",
+        "PrecinctsExpected": "23",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "13188",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2111"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3660"
+          }
+        ]
+      },
+      {
+        "ParishValue": "22",
+        "PrecinctsReporting": "31",
+        "PrecinctsExpected": "31",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "12903",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1243"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5175"
+          }
+        ]
+      },
+      {
+        "ParishValue": "23",
+        "PrecinctsReporting": "55",
+        "PrecinctsExpected": "55",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "43205",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8162"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "11160"
+          }
+        ]
+      },
+      {
+        "ParishValue": "24",
+        "PrecinctsReporting": "31",
+        "PrecinctsExpected": "31",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "20239",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "7159"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4981"
+          }
+        ]
+      },
+      {
+        "ParishValue": "25",
+        "PrecinctsReporting": "31",
+        "PrecinctsExpected": "31",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "9684",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1988"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3600"
+          }
+        ]
+      },
+      {
+        "ParishValue": "26",
+        "PrecinctsReporting": "268",
+        "PrecinctsExpected": "268",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "267833",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "70300"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "60561"
+          }
+        ]
+      },
+      {
+        "ParishValue": "27",
+        "PrecinctsReporting": "26",
+        "PrecinctsExpected": "26",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "20772",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3113"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7249"
+          }
+        ]
+      },
+      {
+        "ParishValue": "28",
+        "PrecinctsReporting": "131",
+        "PrecinctsExpected": "131",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "162550",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "35617"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "43837"
+          }
+        ]
+      },
+      {
+        "ParishValue": "29",
+        "PrecinctsReporting": "72",
+        "PrecinctsExpected": "72",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "57829",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8411"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "20123"
+          }
+        ]
+      },
+      {
+        "ParishValue": "30",
+        "PrecinctsReporting": "21",
+        "PrecinctsExpected": "21",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "8564",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "702"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3693"
+          }
+        ]
+      },
+      {
+        "ParishValue": "31",
+        "PrecinctsReporting": "50",
+        "PrecinctsExpected": "50",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "27560",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "6037"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7702"
+          }
+        ]
+      },
+      {
+        "ParishValue": "32",
+        "PrecinctsReporting": "80",
+        "PrecinctsExpected": "80",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "87966",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "11953"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "31575"
+          }
+        ]
+      },
+      {
+        "ParishValue": "33",
+        "PrecinctsReporting": "26",
+        "PrecinctsExpected": "26",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "7207",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1822"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1228"
+          }
+        ]
+      },
+      {
+        "ParishValue": "34",
+        "PrecinctsReporting": "30",
+        "PrecinctsExpected": "30",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "16683",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3442"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3540"
+          }
+        ]
+      },
+      {
+        "ParishValue": "35",
+        "PrecinctsReporting": "50",
+        "PrecinctsExpected": "50",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "22947",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5443"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5791"
+          }
+        ]
+      },
+      {
+        "ParishValue": "36",
+        "PrecinctsReporting": "349",
+        "PrecinctsExpected": "349",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "266064",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "116933"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "15054"
+          }
+        ]
+      },
+      {
+        "ParishValue": "37",
+        "PrecinctsReporting": "85",
+        "PrecinctsExpected": "85",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "102172",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "20791"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "25451"
+          }
+        ]
+      },
+      {
+        "ParishValue": "38",
+        "PrecinctsReporting": "17",
+        "PrecinctsExpected": "17",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "14075",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3185"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4616"
+          }
+        ]
+      },
+      {
+        "ParishValue": "39",
+        "PrecinctsReporting": "24",
+        "PrecinctsExpected": "24",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "14613",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "3915"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4432"
+          }
+        ]
+      },
+      {
+        "ParishValue": "40",
+        "PrecinctsReporting": "113",
+        "PrecinctsExpected": "113",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "80552",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "15692"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "21802"
+          }
+        ]
+      },
+      {
+        "ParishValue": "41",
+        "PrecinctsReporting": "18",
+        "PrecinctsExpected": "18",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "5448",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1240"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1326"
+          }
+        ]
+      },
+      {
+        "ParishValue": "42",
+        "PrecinctsReporting": "23",
+        "PrecinctsExpected": "23",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "13694",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2509"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3628"
+          }
+        ]
+      },
+      {
+        "ParishValue": "43",
+        "PrecinctsReporting": "27",
+        "PrecinctsExpected": "27",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "13666",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1770"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "6006"
+          }
+        ]
+      },
+      {
+        "ParishValue": "44",
+        "PrecinctsReporting": "31",
+        "PrecinctsExpected": "31",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "27270",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5760"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5748"
+          }
+        ]
+      },
+      {
+        "ParishValue": "45",
+        "PrecinctsReporting": "42",
+        "PrecinctsExpected": "42",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "35470",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8378"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "10283"
+          }
+        ]
+      },
+      {
+        "ParishValue": "46",
+        "PrecinctsReporting": "11",
+        "PrecinctsExpected": "11",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "8558",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2665"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1899"
+          }
+        ]
+      },
+      {
+        "ParishValue": "47",
+        "PrecinctsReporting": "20",
+        "PrecinctsExpected": "20",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "14906",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5298"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3988"
+          }
+        ]
+      },
+      {
+        "ParishValue": "48",
+        "PrecinctsReporting": "36",
+        "PrecinctsExpected": "36",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "28437",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "10440"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3766"
+          }
+        ]
+      },
+      {
+        "ParishValue": "49",
+        "PrecinctsReporting": "91",
+        "PrecinctsExpected": "91",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "55280",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "13625"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "12810"
+          }
+        ]
+      },
+      {
+        "ParishValue": "50",
+        "PrecinctsReporting": "43",
+        "PrecinctsExpected": "43",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "35331",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "6668"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "10413"
+          }
+        ]
+      },
+      {
+        "ParishValue": "51",
+        "PrecinctsReporting": "46",
+        "PrecinctsExpected": "46",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "30354",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "6451"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "8424"
+          }
+        ]
+      },
+      {
+        "ParishValue": "52",
+        "PrecinctsReporting": "171",
+        "PrecinctsExpected": "171",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "196163",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "37646"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "63967"
+          }
+        ]
+      },
+      {
+        "ParishValue": "53",
+        "PrecinctsReporting": "73",
+        "PrecinctsExpected": "73",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "80467",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "16279"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "23252"
+          }
+        ]
+      },
+      {
+        "ParishValue": "54",
+        "PrecinctsReporting": "10",
+        "PrecinctsExpected": "10",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "3131",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1105"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "702"
+          }
+        ]
+      },
+      {
+        "ParishValue": "55",
+        "PrecinctsReporting": "64",
+        "PrecinctsExpected": "64",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "59774",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "9364"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "19053"
+          }
+        ]
+      },
+      {
+        "ParishValue": "56",
+        "PrecinctsReporting": "29",
+        "PrecinctsExpected": "29",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "15267",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2047"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5397"
+          }
+        ]
+      },
+      {
+        "ParishValue": "57",
+        "PrecinctsReporting": "66",
+        "PrecinctsExpected": "66",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "38099",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4864"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "12501"
+          }
+        ]
+      },
+      {
+        "ParishValue": "58",
+        "PrecinctsReporting": "60",
+        "PrecinctsExpected": "60",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "25779",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2634"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "8388"
+          }
+        ]
+      },
+      {
+        "ParishValue": "59",
+        "PrecinctsReporting": "41",
+        "PrecinctsExpected": "41",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "28336",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5279"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7765"
+          }
+        ]
+      },
+      {
+        "ParishValue": "60",
+        "PrecinctsReporting": "40",
+        "PrecinctsExpected": "40",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "22538",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4651"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7208"
+          }
+        ]
+      },
+      {
+        "ParishValue": "61",
+        "PrecinctsReporting": "29",
+        "PrecinctsExpected": "29",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "17839",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5541"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4489"
+          }
+        ]
+      },
+      {
+        "ParishValue": "62",
+        "PrecinctsReporting": "23",
+        "PrecinctsExpected": "23",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "6970",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "576"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2242"
+          }
+        ]
+      },
+      {
+        "ParishValue": "63",
+        "PrecinctsReporting": "27",
+        "PrecinctsExpected": "27",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "7862",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1878"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2831"
+          }
+        ]
+      },
+      {
+        "ParishValue": "64",
+        "PrecinctsReporting": "26",
+        "PrecinctsExpected": "26",
+        "NumAbsenteeReporting": "1",
+        "NumAbsenteeExpected": "1",
+        "VoterCountQualified": "8202",
+        "VoterCountVoted": "0",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1276"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2891"
+          }
+        ]
+      }
+    ]
+  }
+}

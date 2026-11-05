@@ -17,7 +17,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
-url = f'http://127.0.0.1:{server.server_port}/'
+url = f'http://127.0.0.1:{server.server_port}/archive/november-2026/'
 results = {}
 order = ['runoffs', 'election-results', 'early-voting', 'parish-map', 'senate-research', 'polling-research', 'house-races', 'registration', 'voting-plan', 'methodology']
 races = json.loads((ROOT / 'data/processed/house_races_2026-11-01.json').read_text())
