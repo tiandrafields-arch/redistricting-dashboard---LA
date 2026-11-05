@@ -61,7 +61,8 @@
 <div class="vp-source-links">${link(URLS.dates, 'Election dates')}${link(URLS.faq, 'Voter rights and identification')}${link(URLS.changes, 'Polling location changes')}<a href="tel:+18008832805">SOS elections hotline: 1 800 883 2805</a></div><p class="vp-footer">Planning guidance checked ${reviewed}. This does not change the date of the dashboard's participation data. Independent civic information by Tiandra Fields, Provisional Consulting LLC. Not an official government tool.</p></div>`;
   const main = $('main') || document.querySelector('main');
   if (!main) return;
-  main.prepend(section);
+  const registration = document.getElementById('registration');
+  if (registration) registration.after(section); else main.append(section);
   const nav = document.querySelector('.nav-inner');
   if (nav && !nav.querySelector('a[href="#voting-plan"]')) {
     const item = document.createElement('a'); item.href = '#voting-plan'; item.textContent = 'Voting plan'; nav.prepend(item);

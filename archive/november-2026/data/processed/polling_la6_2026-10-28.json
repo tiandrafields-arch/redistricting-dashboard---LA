@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "la6_confidential_20261028",
+  "title": "Louisiana Congressional District 6 survey",
+  "pull_date": "2026-10-28",
+  "pull_date_meaning": "Date obtained for the dashboard, not survey interview dates",
+  "display_timezone": "America/Chicago",
+  "display_timezone_label": "Central Time",
+  "field_dates": null,
+  "pollster": null,
+  "sponsor": null,
+  "source": {
+    "description": "Confidential source verified by Tia Fields",
+    "identity_withheld": true,
+    "verified_by": "Tia Fields",
+    "verification_basis": "Publisher attestation on October 28, 2026",
+    "verification_scope": "Source assurance from the publisher, not an independent audit of survey methodology",
+    "public_source_url": null
+  },
+  "evidence": "Publisher supplied executive summary image; Q13 initial ballot chart",
+  "population": "Likely voters in Louisiana Congressional District 6",
+  "sample_size": 419,
+  "mode": "Text message",
+  "sampling_frame": "L2 voter file",
+  "weighting_reported": "Weighted to the district's L2 likely voter profile",
+  "reported_margin_of_error_percentage_points": 4.8,
+  "margin_of_error_scope": "Full sample; larger for subgroups, as stated in the executive summary",
+  "question_reference": "Q13, initial ballot, all likely voters",
+  "full_question_wording": null,
+  "measure": "Weighted reported percentage",
+  "results": [
+    {"label": "Miguez (R)", "party": "R", "percent": 19},
+    {"label": "Edmonds (R)", "party": "R", "percent": 16},
+    {"label": "Garcia (D)", "party": "D", "percent": 15},
+    {"label": "Forbes (D)", "party": "D", "percent": 11},
+    {"label": "Banks (D)", "party": "D", "percent": 10},
+    {"label": "Wagley (R)", "party": "R", "percent": 5},
+    {"label": "Larry Davis (R)", "party": "R", "percent": 2},
+    {"label": "Appeaning (R)", "party": "R", "percent": 2},
+    {"label": "Craig (L)", "party": "L", "percent": 2},
+    {"label": "Undecided", "party": "U", "percent": 18}
+  ],
+  "limitations": [
+    "Field dates, pollster, sponsor, complete questionnaire and full weighting details are not publicly supplied here.",
+    "The pull date is not an interview date.",
+    "No trend, polling average, runoff probability or candidate forecast is inferred.",
+    "No Party registration is not the same as an undecided survey response."
+  ]
+}

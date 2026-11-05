@@ -1,0 +1,903 @@
+{
+  "EarlyVoting": {
+    "VersionDateTime": "1900-01-01T00:00:00",
+    "Parish": [
+      {
+        "ParishValue": "01",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1452"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3411"
+          }
+        ]
+      },
+      {
+        "ParishValue": "02",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "711"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1251"
+          }
+        ]
+      },
+      {
+        "ParishValue": "03",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8838"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "8694"
+          }
+        ]
+      },
+      {
+        "ParishValue": "04",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1172"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "899"
+          }
+        ]
+      },
+      {
+        "ParishValue": "05",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1464"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2275"
+          }
+        ]
+      },
+      {
+        "ParishValue": "06",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1104"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2269"
+          }
+        ]
+      },
+      {
+        "ParishValue": "07",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1175"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "624"
+          }
+        ]
+      },
+      {
+        "ParishValue": "08",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5194"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "8976"
+          }
+        ]
+      },
+      {
+        "ParishValue": "09",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "16069"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "9219"
+          }
+        ]
+      },
+      {
+        "ParishValue": "10",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8532"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "10603"
+          }
+        ]
+      },
+      {
+        "ParishValue": "11",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "266"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "990"
+          }
+        ]
+      },
+      {
+        "ParishValue": "12",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "102"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "543"
+          }
+        ]
+      },
+      {
+        "ParishValue": "13",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "460"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "616"
+          }
+        ]
+      },
+      {
+        "ParishValue": "14",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1149"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1262"
+          }
+        ]
+      },
+      {
+        "ParishValue": "15",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "948"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1065"
+          }
+        ]
+      },
+      {
+        "ParishValue": "16",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2130"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2492"
+          }
+        ]
+      },
+      {
+        "ParishValue": "17",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "37406"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "17784"
+          }
+        ]
+      },
+      {
+        "ParishValue": "18",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "589"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "437"
+          }
+        ]
+      },
+      {
+        "ParishValue": "19",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1488"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1445"
+          }
+        ]
+      },
+      {
+        "ParishValue": "20",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1586"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1443"
+          }
+        ]
+      },
+      {
+        "ParishValue": "21",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "732"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1425"
+          }
+        ]
+      },
+      {
+        "ParishValue": "22",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "395"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1262"
+          }
+        ]
+      },
+      {
+        "ParishValue": "23",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2842"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3258"
+          }
+        ]
+      },
+      {
+        "ParishValue": "24",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2312"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1625"
+          }
+        ]
+      },
+      {
+        "ParishValue": "25",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "947"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1372"
+          }
+        ]
+      },
+      {
+        "ParishValue": "26",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "27582"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "17154"
+          }
+        ]
+      },
+      {
+        "ParishValue": "27",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1407"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3194"
+          }
+        ]
+      },
+      {
+        "ParishValue": "28",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "13292"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "14160"
+          }
+        ]
+      },
+      {
+        "ParishValue": "29",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2748"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "6250"
+          }
+        ]
+      },
+      {
+        "ParishValue": "30",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "263"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1291"
+          }
+        ]
+      },
+      {
+        "ParishValue": "31",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2643"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2692"
+          }
+        ]
+      },
+      {
+        "ParishValue": "32",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4457"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "10540"
+          }
+        ]
+      },
+      {
+        "ParishValue": "33",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "799"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "438"
+          }
+        ]
+      },
+      {
+        "ParishValue": "34",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1906"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1855"
+          }
+        ]
+      },
+      {
+        "ParishValue": "35",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2408"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1828"
+          }
+        ]
+      },
+      {
+        "ParishValue": "36",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "44427"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4058"
+          }
+        ]
+      },
+      {
+        "ParishValue": "37",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "8451"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "9012"
+          }
+        ]
+      },
+      {
+        "ParishValue": "38",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1550"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2549"
+          }
+        ]
+      },
+      {
+        "ParishValue": "39",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1617"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1272"
+          }
+        ]
+      },
+      {
+        "ParishValue": "40",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5763"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "6524"
+          }
+        ]
+      },
+      {
+        "ParishValue": "41",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "628"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "454"
+          }
+        ]
+      },
+      {
+        "ParishValue": "42",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "924"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1229"
+          }
+        ]
+      },
+      {
+        "ParishValue": "43",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "614"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2074"
+          }
+        ]
+      },
+      {
+        "ParishValue": "44",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2244"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1882"
+          }
+        ]
+      },
+      {
+        "ParishValue": "45",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2948"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2954"
+          }
+        ]
+      },
+      {
+        "ParishValue": "46",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1035"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "539"
+          }
+        ]
+      },
+      {
+        "ParishValue": "47",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2237"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1411"
+          }
+        ]
+      },
+      {
+        "ParishValue": "48",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4787"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1357"
+          }
+        ]
+      },
+      {
+        "ParishValue": "49",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "4742"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2937"
+          }
+        ]
+      },
+      {
+        "ParishValue": "50",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2615"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "4470"
+          }
+        ]
+      },
+      {
+        "ParishValue": "51",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2270"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2669"
+          }
+        ]
+      },
+      {
+        "ParishValue": "52",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "17172"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "24522"
+          }
+        ]
+      },
+      {
+        "ParishValue": "53",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "5754"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "7454"
+          }
+        ]
+      },
+      {
+        "ParishValue": "54",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "541"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "356"
+          }
+        ]
+      },
+      {
+        "ParishValue": "55",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2986"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "5748"
+          }
+        ]
+      },
+      {
+        "ParishValue": "56",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "772"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1723"
+          }
+        ]
+      },
+      {
+        "ParishValue": "57",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1495"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "3123"
+          }
+        ]
+      },
+      {
+        "ParishValue": "58",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "1205"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2647"
+          }
+        ]
+      },
+      {
+        "ParishValue": "59",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2307"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2495"
+          }
+        ]
+      },
+      {
+        "ParishValue": "60",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2146"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "2717"
+          }
+        ]
+      },
+      {
+        "ParishValue": "61",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "2255"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1798"
+          }
+        ]
+      },
+      {
+        "ParishValue": "62",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "185"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "886"
+          }
+        ]
+      },
+      {
+        "ParishValue": "63",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "871"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1101"
+          }
+        ]
+      },
+      {
+        "ParishValue": "64",
+        "HasReported": "1",
+        "Choice": [
+          {
+            "ID": "124654",
+            "VoteTotal": "520"
+          },
+          {
+            "ID": "124655",
+            "VoteTotal": "1272"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+/* Voter education layout. Candidate styling does not encode party preference. */
+#house-races { scroll-margin-top: 90px; }
+.house-snapshot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: 24px 0; }
+.house-snapshot { display: flex; flex-direction: column; min-width: 0; padding: 24px; border: 1px solid #cfdae6; border-radius: 14px; background: #fff; }
+.house-snapshot h3 { margin: 0 0 8px; color: #172c47; font-size: 25px; }
+.house-count { margin: 0 0 16px; color: #52667c; font-size: 14px; }
+.house-candidates { list-style: none; padding: 0; margin: 0 0 20px; }
+.house-candidates li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 11px 0; border-bottom: 1px solid #e1e7ef; break-inside: avoid; }
+.house-candidates strong { color: #172c47; font-size: 16px; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
+.house-party { color: #52667c; font-size: 14px; line-height: 1.45; flex: 0 0 auto; }
+.house-source { margin: auto 0 0; font-size: 14px; line-height: 1.6; }
+.house-source a { color: #215790; }
+.house-wide { grid-column: 1 / -1; }
+.house-wide .house-candidates { columns: 2; column-gap: 32px; }
+.house-rules { background: #edf3f8; border-left: 4px solid #466984; padding: 17px 20px; margin: 22px 0; line-height: 1.6; }
+.house-rules p { margin: 0 0 10px; }
+.house-rules p:last-child { margin: 0; }
+.house-source-note { color: #52667c; font-size: 14px; line-height: 1.6; }
+#voting-plan-fallback { scroll-margin-top: 90px; }
+@media (max-width: 760px) {
+  .house-snapshot-grid { grid-template-columns: 1fr; gap: 16px; }
+  .house-snapshot { padding: 18px; }
+  .house-wide { grid-column: auto; }
+  .house-wide .house-candidates { columns: auto; }
+  .house-candidates li { gap: 10px; }
+  .house-candidates strong { font-size: 15px; }
+  .house-party { font-size: 13px; }
+}
+@media (max-width: 350px) {
+  .house-candidates li { flex-direction: column; gap: 2px; }
+}
+@media print {
+  .house-snapshot { break-inside: avoid; }
+  .house-snapshot-grid { display: block; }
+  .house-snapshot { margin-bottom: 16px; }
+}

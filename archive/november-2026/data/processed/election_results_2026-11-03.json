@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "election_date": "2026-11-03",
+  "retrieved_at_local": "2026-11-04T09:11:11.703682-06:00",
+  "timezone": "America/Chicago",
+  "source_url": "https://voterportal.sos.la.gov/graphical",
+  "source_status": "Unofficial Results",
+  "certified": false,
+  "source_update_timestamp": null,
+  "source_timestamp_note": "The source returns a 1900 placeholder timestamp. Actual retrieval time is shown; no source update time is invented.",
+  "turnout_note": "Rates are copied from the SOS Unofficial Turnout display. Contest votes are not a unique statewide voter count and are not summed across races. The monthly registration snapshot is not substituted for the SOS contest denominator.",
+  "percent_note": "SOS displays whole candidate percentages. Rounding may prevent their sum from equaling 100.",
+  "races": [
+    {
+      "id": "67997",
+      "district": null,
+      "label": "U.S. Senate",
+      "candidate_total": 1466069,
+      "sos_unofficial_turnout": "49.3%",
+      "precincts_reporting": 3722,
+      "precincts_expected": 3722,
+      "early_absentee_parishes_reporting": 64,
+      "early_absentee_parishes_expected": 64,
+      "sos_qualified_voters": 2975695,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": false,
+      "runoff_candidates": [],
+      "candidates": [
+        {
+          "id": "124654",
+          "name": "\"Jamie\" Davis",
+          "party": "DEM",
+          "votes": 720106,
+          "sos_percentage": "49%"
+        },
+        {
+          "id": "124655",
+          "name": "Julia Letlow",
+          "party": "REP",
+          "votes": 745963,
+          "sos_percentage": "51%"
+        }
+      ]
+    },
+    {
+      "id": "70195",
+      "district": 1,
+      "label": "House District 1",
+      "candidate_total": 263373,
+      "sos_unofficial_turnout": "51.1%",
+      "precincts_reporting": 522,
+      "precincts_expected": 522,
+      "early_absentee_parishes_reporting": 8,
+      "early_absentee_parishes_expected": 8,
+      "sos_qualified_voters": 514968,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": false,
+      "runoff_candidates": [],
+      "candidates": [
+        {
+          "id": "124838",
+          "name": "Randall Arrington",
+          "party": "REP",
+          "votes": 9776,
+          "sos_percentage": "4%"
+        },
+        {
+          "id": "128364",
+          "name": "E. \"Liddy\" Glass",
+          "party": "NOPTY",
+          "votes": 4279,
+          "sos_percentage": "2%"
+        },
+        {
+          "id": "124814",
+          "name": "Lauren Jewett",
+          "party": "DEM",
+          "votes": 89428,
+          "sos_percentage": "34%"
+        },
+        {
+          "id": "128488",
+          "name": "Steve Scalise",
+          "party": "REP",
+          "votes": 159890,
+          "sos_percentage": "61%"
+        }
+      ]
+    },
+    {
+      "id": "70196",
+      "district": 2,
+      "label": "House District 2",
+      "candidate_total": 240582,
+      "sos_unofficial_turnout": "48.1%",
+      "precincts_reporting": 613,
+      "precincts_expected": 613,
+      "early_absentee_parishes_reporting": 10,
+      "early_absentee_parishes_expected": 10,
+      "sos_qualified_voters": 500153,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": false,
+      "runoff_candidates": [],
+      "candidates": [
+        {
+          "id": "128128",
+          "name": "Lisa Ballay",
+          "party": "LBT",
+          "votes": 6405,
+          "sos_percentage": "3%"
+        },
+        {
+          "id": "126704",
+          "name": "Walter \"Rocky\" Beach",
+          "party": "NOPTY",
+          "votes": 2553,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "124710",
+          "name": "Troy A. Carter, Sr.",
+          "party": "DEM",
+          "votes": 192258,
+          "sos_percentage": "80%"
+        },
+        {
+          "id": "128470",
+          "name": "Renada \"Honey\" Collins",
+          "party": "NOPTY",
+          "votes": 2999,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "128392",
+          "name": "Peter Williams",
+          "party": "REP",
+          "votes": 36367,
+          "sos_percentage": "15%"
+        }
+      ]
+    },
+    {
+      "id": "70197",
+      "district": 3,
+      "label": "House District 3",
+      "candidate_total": 234994,
+      "sos_unofficial_turnout": "47.4%",
+      "precincts_reporting": 571,
+      "precincts_expected": 571,
+      "early_absentee_parishes_reporting": 11,
+      "early_absentee_parishes_expected": 11,
+      "sos_qualified_voters": 495376,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": false,
+      "runoff_candidates": [],
+      "candidates": [
+        {
+          "id": "128096",
+          "name": "\"Kate\" Cotten",
+          "party": "REP",
+          "votes": 15661,
+          "sos_percentage": "7%"
+        },
+        {
+          "id": "128098",
+          "name": "John Day",
+          "party": "DEM",
+          "votes": 49162,
+          "sos_percentage": "21%"
+        },
+        {
+          "id": "127456",
+          "name": "Priscilla Gonzalez",
+          "party": "DEM",
+          "votes": 16828,
+          "sos_percentage": "7%"
+        },
+        {
+          "id": "126289",
+          "name": "\"Clay\" Higgins",
+          "party": "REP",
+          "votes": 129203,
+          "sos_percentage": "55%"
+        },
+        {
+          "id": "128322",
+          "name": "Tia LeBrun",
+          "party": "NOPTY",
+          "votes": 4208,
+          "sos_percentage": "2%"
+        },
+        {
+          "id": "127825",
+          "name": "Caleb \"With a C\" Walker",
+          "party": "DEM",
+          "votes": 19932,
+          "sos_percentage": "8%"
+        }
+      ]
+    },
+    {
+      "id": "70198",
+      "district": 4,
+      "label": "House District 4",
+      "candidate_total": 230339,
+      "sos_unofficial_turnout": "47.8%",
+      "precincts_reporting": 684,
+      "precincts_expected": 684,
+      "early_absentee_parishes_reporting": 15,
+      "early_absentee_parishes_expected": 15,
+      "sos_qualified_voters": 482120,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": false,
+      "runoff_candidates": [],
+      "candidates": [
+        {
+          "id": "124916",
+          "name": "Conrad Cable",
+          "party": "DEM",
+          "votes": 52893,
+          "sos_percentage": "23%"
+        },
+        {
+          "id": "128295",
+          "name": "\"Matt\" Gromlich",
+          "party": "DEM",
+          "votes": 32866,
+          "sos_percentage": "14%"
+        },
+        {
+          "id": "128648",
+          "name": "Gordon Heslop",
+          "party": "REP",
+          "votes": 2571,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "125565",
+          "name": "\"Mike\" Johnson",
+          "party": "REP",
+          "votes": 134739,
+          "sos_percentage": "58%"
+        },
+        {
+          "id": "126511",
+          "name": "\"Mike\" Nichols",
+          "party": "REP",
+          "votes": 7270,
+          "sos_percentage": "3%"
+        }
+      ]
+    },
+    {
+      "id": "70199",
+      "district": 5,
+      "label": "House District 5",
+      "candidate_total": 227917,
+      "sos_unofficial_turnout": "47.1%",
+      "precincts_reporting": 791,
+      "precincts_expected": 791,
+      "early_absentee_parishes_reporting": 24,
+      "early_absentee_parishes_expected": 24,
+      "sos_qualified_voters": 483703,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": true,
+      "runoff_candidates": [
+        "128703",
+        "125503"
+      ],
+      "candidates": [
+        {
+          "id": "125294",
+          "name": "Stewart Cathey, Jr.",
+          "party": "REP",
+          "votes": 28160,
+          "sos_percentage": "12%"
+        },
+        {
+          "id": "127858",
+          "name": "Misti Cordell",
+          "party": "REP",
+          "votes": 33366,
+          "sos_percentage": "15%"
+        },
+        {
+          "id": "127807",
+          "name": "Oscar \"Omar\" Dantzler",
+          "party": "REP",
+          "votes": 2238,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "124686",
+          "name": "Michael Echols",
+          "party": "REP",
+          "votes": 32902,
+          "sos_percentage": "14%"
+        },
+        {
+          "id": "125503",
+          "name": "\"Gabe\" Firment",
+          "party": "REP",
+          "votes": 39131,
+          "sos_percentage": "17%"
+        },
+        {
+          "id": "126355",
+          "name": "Austin Magee",
+          "party": "REP",
+          "votes": 7920,
+          "sos_percentage": "3%"
+        },
+        {
+          "id": "125791",
+          "name": "Dan McKay",
+          "party": "DEM",
+          "votes": 16047,
+          "sos_percentage": "7%"
+        },
+        {
+          "id": "128703",
+          "name": "Patricia \"Pat\" Moore",
+          "party": "DEM",
+          "votes": 40789,
+          "sos_percentage": "18%"
+        },
+        {
+          "id": "128161",
+          "name": "Antonio Wilson",
+          "party": "DEM",
+          "votes": 27364,
+          "sos_percentage": "12%"
+        }
+      ]
+    },
+    {
+      "id": "70200",
+      "district": 6,
+      "label": "House District 6",
+      "candidate_total": 261951,
+      "sos_unofficial_turnout": "52.5%",
+      "precincts_reporting": 541,
+      "precincts_expected": 541,
+      "early_absentee_parishes_reporting": 11,
+      "early_absentee_parishes_expected": 11,
+      "sos_qualified_voters": 499375,
+      "complete_reporting": true,
+      "status": "unofficial",
+      "runoff_based_on_complete_unofficial_returns": true,
+      "runoff_candidates": [
+        "128694",
+        "128372"
+      ],
+      "candidates": [
+        {
+          "id": "124670",
+          "name": "Monique Appeaning",
+          "party": "REP",
+          "votes": 8109,
+          "sos_percentage": "3%"
+        },
+        {
+          "id": "128694",
+          "name": "Chauna Banks",
+          "party": "DEM",
+          "votes": 50878,
+          "sos_percentage": "19%"
+        },
+        {
+          "id": "128130",
+          "name": "Rufus Craig",
+          "party": "LBT",
+          "votes": 3461,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "125575",
+          "name": "Larry Davis III",
+          "party": "REP",
+          "votes": 11356,
+          "sos_percentage": "4%"
+        },
+        {
+          "id": "124767",
+          "name": "\"Rick\" Edmonds",
+          "party": "REP",
+          "votes": 49241,
+          "sos_percentage": "19%"
+        },
+        {
+          "id": "127150",
+          "name": "Patrick \"Pat\" Forbes",
+          "party": "DEM",
+          "votes": 23820,
+          "sos_percentage": "9%"
+        },
+        {
+          "id": "127227",
+          "name": "Lindsay \"Rubia\" Garcia",
+          "party": "DEM",
+          "votes": 33544,
+          "sos_percentage": "13%"
+        },
+        {
+          "id": "126243",
+          "name": "Michael Mebruer",
+          "party": "REP",
+          "votes": 3160,
+          "sos_percentage": "1%"
+        },
+        {
+          "id": "128372",
+          "name": "Blake Miguez",
+          "party": "REP",
+          "votes": 50213,
+          "sos_percentage": "19%"
+        },
+        {
+          "id": "128407",
+          "name": "Stephen Wagley",
+          "party": "REP",
+          "votes": 28169,
+          "sos_percentage": "11%"
+        }
+      ]
+    }
+  ],
+  "runoff_election": {
+    "date": "2026-12-12",
+    "polls_open": "07:00",
+    "polls_close": "20:00",
+    "timezone": "America/Chicago",
+    "early_start": "2026-11-28",
+    "early_end": "2026-12-05",
+    "early_excluded": [
+      "2026-11-29"
+    ],
+    "early_hours": "8:30 a.m. to 6 p.m.",
+    "registration_mail_inperson": "2026-11-12",
+    "registration_online": "2026-11-21",
+    "ordinary_absentee_request": "2026-12-08T16:30:00-06:00",
+    "ordinary_absentee_receipt": "2026-12-11T16:30:00-06:00",
+    "calendar_source": "https://www.sos.la.gov/elections-voting/election-dates",
+    "rules_source": "https://www.sos.la.gov/elections-voting/how-candidates-are-elected",
+    "reviewed": "2026-11-04"
+  },
+  "audited_postelection_statistics": {
+    "available_at_review": false,
+    "scope": "The official statewide and parish 2026 indexes did not list November 3 at the recorded retrieval time."
+  }
+}

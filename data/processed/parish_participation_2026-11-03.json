@@ -1,0 +1,1913 @@
+{
+  "schema_version": 1,
+  "release": "20261104-parish1",
+  "election_date": "2026-11-03",
+  "results_source": {
+    "url": "https://voterportal.sos.la.gov/graphical",
+    "payload_url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/VotesRaceByParish/Votes_67997.htm",
+    "retrieved_at_local": "2026-11-04T20:28:26.133294-06:00",
+    "retrieved_label": "November 4, 2026 at 8:28 p.m. Central",
+    "status": "Unofficial",
+    "source_update_timestamp": null,
+    "method": "Identical to the SOS one seat unofficial turnout calculation: reported contest votes divided by qualified voters, rounded to one decimal place. Not audited all voter participation."
+  },
+  "early_source": {
+    "url": "https://electionstatistics.sos.la.gov/default.aspx?Stats=Early_Voting_Statistics&Type=Parish",
+    "printed_at_local": "2026-11-04T03:10:08-06:00",
+    "printed_label": "November 4, 2026 at 3:10:08 a.m. Central",
+    "status": "Verified workbook snapshot",
+    "coverage": "Early and absentee only"
+  },
+  "availability": {
+    "full_election_demographics": false,
+    "audited_participation_available": false,
+    "explanation": "SOS PostElectionStatsAvailable is 0. All_Voted and demographic voted fields are unpopulated zero placeholders, not evidence of zero participation. November 3 audited parish and statewide files are not listed."
+  },
+  "statewide": {
+    "name": "Louisiana statewide",
+    "parish_code": "state",
+    "geoid": null,
+    "results": {
+      "votes": 1466069,
+      "qualified": 2975695,
+      "turnout_pct": 49.3,
+      "precincts_reporting": 3722,
+      "precincts_expected": 3722,
+      "complete_early_absentee": true,
+      "complete_reporting": true
+    },
+    "early": {
+      "total": 536185,
+      "in_person": 448587,
+      "absentee": 87598,
+      "race": {
+        "white": 328587,
+        "black": 184346,
+        "other": 23252
+      },
+      "sex": {
+        "male": 224371,
+        "female": 311536,
+        "unallocated": 278
+      }
+    }
+  },
+  "parishes": [
+    {
+      "name": "Acadia Parish",
+      "parish_code": "01",
+      "geoid": "22001",
+      "results": {
+        "votes": 18050,
+        "qualified": 37805,
+        "turnout_pct": 47.7,
+        "precincts_reporting": 47,
+        "precincts_expected": 47,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4995,
+        "in_person": 4287,
+        "absentee": 708,
+        "race": {
+          "white": 4076,
+          "black": 830,
+          "other": 89
+        },
+        "sex": {
+          "male": 2294,
+          "female": 2700,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Allen Parish",
+      "parish_code": "02",
+      "geoid": "22003",
+      "results": {
+        "votes": 6537,
+        "qualified": 12381,
+        "turnout_pct": 52.8,
+        "precincts_reporting": 18,
+        "precincts_expected": 18,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2021,
+        "in_person": 1759,
+        "absentee": 262,
+        "race": {
+          "white": 1582,
+          "black": 376,
+          "other": 63
+        },
+        "sex": {
+          "male": 895,
+          "female": 1125,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Ascension Parish",
+      "parish_code": "03",
+      "geoid": "22005",
+      "results": {
+        "votes": 42945,
+        "qualified": 84772,
+        "turnout_pct": 50.7,
+        "precincts_reporting": 72,
+        "precincts_expected": 72,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 17799,
+        "in_person": 16069,
+        "absentee": 1730,
+        "race": {
+          "white": 11284,
+          "black": 5728,
+          "other": 787
+        },
+        "sex": {
+          "male": 7733,
+          "female": 10062,
+          "unallocated": 4
+        }
+      }
+    },
+    {
+      "name": "Assumption Parish",
+      "parish_code": "04",
+      "geoid": "22007",
+      "results": {
+        "votes": 7075,
+        "qualified": 13939,
+        "turnout_pct": 50.8,
+        "precincts_reporting": 28,
+        "precincts_expected": 28,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2125,
+        "in_person": 1802,
+        "absentee": 323,
+        "race": {
+          "white": 1146,
+          "black": 964,
+          "other": 15
+        },
+        "sex": {
+          "male": 879,
+          "female": 1245,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Avoyelles Parish",
+      "parish_code": "05",
+      "geoid": "22009",
+      "results": {
+        "votes": 12247,
+        "qualified": 23014,
+        "turnout_pct": 53.2,
+        "precincts_reporting": 41,
+        "precincts_expected": 41,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3856,
+        "in_person": 3220,
+        "absentee": 636,
+        "race": {
+          "white": 2834,
+          "black": 923,
+          "other": 99
+        },
+        "sex": {
+          "male": 1696,
+          "female": 2158,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Beauregard Parish",
+      "parish_code": "06",
+      "geoid": "22011",
+      "results": {
+        "votes": 10246,
+        "qualified": 23449,
+        "turnout_pct": 43.7,
+        "precincts_reporting": 37,
+        "precincts_expected": 37,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3437,
+        "in_person": 2868,
+        "absentee": 569,
+        "race": {
+          "white": 2674,
+          "black": 582,
+          "other": 181
+        },
+        "sex": {
+          "male": 1596,
+          "female": 1840,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Bienville Parish",
+      "parish_code": "07",
+      "geoid": "22013",
+      "results": {
+        "votes": 4990,
+        "qualified": 8754,
+        "turnout_pct": 57.0,
+        "precincts_reporting": 33,
+        "precincts_expected": 33,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1859,
+        "in_person": 1437,
+        "absentee": 422,
+        "race": {
+          "white": 656,
+          "black": 1182,
+          "other": 21
+        },
+        "sex": {
+          "male": 720,
+          "female": 1138,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Bossier Parish",
+      "parish_code": "08",
+      "geoid": "22015",
+      "results": {
+        "votes": 35805,
+        "qualified": 76662,
+        "turnout_pct": 46.7,
+        "precincts_reporting": 85,
+        "precincts_expected": 85,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 14335,
+        "in_person": 11377,
+        "absentee": 2958,
+        "race": {
+          "white": 10594,
+          "black": 3061,
+          "other": 680
+        },
+        "sex": {
+          "male": 6308,
+          "female": 8025,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Caddo Parish",
+      "parish_code": "09",
+      "geoid": "22017",
+      "results": {
+        "votes": 71509,
+        "qualified": 151879,
+        "turnout_pct": 47.1,
+        "precincts_reporting": 128,
+        "precincts_expected": 128,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 25598,
+        "in_person": 18558,
+        "absentee": 7040,
+        "race": {
+          "white": 12590,
+          "black": 12154,
+          "other": 854
+        },
+        "sex": {
+          "male": 9917,
+          "female": 15674,
+          "unallocated": 7
+        }
+      }
+    },
+    {
+      "name": "Calcasieu Parish",
+      "parish_code": "10",
+      "geoid": "22019",
+      "results": {
+        "votes": 55921,
+        "qualified": 123921,
+        "turnout_pct": 45.1,
+        "precincts_reporting": 123,
+        "precincts_expected": 123,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 19398,
+        "in_person": 16295,
+        "absentee": 3103,
+        "race": {
+          "white": 13830,
+          "black": 4945,
+          "other": 623
+        },
+        "sex": {
+          "male": 8399,
+          "female": 10998,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Caldwell Parish",
+      "parish_code": "11",
+      "geoid": "22021",
+      "results": {
+        "votes": 3139,
+        "qualified": 5905,
+        "turnout_pct": 53.2,
+        "precincts_reporting": 19,
+        "precincts_expected": 19,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1289,
+        "in_person": 1095,
+        "absentee": 194,
+        "race": {
+          "white": 1131,
+          "black": 150,
+          "other": 8
+        },
+        "sex": {
+          "male": 592,
+          "female": 697,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Cameron Parish",
+      "parish_code": "12",
+      "geoid": "22023",
+      "results": {
+        "votes": 1957,
+        "qualified": 4306,
+        "turnout_pct": 45.4,
+        "precincts_reporting": 11,
+        "precincts_expected": 11,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 664,
+        "in_person": 544,
+        "absentee": 120,
+        "race": {
+          "white": 651,
+          "black": 3,
+          "other": 10
+        },
+        "sex": {
+          "male": 314,
+          "female": 350,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Catahoula Parish",
+      "parish_code": "13",
+      "geoid": "22025",
+      "results": {
+        "votes": 3165,
+        "qualified": 6095,
+        "turnout_pct": 51.9,
+        "precincts_reporting": 28,
+        "precincts_expected": 28,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1100,
+        "in_person": 769,
+        "absentee": 331,
+        "race": {
+          "white": 694,
+          "black": 399,
+          "other": 7
+        },
+        "sex": {
+          "male": 493,
+          "female": 607,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Claiborne Parish",
+      "parish_code": "14",
+      "geoid": "22027",
+      "results": {
+        "votes": 4712,
+        "qualified": 8334,
+        "turnout_pct": 56.5,
+        "precincts_reporting": 25,
+        "precincts_expected": 25,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2484,
+        "in_person": 2201,
+        "absentee": 283,
+        "race": {
+          "white": 1431,
+          "black": 1024,
+          "other": 29
+        },
+        "sex": {
+          "male": 1019,
+          "female": 1465,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Concordia Parish",
+      "parish_code": "15",
+      "geoid": "22029",
+      "results": {
+        "votes": 5755,
+        "qualified": 12042,
+        "turnout_pct": 47.8,
+        "precincts_reporting": 17,
+        "precincts_expected": 17,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2069,
+        "in_person": 1791,
+        "absentee": 278,
+        "race": {
+          "white": 1192,
+          "black": 855,
+          "other": 22
+        },
+        "sex": {
+          "male": 855,
+          "female": 1214,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "De Soto Parish",
+      "parish_code": "16",
+      "geoid": "22031",
+      "results": {
+        "votes": 9916,
+        "qualified": 19756,
+        "turnout_pct": 50.2,
+        "precincts_reporting": 26,
+        "precincts_expected": 26,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4693,
+        "in_person": 4095,
+        "absentee": 598,
+        "race": {
+          "white": 2687,
+          "black": 1903,
+          "other": 103
+        },
+        "sex": {
+          "male": 1924,
+          "female": 2767,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "East Baton Rouge Parish",
+      "parish_code": "17",
+      "geoid": "22033",
+      "results": {
+        "votes": 152163,
+        "qualified": 288374,
+        "turnout_pct": 52.8,
+        "precincts_reporting": 329,
+        "precincts_expected": 329,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 55853,
+        "in_person": 46115,
+        "absentee": 9738,
+        "race": {
+          "white": 27537,
+          "black": 25864,
+          "other": 2452
+        },
+        "sex": {
+          "male": 22252,
+          "female": 33522,
+          "unallocated": 79
+        }
+      }
+    },
+    {
+      "name": "East Carroll Parish",
+      "parish_code": "18",
+      "geoid": "22035",
+      "results": {
+        "votes": 2084,
+        "qualified": 4650,
+        "turnout_pct": 44.8,
+        "precincts_reporting": 17,
+        "precincts_expected": 17,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1048,
+        "in_person": 892,
+        "absentee": 156,
+        "race": {
+          "white": 446,
+          "black": 594,
+          "other": 8
+        },
+        "sex": {
+          "male": 426,
+          "female": 622,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "East Feliciana Parish",
+      "parish_code": "19",
+      "geoid": "22037",
+      "results": {
+        "votes": 7385,
+        "qualified": 13483,
+        "turnout_pct": 54.8,
+        "precincts_reporting": 23,
+        "precincts_expected": 23,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3055,
+        "in_person": 2565,
+        "absentee": 490,
+        "race": {
+          "white": 1692,
+          "black": 1268,
+          "other": 95
+        },
+        "sex": {
+          "male": 1342,
+          "female": 1711,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Evangeline Parish",
+      "parish_code": "20",
+      "geoid": "22039",
+      "results": {
+        "votes": 10298,
+        "qualified": 20727,
+        "turnout_pct": 49.7,
+        "precincts_reporting": 55,
+        "precincts_expected": 55,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3160,
+        "in_person": 2535,
+        "absentee": 625,
+        "race": {
+          "white": 1632,
+          "black": 1486,
+          "other": 42
+        },
+        "sex": {
+          "male": 1437,
+          "female": 1723,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Franklin Parish",
+      "parish_code": "21",
+      "geoid": "22041",
+      "results": {
+        "votes": 5771,
+        "qualified": 13188,
+        "turnout_pct": 43.8,
+        "precincts_reporting": 23,
+        "precincts_expected": 23,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2200,
+        "in_person": 1915,
+        "absentee": 285,
+        "race": {
+          "white": 1604,
+          "black": 583,
+          "other": 13
+        },
+        "sex": {
+          "male": 969,
+          "female": 1231,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Grant Parish",
+      "parish_code": "22",
+      "geoid": "22043",
+      "results": {
+        "votes": 6418,
+        "qualified": 12903,
+        "turnout_pct": 49.7,
+        "precincts_reporting": 31,
+        "precincts_expected": 31,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1694,
+        "in_person": 1291,
+        "absentee": 403,
+        "race": {
+          "white": 1459,
+          "black": 209,
+          "other": 26
+        },
+        "sex": {
+          "male": 793,
+          "female": 901,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Iberia Parish",
+      "parish_code": "23",
+      "geoid": "22045",
+      "results": {
+        "votes": 19322,
+        "qualified": 43205,
+        "turnout_pct": 44.7,
+        "precincts_reporting": 55,
+        "precincts_expected": 55,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 6171,
+        "in_person": 4908,
+        "absentee": 1263,
+        "race": {
+          "white": 3917,
+          "black": 2117,
+          "other": 137
+        },
+        "sex": {
+          "male": 2662,
+          "female": 3509,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Iberville Parish",
+      "parish_code": "24",
+      "geoid": "22047",
+      "results": {
+        "votes": 12140,
+        "qualified": 20239,
+        "turnout_pct": 60.0,
+        "precincts_reporting": 31,
+        "precincts_expected": 31,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4077,
+        "in_person": 3342,
+        "absentee": 735,
+        "race": {
+          "white": 2080,
+          "black": 1924,
+          "other": 73
+        },
+        "sex": {
+          "male": 1696,
+          "female": 2380,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Jackson Parish",
+      "parish_code": "25",
+      "geoid": "22049",
+      "results": {
+        "votes": 5588,
+        "qualified": 9684,
+        "turnout_pct": 57.7,
+        "precincts_reporting": 31,
+        "precincts_expected": 31,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2364,
+        "in_person": 1994,
+        "absentee": 370,
+        "race": {
+          "white": 1510,
+          "black": 811,
+          "other": 43
+        },
+        "sex": {
+          "male": 987,
+          "female": 1377,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Jefferson Parish",
+      "parish_code": "26",
+      "geoid": "22051",
+      "results": {
+        "votes": 130861,
+        "qualified": 267833,
+        "turnout_pct": 48.9,
+        "precincts_reporting": 268,
+        "precincts_expected": 268,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 45373,
+        "in_person": 37394,
+        "absentee": 7979,
+        "race": {
+          "white": 25566,
+          "black": 15375,
+          "other": 4432
+        },
+        "sex": {
+          "male": 18143,
+          "female": 27201,
+          "unallocated": 29
+        }
+      }
+    },
+    {
+      "name": "Jefferson Davis Parish",
+      "parish_code": "27",
+      "geoid": "22053",
+      "results": {
+        "votes": 10362,
+        "qualified": 20772,
+        "turnout_pct": 49.9,
+        "precincts_reporting": 26,
+        "precincts_expected": 26,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4686,
+        "in_person": 4104,
+        "absentee": 582,
+        "race": {
+          "white": 3959,
+          "black": 664,
+          "other": 63
+        },
+        "sex": {
+          "male": 2020,
+          "female": 2666,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Lafayette Parish",
+      "parish_code": "28",
+      "geoid": "22055",
+      "results": {
+        "votes": 79454,
+        "qualified": 162550,
+        "turnout_pct": 48.9,
+        "precincts_reporting": 131,
+        "precincts_expected": 131,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 27753,
+        "in_person": 22975,
+        "absentee": 4778,
+        "race": {
+          "white": 20014,
+          "black": 6534,
+          "other": 1205
+        },
+        "sex": {
+          "male": 12049,
+          "female": 15687,
+          "unallocated": 17
+        }
+      }
+    },
+    {
+      "name": "Lafourche Parish",
+      "parish_code": "29",
+      "geoid": "22057",
+      "results": {
+        "votes": 28534,
+        "qualified": 57829,
+        "turnout_pct": 49.3,
+        "precincts_reporting": 72,
+        "precincts_expected": 72,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 9188,
+        "in_person": 8179,
+        "absentee": 1009,
+        "race": {
+          "white": 7896,
+          "black": 1031,
+          "other": 261
+        },
+        "sex": {
+          "male": 4118,
+          "female": 5068,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "LaSalle Parish",
+      "parish_code": "30",
+      "geoid": "22059",
+      "results": {
+        "votes": 4395,
+        "qualified": 8564,
+        "turnout_pct": 51.3,
+        "precincts_reporting": 21,
+        "precincts_expected": 21,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1590,
+        "in_person": 1401,
+        "absentee": 189,
+        "race": {
+          "white": 1464,
+          "black": 105,
+          "other": 21
+        },
+        "sex": {
+          "male": 713,
+          "female": 877,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Lincoln Parish",
+      "parish_code": "31",
+      "geoid": "22061",
+      "results": {
+        "votes": 13739,
+        "qualified": 27560,
+        "turnout_pct": 49.9,
+        "precincts_reporting": 50,
+        "precincts_expected": 50,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 5418,
+        "in_person": 4445,
+        "absentee": 973,
+        "race": {
+          "white": 3375,
+          "black": 1897,
+          "other": 146
+        },
+        "sex": {
+          "male": 2202,
+          "female": 3215,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Livingston Parish",
+      "parish_code": "32",
+      "geoid": "22063",
+      "results": {
+        "votes": 43528,
+        "qualified": 87966,
+        "turnout_pct": 49.5,
+        "precincts_reporting": 80,
+        "precincts_expected": 80,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 15265,
+        "in_person": 13367,
+        "absentee": 1898,
+        "race": {
+          "white": 13201,
+          "black": 1545,
+          "other": 519
+        },
+        "sex": {
+          "male": 6730,
+          "female": 8534,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Madison Parish",
+      "parish_code": "33",
+      "geoid": "22065",
+      "results": {
+        "votes": 3050,
+        "qualified": 7207,
+        "turnout_pct": 42.3,
+        "precincts_reporting": 26,
+        "precincts_expected": 26,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1277,
+        "in_person": 987,
+        "absentee": 290,
+        "race": {
+          "white": 472,
+          "black": 797,
+          "other": 8
+        },
+        "sex": {
+          "male": 490,
+          "female": 787,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Morehouse Parish",
+      "parish_code": "34",
+      "geoid": "22067",
+      "results": {
+        "votes": 6982,
+        "qualified": 16683,
+        "turnout_pct": 41.9,
+        "precincts_reporting": 30,
+        "precincts_expected": 30,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3878,
+        "in_person": 3218,
+        "absentee": 660,
+        "race": {
+          "white": 1995,
+          "black": 1838,
+          "other": 45
+        },
+        "sex": {
+          "male": 1557,
+          "female": 2321,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Natchitoches Parish",
+      "parish_code": "35",
+      "geoid": "22069",
+      "results": {
+        "votes": 11234,
+        "qualified": 22947,
+        "turnout_pct": 49.0,
+        "precincts_reporting": 50,
+        "precincts_expected": 50,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4312,
+        "in_person": 3591,
+        "absentee": 721,
+        "race": {
+          "white": 2335,
+          "black": 1802,
+          "other": 175
+        },
+        "sex": {
+          "male": 1790,
+          "female": 2522,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Orleans Parish",
+      "parish_code": "36",
+      "geoid": "22071",
+      "results": {
+        "votes": 131987,
+        "qualified": 266064,
+        "turnout_pct": 49.6,
+        "precincts_reporting": 349,
+        "precincts_expected": 349,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 49250,
+        "in_person": 42705,
+        "absentee": 6545,
+        "race": {
+          "white": 16373,
+          "black": 29658,
+          "other": 3219
+        },
+        "sex": {
+          "male": 18893,
+          "female": 30277,
+          "unallocated": 80
+        }
+      }
+    },
+    {
+      "name": "Ouachita Parish",
+      "parish_code": "37",
+      "geoid": "22073",
+      "results": {
+        "votes": 46242,
+        "qualified": 102172,
+        "turnout_pct": 45.3,
+        "precincts_reporting": 85,
+        "precincts_expected": 85,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 17842,
+        "in_person": 14788,
+        "absentee": 3054,
+        "race": {
+          "white": 10627,
+          "black": 6776,
+          "other": 439
+        },
+        "sex": {
+          "male": 7087,
+          "female": 10754,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Plaquemines Parish",
+      "parish_code": "38",
+      "geoid": "22075",
+      "results": {
+        "votes": 7801,
+        "qualified": 14075,
+        "turnout_pct": 55.4,
+        "precincts_reporting": 17,
+        "precincts_expected": 17,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4154,
+        "in_person": 3935,
+        "absentee": 219,
+        "race": {
+          "white": 2896,
+          "black": 944,
+          "other": 314
+        },
+        "sex": {
+          "male": 1893,
+          "female": 2259,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Pointe Coupee Parish",
+      "parish_code": "39",
+      "geoid": "22077",
+      "results": {
+        "votes": 8347,
+        "qualified": 14613,
+        "turnout_pct": 57.1,
+        "precincts_reporting": 24,
+        "precincts_expected": 24,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2951,
+        "in_person": 2413,
+        "absentee": 538,
+        "race": {
+          "white": 1568,
+          "black": 1351,
+          "other": 32
+        },
+        "sex": {
+          "male": 1246,
+          "female": 1705,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Rapides Parish",
+      "parish_code": "40",
+      "geoid": "22079",
+      "results": {
+        "votes": 37494,
+        "qualified": 80552,
+        "turnout_pct": 46.5,
+        "precincts_reporting": 113,
+        "precincts_expected": 113,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 12566,
+        "in_person": 9883,
+        "absentee": 2683,
+        "race": {
+          "white": 8178,
+          "black": 3988,
+          "other": 400
+        },
+        "sex": {
+          "male": 5379,
+          "female": 7185,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Red River Parish",
+      "parish_code": "41",
+      "geoid": "22081",
+      "results": {
+        "votes": 2566,
+        "qualified": 5448,
+        "turnout_pct": 47.1,
+        "precincts_reporting": 18,
+        "precincts_expected": 18,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1152,
+        "in_person": 967,
+        "absentee": 185,
+        "race": {
+          "white": 496,
+          "black": 647,
+          "other": 9
+        },
+        "sex": {
+          "male": 432,
+          "female": 719,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Richland Parish",
+      "parish_code": "42",
+      "geoid": "22083",
+      "results": {
+        "votes": 6137,
+        "qualified": 13694,
+        "turnout_pct": 44.8,
+        "precincts_reporting": 23,
+        "precincts_expected": 23,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2223,
+        "in_person": 1909,
+        "absentee": 314,
+        "race": {
+          "white": 1396,
+          "black": 813,
+          "other": 14
+        },
+        "sex": {
+          "male": 946,
+          "female": 1277,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Sabine Parish",
+      "parish_code": "43",
+      "geoid": "22085",
+      "results": {
+        "votes": 7776,
+        "qualified": 13666,
+        "turnout_pct": 56.9,
+        "precincts_reporting": 27,
+        "precincts_expected": 27,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2766,
+        "in_person": 2337,
+        "absentee": 429,
+        "race": {
+          "white": 2203,
+          "black": 261,
+          "other": 302
+        },
+        "sex": {
+          "male": 1250,
+          "female": 1514,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "St. Bernard Parish",
+      "parish_code": "44",
+      "geoid": "22087",
+      "results": {
+        "votes": 11508,
+        "qualified": 27270,
+        "turnout_pct": 42.2,
+        "precincts_reporting": 31,
+        "precincts_expected": 31,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4180,
+        "in_person": 3869,
+        "absentee": 311,
+        "race": {
+          "white": 2647,
+          "black": 1247,
+          "other": 286
+        },
+        "sex": {
+          "male": 1752,
+          "female": 2426,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "St. Charles Parish",
+      "parish_code": "45",
+      "geoid": "22089",
+      "results": {
+        "votes": 18661,
+        "qualified": 35470,
+        "turnout_pct": 52.6,
+        "precincts_reporting": 42,
+        "precincts_expected": 42,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 6017,
+        "in_person": 5208,
+        "absentee": 809,
+        "race": {
+          "white": 3884,
+          "black": 1870,
+          "other": 263
+        },
+        "sex": {
+          "male": 2586,
+          "female": 3429,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "St. Helena Parish",
+      "parish_code": "46",
+      "geoid": "22091",
+      "results": {
+        "votes": 4564,
+        "qualified": 8558,
+        "turnout_pct": 53.3,
+        "precincts_reporting": 11,
+        "precincts_expected": 11,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1610,
+        "in_person": 1289,
+        "absentee": 321,
+        "race": {
+          "white": 627,
+          "black": 975,
+          "other": 8
+        },
+        "sex": {
+          "male": 684,
+          "female": 926,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "St. James Parish",
+      "parish_code": "47",
+      "geoid": "22093",
+      "results": {
+        "votes": 9286,
+        "qualified": 14906,
+        "turnout_pct": 62.3,
+        "precincts_reporting": 20,
+        "precincts_expected": 20,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3705,
+        "in_person": 3201,
+        "absentee": 504,
+        "race": {
+          "white": 1709,
+          "black": 1965,
+          "other": 31
+        },
+        "sex": {
+          "male": 1521,
+          "female": 2184,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "St. John The Baptist Parish",
+      "parish_code": "48",
+      "geoid": "22095",
+      "results": {
+        "votes": 14206,
+        "qualified": 28437,
+        "turnout_pct": 50.0,
+        "precincts_reporting": 36,
+        "precincts_expected": 36,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 6234,
+        "in_person": 5473,
+        "absentee": 761,
+        "race": {
+          "white": 1656,
+          "black": 4325,
+          "other": 253
+        },
+        "sex": {
+          "male": 2443,
+          "female": 3789,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "St. Landry Parish",
+      "parish_code": "49",
+      "geoid": "22097",
+      "results": {
+        "votes": 26435,
+        "qualified": 55280,
+        "turnout_pct": 47.8,
+        "precincts_reporting": 91,
+        "precincts_expected": 91,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 7866,
+        "in_person": 6191,
+        "absentee": 1675,
+        "race": {
+          "white": 3514,
+          "black": 4216,
+          "other": 136
+        },
+        "sex": {
+          "male": 3196,
+          "female": 4668,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "St. Martin Parish",
+      "parish_code": "50",
+      "geoid": "22099",
+      "results": {
+        "votes": 17081,
+        "qualified": 35331,
+        "turnout_pct": 48.3,
+        "precincts_reporting": 43,
+        "precincts_expected": 43,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 7213,
+        "in_person": 6316,
+        "absentee": 897,
+        "race": {
+          "white": 5263,
+          "black": 1850,
+          "other": 100
+        },
+        "sex": {
+          "male": 3272,
+          "female": 3941,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "St. Mary Parish",
+      "parish_code": "51",
+      "geoid": "22101",
+      "results": {
+        "votes": 14875,
+        "qualified": 30354,
+        "turnout_pct": 49.0,
+        "precincts_reporting": 46,
+        "precincts_expected": 46,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 5012,
+        "in_person": 4304,
+        "absentee": 708,
+        "race": {
+          "white": 3145,
+          "black": 1746,
+          "other": 121
+        },
+        "sex": {
+          "male": 2085,
+          "female": 2927,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "St. Tammany Parish",
+      "parish_code": "52",
+      "geoid": "22103",
+      "results": {
+        "votes": 101613,
+        "qualified": 196163,
+        "turnout_pct": 51.8,
+        "precincts_reporting": 171,
+        "precincts_expected": 171,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 42101,
+        "in_person": 35415,
+        "absentee": 6686,
+        "race": {
+          "white": 33567,
+          "black": 6084,
+          "other": 2450
+        },
+        "sex": {
+          "male": 18614,
+          "female": 23475,
+          "unallocated": 12
+        }
+      }
+    },
+    {
+      "name": "Tangipahoa Parish",
+      "parish_code": "53",
+      "geoid": "22105",
+      "results": {
+        "votes": 39531,
+        "qualified": 80467,
+        "turnout_pct": 49.1,
+        "precincts_reporting": 73,
+        "precincts_expected": 73,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 13458,
+        "in_person": 11033,
+        "absentee": 2425,
+        "race": {
+          "white": 9471,
+          "black": 3573,
+          "other": 414
+        },
+        "sex": {
+          "male": 5674,
+          "female": 7779,
+          "unallocated": 5
+        }
+      }
+    },
+    {
+      "name": "Tensas Parish",
+      "parish_code": "54",
+      "geoid": "22107",
+      "results": {
+        "votes": 1807,
+        "qualified": 3131,
+        "turnout_pct": 57.7,
+        "precincts_reporting": 10,
+        "precincts_expected": 10,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 916,
+        "in_person": 632,
+        "absentee": 284,
+        "race": {
+          "white": 408,
+          "black": 503,
+          "other": 5
+        },
+        "sex": {
+          "male": 390,
+          "female": 526,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Terrebonne Parish",
+      "parish_code": "55",
+      "geoid": "22109",
+      "results": {
+        "votes": 28417,
+        "qualified": 59774,
+        "turnout_pct": 47.5,
+        "precincts_reporting": 64,
+        "precincts_expected": 64,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 8835,
+        "in_person": 7460,
+        "absentee": 1375,
+        "race": {
+          "white": 6723,
+          "black": 1709,
+          "other": 403
+        },
+        "sex": {
+          "male": 3939,
+          "female": 4895,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Union Parish",
+      "parish_code": "56",
+      "geoid": "22111",
+      "results": {
+        "votes": 7444,
+        "qualified": 15267,
+        "turnout_pct": 48.8,
+        "precincts_reporting": 29,
+        "precincts_expected": 29,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2528,
+        "in_person": 2222,
+        "absentee": 306,
+        "race": {
+          "white": 1915,
+          "black": 554,
+          "other": 59
+        },
+        "sex": {
+          "male": 1162,
+          "female": 1365,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Vermilion Parish",
+      "parish_code": "57",
+      "geoid": "22113",
+      "results": {
+        "votes": 17365,
+        "qualified": 38099,
+        "turnout_pct": 45.6,
+        "precincts_reporting": 66,
+        "precincts_expected": 66,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4696,
+        "in_person": 3726,
+        "absentee": 970,
+        "race": {
+          "white": 3962,
+          "black": 623,
+          "other": 111
+        },
+        "sex": {
+          "male": 2136,
+          "female": 2559,
+          "unallocated": 1
+        }
+      }
+    },
+    {
+      "name": "Vernon Parish",
+      "parish_code": "58",
+      "geoid": "22115",
+      "results": {
+        "votes": 11022,
+        "qualified": 25779,
+        "turnout_pct": 42.8,
+        "precincts_reporting": 60,
+        "precincts_expected": 60,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 3937,
+        "in_person": 3467,
+        "absentee": 470,
+        "race": {
+          "white": 3014,
+          "black": 681,
+          "other": 242
+        },
+        "sex": {
+          "male": 1883,
+          "female": 2051,
+          "unallocated": 3
+        }
+      }
+    },
+    {
+      "name": "Washington Parish",
+      "parish_code": "59",
+      "geoid": "22117",
+      "results": {
+        "votes": 13044,
+        "qualified": 28336,
+        "turnout_pct": 46.0,
+        "precincts_reporting": 41,
+        "precincts_expected": 41,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4911,
+        "in_person": 4249,
+        "absentee": 662,
+        "race": {
+          "white": 2964,
+          "black": 1864,
+          "other": 83
+        },
+        "sex": {
+          "male": 2040,
+          "female": 2869,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "Webster Parish",
+      "parish_code": "60",
+      "geoid": "22119",
+      "results": {
+        "votes": 11859,
+        "qualified": 22538,
+        "turnout_pct": 52.6,
+        "precincts_reporting": 40,
+        "precincts_expected": 40,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4951,
+        "in_person": 4073,
+        "absentee": 878,
+        "race": {
+          "white": 3105,
+          "black": 1758,
+          "other": 88
+        },
+        "sex": {
+          "male": 2032,
+          "female": 2917,
+          "unallocated": 2
+        }
+      }
+    },
+    {
+      "name": "West Baton Rouge Parish",
+      "parish_code": "61",
+      "geoid": "22121",
+      "results": {
+        "votes": 10030,
+        "qualified": 17839,
+        "turnout_pct": 56.2,
+        "precincts_reporting": 29,
+        "precincts_expected": 29,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 4093,
+        "in_person": 3700,
+        "absentee": 393,
+        "race": {
+          "white": 2218,
+          "black": 1816,
+          "other": 59
+        },
+        "sex": {
+          "male": 1708,
+          "female": 2385,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "West Carroll Parish",
+      "parish_code": "62",
+      "geoid": "22123",
+      "results": {
+        "votes": 2818,
+        "qualified": 6970,
+        "turnout_pct": 40.4,
+        "precincts_reporting": 23,
+        "precincts_expected": 23,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1096,
+        "in_person": 957,
+        "absentee": 139,
+        "race": {
+          "white": 995,
+          "black": 94,
+          "other": 7
+        },
+        "sex": {
+          "male": 497,
+          "female": 599,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "West Feliciana Parish",
+      "parish_code": "63",
+      "geoid": "22125",
+      "results": {
+        "votes": 4709,
+        "qualified": 7862,
+        "turnout_pct": 59.9,
+        "precincts_reporting": 27,
+        "precincts_expected": 27,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 2012,
+        "in_person": 1870,
+        "absentee": 142,
+        "race": {
+          "white": 1418,
+          "black": 567,
+          "other": 27
+        },
+        "sex": {
+          "male": 829,
+          "female": 1183,
+          "unallocated": 0
+        }
+      }
+    },
+    {
+      "name": "Winn Parish",
+      "parish_code": "64",
+      "geoid": "22127",
+      "results": {
+        "votes": 4167,
+        "qualified": 8202,
+        "turnout_pct": 50.8,
+        "precincts_reporting": 26,
+        "precincts_expected": 26,
+        "complete_early_absentee": true,
+        "complete_reporting": true
+      },
+      "early": {
+        "total": 1826,
+        "in_person": 1610,
+        "absentee": 216,
+        "race": {
+          "white": 1439,
+          "black": 365,
+          "other": 22
+        },
+        "sex": {
+          "male": 792,
+          "female": 1034,
+          "unallocated": 0
+        }
+      }
+    }
+  ]
+}

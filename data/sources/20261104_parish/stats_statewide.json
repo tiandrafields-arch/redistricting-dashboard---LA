@@ -1,0 +1,27 @@
+{
+  "Stats": {
+    "WriteTime": "2026-11-04T05:01:47.687",
+    "Black": "936358",
+    "White": "1856933",
+    "RaceOther": "191505",
+    "Female": "1645081",
+    "Male": "1336833",
+    "SexUnknown": "2882",
+    "Dem": "1063509",
+    "Rep": "1067960",
+    "NoPty": "828650",
+    "PartyOther": "24677",
+    "All": "2984796",
+    "Black_Voted": "0",
+    "White_Voted": "0",
+    "RaceOther_Voted": "0",
+    "Female_Voted": "0",
+    "Male_Voted": "0",
+    "SexUnknown_Voted": "0",
+    "Dem_Voted": "0",
+    "Rep_Voted": "0",
+    "NoPty_Voted": "0",
+    "PartyOther_Voted": "0",
+    "All_Voted": "0"
+  }
+}
