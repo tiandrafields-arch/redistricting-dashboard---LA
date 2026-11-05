@@ -24,7 +24,23 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Build public guide without changing historical records
         run: |
-          python scripts/build_public_guide_20261105.py
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, subprocess
+          from bs4 import BeautifulSoup
+          protected = {p:hashlib.sha256(p.read_bytes()).hexdigest() for folder in ['data','archive'] for p in Path(folder).rglob('*') if p.is_file()}
+          source = BeautifulSoup(Path('index.html').read_text(), 'html.parser')
+          release = source.select_one('meta[name="dashboard-release"]')['content']
+          if release == '20261104-parish1':
+              subprocess.run(['python','scripts/build_public_guide_20261105.py'],check=True)
+          else:
+              assert release == '20261105-plain1', 'Unexpected release; review before proceeding'
+          for name in ['scripts/build_public_guide_20261105.py','assets/parish-participation-20261104.js']:
+              path=Path(name)
+              path.write_text(path.read_text().replace('Voting places reporting:', 'Precincts reporting:'))
+          assert all(hashlib.sha256(p.read_bytes()).hexdigest()==v for p,v in protected.items())
+          print('PASS: all source data and archives remain unchanged')
+          PY
           node --check assets/parish-participation-20261104.js
           node --check assets/voting-plan-20261101.js
       - name: Validate the current page and preserved archive
@@ -34,11 +50,31 @@ jobs:
           python tests/test_parish_focus.py
           python tests/test_dashboard.py
           python tests/test_senate_research.py
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          from pathlib import Path
+          import json
+          s=BeautifulSoup(Path('index.html').read_text(),'html.parser')
+          d=json.loads(Path('data/processed/election_results_2026-11-03.json').read_text())
+          for r in d['races']:
+              card=s.select_one('[data-race-id="'+r['id']+'"]')
+              assert card
+              lead=sorted(r['candidates'],key=lambda c:c['votes'],reverse=True)
+              if r['district'] in [5,6]:
+                  assert all(c['name'].replace('"','') in card.get_text() for c in lead[:2])
+              else:
+                  assert lead[0]['name'].replace('"','') in card.get_text()
+                  assert f"{lead[0]['votes']:,}" in card.get_text()
+                  assert lead[0]['sos_percentage'] in card.get_text()
+          assert not s.select('#parish-comparison,#parish-table')
+          assert 'denominator' not in s.select_one('main').get_text().lower()
+          print('PASS: all seven result summaries match the preserved SOS record')
+          PY
       - name: Commit tested presentation changes to feature branch only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html assets/parish-participation-20261104.js assets/parish-participation-20261104.css tests/test_parish_focus.py docs/PUBLIC_GUIDE_20261105.md
+          git add index.html assets/parish-participation-20261104.js assets/parish-participation-20261104.css tests/test_parish_focus.py docs/PUBLIC_GUIDE_20261105.md scripts/build_public_guide_20261105.py
           git diff --cached --quiet || git commit -m 'Publish accessible parish explanations and remove the comparison table'
           git push origin HEAD:feature/20261105-public-guide
       - name: Preserve test evidence and release review
