@@ -22,7 +22,7 @@ class Quiet(SimpleHTTPRequestHandler):
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)))
 threading.Thread(target=server.serve_forever,daemon=True).start()
 base=f'http://127.0.0.1:{server.server_port}/'
-expected=['runoffs','parish-map','parish-comparison','registration','voting-plan','methodology']
+expected=['runoffs','parish-map','november-results','registration','voting-plan','methodology']
 report={'data':'PASS','parishes':64,'demographic_scope':'Early and absentee only'}
 try:
  with sync_playwright() as pw:
@@ -39,7 +39,9 @@ try:
   assert page.locator('#map-shapes path').count()==64
   assert page.locator('#district-cards .district-card').count()==6
   assert page.locator('#selected-total').inner_text()=='49.3%'
-  assert page.locator('#parish-table tr').count()==64
+  assert page.locator('#parish-comparison,#parish-table').count()==0
+  assert page.locator('#november-results .november-card').count()==7
+  assert page.locator('#november-results details').get_attribute('open') is None
   for p in d['parishes']:
    page.select_option('#parish-select',p['parish_code'])
    assert page.locator('#selected-total').inner_text()==f"{p['results']['turnout_pct']:.1f}%"
@@ -47,7 +49,7 @@ try:
   page.select_option('#parish-select','17');page.click('#view-race');page.select_option('#group-select','black');page.select_option('#map-metric','share')
   p=next(x for x in d['parishes'] if x['parish_code']=='17')
   assert page.locator('#selected-total').inner_text()==f"{100*p['early']['race']['black']/p['early']['total']:.1f}%"
-  assert 'not full election demographics' in page.locator('#scope-label').inner_text()
+  assert 'Election Day is not included' in page.locator('#scope-label').inner_text()
   share_url=page.url
   with page.expect_download() as e:page.click('#download-parish')
   with open(e.value.path(),encoding='utf-8-sig',newline='') as f:rows=list(csv.reader(f))
@@ -60,10 +62,10 @@ try:
   assert page.locator('#map-metric').input_value()=='share'
   page.click('#view-gender');page.select_option('#group-select','female')
   assert page.locator('#selected-total').inner_text()==f"{p['early']['sex']['female']:,}"
-  assert 'unallocated difference of 79' in page.locator('#detail-body').inner_text()
+  assert '79 fewer' in page.locator('#detail-body').text_content()
   page.click('#view-method');page.select_option('#group-select','absentee')
   assert page.locator('#selected-total').inner_text()==f"{p['early']['absentee']:,}"
-  assert 'not yet supplied' in page.locator('#detail-body').inner_text()
+  assert 'not available in the source checked November 4' in page.locator('#detail-body').text_content()
   page.click('#view-overview');page.select_option('#map-metric','count')
   assert page.locator('#selected-total').inner_text()==f"{p['results']['votes']:,}"
   page.fill('#parish-find','Orleans Parish');page.locator('#parish-find').dispatch_event('change')
@@ -72,12 +74,14 @@ try:
   assert page.locator('#parish-select').input_value()=='17'
   box=page.locator('#map-svg').get_attribute('viewBox');page.click('#zoom-in');assert page.locator('#map-svg').get_attribute('viewBox')!=box
   page.click('#map-reset');assert page.locator('#parish-select').input_value()=='state'
-  page.fill('#parish-search','Baton Rouge');assert page.locator('#parish-table tr').count()==2
   with page.expect_download() as e:page.click('#download-data')
   with open(e.value.path(),encoding='utf-8-sig',newline='') as f:rows=list(csv.reader(f))
-  assert len(rows)==3
-  page.fill('#parish-search','');page.select_option('#parish-sort','low')
-  text=page.locator('#parish-table tr').first.inner_text();assert min(d['parishes'],key=lambda p:p['results']['votes'])['name'] in text
+  assert len(rows)==65
+  assert 'Denominator' not in rows[0]
+  assert 'out of every 100' in page.locator('#detail-body').inner_text()
+  assert 'denominator' not in page.locator('#main').inner_text().lower()
+  page.click('#start-org-plan');assert page.locator('#vp-tab-org').get_attribute('aria-selected')=='true'
+  page.click('#start-voter-plan');assert page.locator('#vp-tab-voter').get_attribute('aria-selected')=='true'
   page.select_option('#parish-select','17');page.click('#view-gender')
   page.evaluate('window.print=()=>{window.__printed=true}')
   page.click('#print-parish');assert page.evaluate('window.__printed')
@@ -112,7 +116,8 @@ try:
    phone.close()
   plain=b.new_page(java_script_enabled=False)
   plain.goto(base,wait_until='networkidle')
-  assert plain.locator('#parish-table tr').count()==64
+  assert plain.locator('#parish-comparison,#parish-table').count()==0
+  assert plain.locator('noscript a[href="data/processed/parish_participation_2026-11-03.csv"]').count()==1
   assert plain.locator('#voting-plan').count()==1
   assert plain.locator('#polling-research,#senate-research,#house-races').count()==0
   broken=b.new_page();broken.route('**/data/processed/parish_participation_2026-11-03.json*',lambda r:r.fulfill(status=503,body='Unavailable'))
@@ -120,7 +125,7 @@ try:
   assert broken.locator('#parish-select').is_disabled()
   assert 'could not be loaded' in broken.locator('#scope-label').inner_text()
   assert broken.locator('#runoffs').is_visible()
-  report.update({'page_order':expected,'map':'PASS','all_parish_selections':'PASS','views':'PASS','csv':'PASS','PDF':'PASS','share_URL_restore':'PASS','planner_parishes':64,'mobile_widths':[320,390,768],'source_failure':'PASS','no_Javascript_table':'PASS','console_errors':errors})
+  report.update({'page_order':expected,'map':'PASS','all_parish_selections':'PASS','views':'PASS','csv':'PASS','PDF':'PASS','share_URL_restore':'PASS','planner_parishes':64,'mobile_widths':[320,390,768],'source_failure':'PASS','no_Javascript_fallback':'PASS','comparison_table':'REMOVED','plain_language':'PASS','november_summary':'PASS','console_errors':errors})
   b.close()
 finally:server.shutdown()
 (OUT/'parish-focus-results.json').write_text(json.dumps(report,indent=2))
