@@ -35,9 +35,13 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Build the approved parish page and historical archive
         run: |
-          python scripts/build_parish_focus_20261104.py
-          mkdir -p archive/november-2026/data/sources
-          cp -a data/sources/20261104 archive/november-2026/data/sources/
+          if ! grep -q 'content="20261104-parish1"' index.html; then
+            python scripts/build_parish_focus_20261104.py
+            mkdir -p archive/november-2026/data/sources
+            cp -a data/sources/20261104 archive/november-2026/data/sources/
+          fi
+          git restore .github/workflows/dashboard-checks.yml
+          sed -i 's/Release 20261104.results.1/Release 20261104.parish.1/g' index.html
           node --check assets/parish-participation-20261104.js
           node --check assets/voting-plan-20261101.js
       - name: Test data, current page and frozen archive
@@ -47,11 +51,11 @@ jobs:
           python tests/test_parish_focus.py
           python tests/test_dashboard.py
           python tests/test_senate_research.py
-      - name: Commit validated files to the feature branch only
+      - name: Commit validated content to the feature branch only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html assets/voting-plan-20261101.js data/processed/parish_participation_2026-11-03.json data/processed/parish_participation_2026-11-03.csv data/sources/20261104_parish docs/PARISH_FOCUS_20261104.md archive/november-2026 tests/test_dashboard.py tests/test_senate_research.py .github/workflows/dashboard-checks.yml
+          git add index.html assets/voting-plan-20261101.js data/processed/parish_participation_2026-11-03.json data/processed/parish_participation_2026-11-03.csv data/sources/20261104_parish docs/PARISH_FOCUS_20261104.md archive/november-2026 tests/test_dashboard.py tests/test_senate_research.py
           git diff --cached --quiet || git commit -m 'Publish tested parish views and preserve November research archive'
           git push origin HEAD:feature/20261104-parish-focus
       - name: Preserve browser verification and release files
