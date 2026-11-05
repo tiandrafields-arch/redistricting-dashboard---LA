@@ -1,0 +1,70 @@
+name: Verify published parish dashboard
+on:
+  push:
+    branches: [feature/20261104-parish-focus]
+    paths: [.github/workflows/verify-parish-live.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install browser
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Verify the deployed public page
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from playwright.sync_api import sync_playwright
+          out=Path('live-verification');out.mkdir()
+          url='https://tiandrafields-arch.github.io/redistricting-dashboard---LA/?v=20261104-parish1&verify=ce0db0be'
+          report={'url':url,'retrieved_at_local':datetime.now(ZoneInfo('America/Chicago')).isoformat()}
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page(viewport={'width':1440,'height':1000},extra_http_headers={'Cache-Control':'no-cache'})
+              errors=[]
+              page.on('pageerror',lambda e:errors.append(str(e)))
+              r=page.goto(url,wait_until='networkidle',timeout=60000)
+              report['http_status']=r.status
+              assert r.status==200
+              report['release']=page.locator('meta[name="dashboard-release"]').get_attribute('content')
+              assert report['release']=='20261104-parish1',report
+              page.wait_for_selector('html[data-parish-ready="true"][data-map-ready="true"]',timeout=30000)
+              order=page.locator('#main > section').evaluate_all('(es)=>es.map(e=>e.id)')
+              assert order==['runoffs','parish-map','parish-comparison','registration','voting-plan','methodology'],order
+              assert page.locator('#polling-research,#senate-research,#house-races,#election-results').count()==0
+              assert page.locator('#map-shapes path').count()==64
+              assert page.locator('#parish-table tr').count()==64
+              page.evaluate("document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)")
+              page.screenshot(path=str(out/'live-desktop.png'))
+              page.select_option('#parish-select','17')
+              page.click('#view-gender')
+              page.select_option('#group-select','female')
+              assert page.locator('#selected-total').inner_text()=='33,522'
+              assert 'not full election demographics' in page.locator('#scope-label').inner_text()
+              page.set_viewport_size({'width':390,'height':844})
+              assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+              page.evaluate('window.scrollTo(0,0)')
+              page.screenshot(path=str(out/'live-mobile.png'))
+              report.update({'section_order':order,'map_parishes':64,'table_parishes':64,'removed_sections':'PASS','gender_view':'PASS','mobile_width':'PASS','page_errors':errors})
+              assert not errors,errors
+              browser.close()
+          (out/'verification.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-parish-dashboard-verification
+          path: live-verification/
+          retention-days: 7
+          if-no-files-found: error
